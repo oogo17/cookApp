@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">AppName</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <!-- Add to menu -->
+    </ul>
+    <div class="dropdown" *ngIf="LoggedIn()" dropdown>
+      <button class="btn dropdown-toggle" dropdownToggle>
+        Welcome {{authService.decodedToken?.unique_name | titlecase}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *dropdownMenu>
+        <a class="dropdown-item" href="#">Edit profile</a>
+        <a class="dropdown-item" href="#"></a>
+        <a class="dropdown-item" (click)="LoggedOut()" >Logout</a>
+      </div>
+    </div>
+    <form #LoginForm="ngForm" class="form-inline my-2 my-lg-0" *ngIf="!LoggedIn()"  (ngSubmit)="Login()" >
+      <input class="form-control mr-sm-2" name="username" placeholder="Username"
+        aria-label="Username" required [(ngModel)]="model.username">
+
+      <input class="form-control mr-sm-2" type="password" name="password" placeholder="Password"
+        aria-label="Password" required [(ngModel)]="model.password">
+
+      <button class="btn btn-success my-2 my-sm-0" [disabled]="LoginForm.invalid" type="submit">Login</button>
+    </form>
+  </div>
+</nav>
