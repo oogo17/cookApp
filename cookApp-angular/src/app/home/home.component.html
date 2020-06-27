@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <div *ngIf="!registerMode" style="text-align: center">
+  <div *ngIf="!registerMode && !registerApproved" style="text-align: center">
     <h1>Cook what you love</h1>
     <p class="lead">Come on in to save and share your recipes... All you need to do is sign up!</p>
     <div class="text-center">
@@ -11,7 +11,11 @@
   <div *ngIf="registerMode"  class="container">
     <div class="row justify-content-center">
       <div class="col-4">
-        <app-register [valuesFromHome]="registerMode" (cancelRegistration)="cancelRegistrationMode($event)"></app-register>
+        <app-register [valuesFromHome]="registerMode"
+        (cancelRegistration)="cancelRegistrationMode($event)"
+        (registrationApproved)="registrationApprovedMode($event)">
+
+        </app-register>
       </div>
     </div>
   </div>

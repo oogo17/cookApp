@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -14,6 +15,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/errorInterceptor.service';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { FallowUserListComponent } from './fallow-user-list/fallow-user-list.component';
+import { ContainerListComponent } from './container-list/container-list.component';
+import { FilterRecipesComponent } from './filter-recipes/filter-recipes.component';
 
 
 
@@ -26,7 +31,11 @@ import { ErrorInterceptorProvider } from './_services/errorInterceptor.service';
       AppComponent,
       NavComponent,
       HomeComponent,
-      RegisterComponent
+      RegisterComponent,
+      RecipeListComponent,
+      FallowUserListComponent,
+      ContainerListComponent,
+      FilterRecipesComponent
    ],
    imports: [
       BrowserModule,

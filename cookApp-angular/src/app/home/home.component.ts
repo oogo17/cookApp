@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
  registerMode = false;
+ registerApproved = false;
   constructor() { }
 
   ngOnInit() {
@@ -18,5 +19,10 @@ export class HomeComponent implements OnInit {
 
   cancelRegistrationMode(registerMode: boolean) {
     this.registerMode = registerMode;
+  }
+
+  registrationApprovedMode(registerApproved: boolean) {
+   this.registerApproved = registerApproved;
+   this.registerMode = false;
   }
 }

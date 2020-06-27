@@ -10,6 +10,7 @@ import { AlertifyService } from '../_services/alertify.service';
 export class RegisterComponent implements OnInit {
   @Input() valuesFromHome: boolean;
   @Output() cancelRegistration = new EventEmitter();
+  @Output() registrationApproved = new EventEmitter();
 
   model: any = {};
 
@@ -20,9 +21,14 @@ export class RegisterComponent implements OnInit {
 
   Register() {
     this.authService.register(this.model).subscribe(() => {
-      console.log('Successfuly register');
+      this.alertify.success('Successfuly register');
+      this.authService.login(this.model).subscribe(next => {
+      }, error => {
+        this.alertify.error(error);
+      });
       this.model.username = '';
       this.model.password = '';
+      this.registrationApproved.emit(true);
     }, error => {
       this.alertify.error(error);
     });
