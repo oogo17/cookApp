@@ -35,7 +35,7 @@ export class NavComponent implements OnInit {
   this.alertify.success('loggedOut');
   this.model.username = '';
   this.model.password = '';
-  this.router.navigate(['/home']);
+  this.router.navigate(['/']);
   }
 
 }
