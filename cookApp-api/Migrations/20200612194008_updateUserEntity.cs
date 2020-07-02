@@ -9,22 +9,22 @@ namespace cookApp_api.Migrations
         {
             migrationBuilder.RenameColumn(
                 name: "userName",
-                table: "Users",
+                table: "User",
                 newName: "UserName");
 
             migrationBuilder.RenameColumn(
                 name: "id",
-                table: "Users",
+                table: "User",
                 newName: "Id");
 
             migrationBuilder.AddColumn<byte[]>(
                 name: "PasswordHash",
-                table: "Users",
+                table: "User",
                 nullable: true);
 
             migrationBuilder.AddColumn<byte[]>(
                 name: "PasswordSalt",
-                table: "Users",
+                table: "User",
                 nullable: true);
         }
 
@@ -32,20 +32,20 @@ namespace cookApp_api.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "PasswordHash",
-                table: "Users");
+                table: "User");
 
             migrationBuilder.DropColumn(
                 name: "PasswordSalt",
-                table: "Users");
+                table: "User");
 
             migrationBuilder.RenameColumn(
                 name: "UserName",
-                table: "Users",
+                table: "User",
                 newName: "userName");
 
             migrationBuilder.RenameColumn(
                 name: "Id",
-                table: "Users",
+                table: "User",
                 newName: "id");
         }
     }

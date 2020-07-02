@@ -1,19 +1,17 @@
 using System;
 using System.Collections.Generic;
 
-namespace cookApp_api.Models
+namespace cookApp_api.Dtos
 {
-    public class Recipe
+    public class RecipeForDetailedDto
     {
-        public int Id { get; set; }
+       public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
-        public ICollection<Ingredient> Ingredients { get; set; }
-        public ICollection<Step> Steps { get; set; }
+        public ICollection<IngredientForDetailedDto> Ingredients { get; set; }
+        public ICollection<StepForDetailedDto> Steps { get; set; }
         public string Tips { get; set; }
         public Boolean allowShare { get; set; }
-        public User User { get; set; }
-        public int UserId { get; set; }
     }
 }

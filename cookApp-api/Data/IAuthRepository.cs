@@ -5,8 +5,8 @@ namespace cookApp_api.Data
 {
     public interface IAuthRepository
     {
-         Task<Users> Register (Users user , string password);
-         Task<Users> Login (string username, string password);
+         Task<User> Register (User user , string password);
+         Task<User> Login (string username, string password);
          Task<bool> UserExists (string username);
     }
 }

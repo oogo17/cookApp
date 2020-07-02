@@ -24,7 +24,7 @@ namespace DatingApp.API.Controllers
         [HttpGet]
         public async  Task<IActionResult> GetValues()
         {
-            var values = await _context.Users.ToListAsync();
+            var values = await _context.User.ToListAsync();
 
             return Ok(values);
         }
@@ -33,7 +33,7 @@ namespace DatingApp.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {
-            var value = await _context.Users.FirstOrDefaultAsync(x => x.Id==id);
+            var value = await _context.User.FirstOrDefaultAsync(x => x.Id==id);
 
             return Ok(value); 
         }

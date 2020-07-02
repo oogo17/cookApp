@@ -36,7 +36,7 @@ namespace cookApp_api.Controllers
                 return BadRequest("Username already exists");
 
 
-            var userToCreate = new Users
+            var userToCreate = new User
             {
                 UserName = userForRegisterDto.UserName,
 

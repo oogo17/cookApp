@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using cookApp_api.Models;
+
 
 namespace cookApp_api.Dtos
 {
@@ -20,5 +20,9 @@ namespace cookApp_api.Dtos
 
         public string PhotoUrl { get; set; }
         public ICollection<PhotoForDetailedDto> Photos { get; set; }
+
+        public ICollection<RecipeForDetailedDto> Recipes { get; set; }
+
+        public ICollection<FollowUserForDetailedDto> FollowUsers { get; set; }
     }
 }

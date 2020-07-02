@@ -8,7 +8,7 @@ namespace cookApp_api.Models
         public string Url { get; set; }
         public DateTime DateCreated { get; set; }
         public Boolean IsMain { get; set; }
-        public Users User { get; set; }
+        public User User { get; set; }
         public int UserId { get; set; }
     }
 }

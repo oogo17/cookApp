@@ -43,7 +43,7 @@ namespace cookApp_api.Migrations
                     b.ToTable("FollowUser");
                 });
 
-            modelBuilder.Entity("cookApp_api.Models.Ingridient", b =>
+            modelBuilder.Entity("cookApp_api.Models.Ingredient", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,7 +65,7 @@ namespace cookApp_api.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("Ingridient");
+                    b.ToTable("Ingredient");
                 });
 
             modelBuilder.Entity("cookApp_api.Models.Photo", b =>
@@ -143,7 +143,7 @@ namespace cookApp_api.Migrations
                     b.ToTable("Step");
                 });
 
-            modelBuilder.Entity("cookApp_api.Models.Users", b =>
+            modelBuilder.Entity("cookApp_api.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -172,22 +172,22 @@ namespace cookApp_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("cookApp_api.Models.FollowUser", b =>
                 {
-                    b.HasOne("cookApp_api.Models.Users", "User")
+                    b.HasOne("cookApp_api.Models.User", "User")
                         .WithMany("FollowUsers")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("cookApp_api.Models.Ingridient", b =>
+            modelBuilder.Entity("cookApp_api.Models.Ingredient", b =>
                 {
                     b.HasOne("cookApp_api.Models.Recipe", "Recipe")
-                        .WithMany("Ingridients")
+                        .WithMany("Ingredients")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -195,7 +195,7 @@ namespace cookApp_api.Migrations
 
             modelBuilder.Entity("cookApp_api.Models.Photo", b =>
                 {
-                    b.HasOne("cookApp_api.Models.Users", "User")
+                    b.HasOne("cookApp_api.Models.User", "User")
                         .WithMany("Photos")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -204,7 +204,7 @@ namespace cookApp_api.Migrations
 
             modelBuilder.Entity("cookApp_api.Models.Recipe", b =>
                 {
-                    b.HasOne("cookApp_api.Models.Users", "User")
+                    b.HasOne("cookApp_api.Models.User", "User")
                         .WithMany("Recipes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

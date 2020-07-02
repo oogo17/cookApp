@@ -9,17 +9,21 @@ namespace cookApp_api.Helpers
     {
         public AutoMapperProfiles()
         {
-            CreateMap<Users, UserForListDto>()
+            CreateMap<User, UserForListDto>()
                 .ForMember(dest => dest.PhotoUrl, opt => 
                     opt.MapFrom(src => src.Photos.FirstOrDefault(p =>p.IsMain).Url))
                 .ForMember(dest => dest.Age, opt => 
                     opt.MapFrom(src => src.DateofBirth.CalculateAge()));
-            CreateMap<Users, UserForDetailedDto>()
+            CreateMap<User, UserForDetailedDto>()
                 .ForMember(dest => dest.PhotoUrl, opt => 
                     opt.MapFrom(src => src.Photos.FirstOrDefault(p =>p.IsMain).Url))
                 .ForMember(dest => dest.Age, opt => 
                     opt.MapFrom(src => src.DateofBirth.CalculateAge()));
             CreateMap<Photo, PhotoForDetailedDto>();
+            CreateMap<Recipe, RecipeForDetailedDto>();
+            CreateMap<Ingredient, IngredientForDetailedDto>();
+            CreateMap<Step, StepForDetailedDto>();
+            CreateMap<FollowUser, FollowUserForDetailedDto>();
         }
     }
 }

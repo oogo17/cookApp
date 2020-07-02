@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using cookApp_api.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace cookApp_api.Data
 {
@@ -13,9 +15,9 @@ namespace cookApp_api.Data
             _context = context;
 
         }
-        public async Task<Users> Login(string username, string password)
+        public async Task<User> Login(string username, string password)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == username);
+            var user = await _context.User.FirstOrDefaultAsync(x => x.UserName == username);
            
             if (user == null)
              return null;
@@ -42,7 +44,7 @@ namespace cookApp_api.Data
            return true;
         }
 
-        public async Task<Users> Register(Users user, string password)
+        public async Task<User> Register(User user, string password)
         {
             byte[] passwordHash, passwordSalt;
 
@@ -51,7 +53,7 @@ namespace cookApp_api.Data
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt; 
 
-            await _context.Users.AddAsync(user);
+            await _context.User.AddAsync(user);
             await _context.SaveChangesAsync();
 
             return user;
@@ -69,7 +71,7 @@ namespace cookApp_api.Data
 
         public async Task<bool> UserExists(string username)
         {
-           if( await _context.Users.AnyAsync(x => x.UserName == username))
+           if( await _context.User.AnyAsync(x => x.UserName == username))
             return true;
 
             return false;

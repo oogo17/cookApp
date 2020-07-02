@@ -1,231 +1,212 @@
 [
-    {
-      "Username": "Rosalind",
-      "Password": "password",
-      "DateofBirth": "1964-08-16",
-      "DateCreated": "2017-04-10",
-      "City": "Zeba",
-      "Country": "Gambia",
-      "Photos": [
-        {
-          "url": "https://randomuser.me/api/portraits/women/60.jpg",
-          "DateCreated": "2017-01-13",
-          "isMain": true
-        }
-      ]
-    },
-    {
-      "Username": "Gertrude",
-      "Password": "password",
-      "DateofBirth": "1992-03-22",
-      "DateCreated": "2017-01-27",
-      "City": "Fairfield",
-      "Country": "Grenada",
-      "Photos": [
-        {
-          "url": "https://randomuser.me/api/portraits/women/19.jpg",
-          "DateCreated": "2017-03-13",
-          "isMain": true
-        }
-      ]
-    },
-    {
-      "Username": "Rebecca",
-      "Password": "password",
-      "DateofBirth": "1951-07-25",
-      "DateCreated": "2017-06-04",
-      "City": "Keyport",
-      "Country": "Cyprus",
-      "Photos": [
-        {
-          "url": "https://randomuser.me/api/portraits/women/14.jpg",
-          "DateCreated": "2017-07-04",
-          "isMain": true
-        }
-      ]
-    },
-    {
-      "Username": "Alejandra",
-      "Password": "password",
-      "DateofBirth": "1994-09-07",
-      "DateCreated": "2017-01-11",
-      "City": "Layhill",
-      "Country": "Nigeria",
-      "Photos": [
-        {
-          "url": "https://randomuser.me/api/portraits/women/12.jpg",
-          "DateCreated": "2017-02-25",
-          "isMain": true
-        }
-      ]
-    },
-    {
-      "Username": "Kelli",
-      "Password": "password",
-      "DateofBirth": "1983-08-12",
-      "DateCreated": "2017-01-03",
-      "City": "Edneyville",
-      "Country": "Martinique",
-      "Photos": [
-        {
-          "url": "https://randomuser.me/api/portraits/women/73.jpg",
-          "DateCreated": "2017-01-09",
-          "isMain": true
-        }
-      ]
-    },
-    
-        {
-          "Username": "Thomas",
-          "Password": "password",
-          "DateofBirth": "1990-06-24",
-          "DateCreated": "2017-06-11",
-          "City": "Hayes",
-          "Country": "Ireland",
-          "Photos": [
-            {
-              "url": "https://randomuser.me/api/portraits/male/76.jpg",
-              "DateCreated": "2017-07-28",
-              "isMain": true
-            }
-          ]
-        },
-        {
-          "Username": "Travis",
-          "Password": "password",
-          "DateofBirth": "1999-04-19",
-          "DateCreated": "2017-08-14",
-          "City": "Abiquiu",
-          "Country": "American Samoa",
-          "Photos": [
-            {
-              "url": "https://randomuser.me/api/portraits/male/81.jpg",
-              "DateCreated": "2017-07-25",
-              "isMain": true
-            }
-          ]
-        },
-        {
-          "Username": "Whitley",
-          "Password": "password",
-          "DateofBirth": "1968-04-08",
-          "DateCreated": "2017-06-21",
-          "City": "Wadsworth",
-          "Country": "Senegal",
-          "Photos": [
-            {
-              "url": "https://randomuser.me/api/portraits/male/82.jpg",
-              "DateCreated": "2017-05-29",
-              "isMain": true
-            }
-          ]
-        },
-        {
-          "Username": "Robbins",
-          "Password": "password",
-          "DateofBirth": "1981-09-20",
-          "DateCreated": "2017-04-06",
-          "City": "Maury",
-          "Country": "Oman",
-          "Photos": [
-            {
-              "url": "https://randomuser.me/api/portraits/male/58.jpg",
-              "DateCreated": "2017-03-16",
-              "isMain": true
-            }
-          ]
-        },
-        {
-          "Username": "Hernandez",
-          "Password": "password",
-          "DateofBirth": "1996-08-15",
-          "DateCreated": "2017-04-03",
-          "City": "Wakulla",
-          "Country": "Svalbard and Jan Mayen Islands",
-          "Photos": [
-            {
-              "url": "https://randomuser.me/api/portraits/male/42.jpg",
-              "DateCreated": "2017-07-21",
-              "isMain": true
-            }
-          ]
-        },
-        
-            {
-              "Username": "Thomas",
-              "Password": "password",
-              "DateofBirth": "1990-06-24",
-              "DateCreated": "2017-06-11",
-              "City": "Hayes",
-              "Country": "Ireland",
-              "Photos": [
-                {
-                  "url": "https://randomuser.me/api/portraits/male/76.jpg",
-                  "DateCreated": "2017-07-28",
-                  "isMain": true
-                }
-              ]
-            },
-            {
-              "Username": "Travis",
-              "Password": "password",
-              "DateofBirth": "1999-04-19",
-              "DateCreated": "2017-08-14",
-              "City": "Abiquiu",
-              "Country": "American Samoa",
-              "Photos": [
-                {
-                  "url": "https://randomuser.me/api/portraits/male/81.jpg",
-                  "DateCreated": "2017-07-25",
-                  "isMain": true
-                }
-              ]
-            },
-            {
-              "Username": "Whitley",
-              "Password": "password",
-              "DateofBirth": "1968-04-08",
-              "DateCreated": "2017-06-21",
-              "City": "Wadsworth",
-              "Country": "Senegal",
-              "Photos": [
-                {
-                  "url": "https://randomuser.me/api/portraits/male/82.jpg",
-                  "DateCreated": "2017-05-29",
-                  "isMain": true
-                }
-              ]
-            },
-            {
-              "Username": "Robbins",
-              "Password": "password",
-              "DateofBirth": "1981-09-20",
-              "DateCreated": "2017-04-06",
-              "City": "Maury",
-              "Country": "Oman",
-              "Photos": [
-                {
-                  "url": "https://randomuser.me/api/portraits/male/58.jpg",
-                  "DateCreated": "2017-03-16",
-                  "isMain": true
-                }
-              ]
-            },
-            {
-              "Username": "Hernandez",
-              "Password": "password",
-              "DateofBirth": "1996-08-15",
-              "DateCreated": "2017-04-03",
-              "City": "Wakulla",
-              "Country": "Svalbard and Jan Mayen Islands",
-              "Photos": [
-                {
-                  "url": "https://randomuser.me/api/portraits/male/42.jpg",
-                  "DateCreated": "2017-07-21",
-                  "isMain": true
-                }
-              ]
-            }
-          
-      
-  ]
+  {
+    "Username": "Sparks",
+    "Password": "password",
+    "DateofBirth": "1996-03-31",
+    "DateCreated": "2017-04-07",
+    "City": "Biddle",
+    "Country": "France, Metropolitan",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/food/69.jpg",
+        "DateCreated": "2017-07-01",
+        "isMain": true
+      }
+    ],
+    "Recipes": [
+      {
+        "Name": "tacos",
+        "Description": "Id ullamco consequat in occaecat culpa sit incididunt ut.",
+        "DateCreated": "2017-07-17",
+        "Ingredients": [
+          {
+            "Quantity": 9,
+            "Mesure": "unit",
+            "Name": "cucumber"
+          }
+        ],
+        "Steps": [
+          {
+            "Description": "Excepteur commodo ut voluptate mollit."
+          }
+        ],
+        "Tips": "Eiusmod duis cillum labore veniam."
+      }
+    ],
+    "FollowUsers": [
+      {
+        "Username": "Garrison",
+        "UrlPhoto": "https://randomuser.me/api/portraits/food/98.jpg",
+        "DateCreated": "2017-07-08"
+      }
+    ]
+  },
+  {
+    "Username": "Randall",
+    "Password": "password",
+    "DateofBirth": "1988-07-30",
+    "DateCreated": "2017-03-03",
+    "City": "Hessville",
+    "Country": "Angola",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/food/30.jpg",
+        "DateCreated": "2017-06-16",
+        "isMain": true
+      }
+    ],
+    "Recipes": [
+      {
+        "Name": "flautas",
+        "Description": "Veniam incididunt adipisicing adipisicing nostrud incididunt ex ex et do aliqua fugiat eu.",
+        "DateCreated": "2017-06-06",
+        "Ingredients": [
+          {
+            "Quantity": 5,
+            "Mesure": "spoon",
+            "Name": "sparragus"
+          }
+        ],
+        "Steps": [
+          {
+            "Description": "Anim commodo anim cillum qui occaecat laboris eu nostrud nostrud excepteur ipsum magna."
+          }
+        ],
+        "Tips": "Velit est fugiat ea proident culpa culpa ut nisi occaecat enim irure incididunt minim."
+      }
+    ],
+    "FollowUsers": [
+      {
+        "Username": "Whitaker",
+        "UrlPhoto": "https://randomuser.me/api/portraits/food/51.jpg",
+        "DateCreated": "2017-06-11"
+      }
+    ]
+  },
+  {
+    "Username": "Jacobson",
+    "Password": "password",
+    "DateofBirth": "1953-03-01",
+    "DateCreated": "2017-02-21",
+    "City": "Foxworth",
+    "Country": "Guatemala",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/food/28.jpg",
+        "DateCreated": "2017-07-08",
+        "isMain": true
+      }
+    ],
+    "Recipes": [
+      {
+        "Name": "fajitas",
+        "Description": "Aliquip consequat aliquip ex laboris ullamco ullamco ullamco ad eu aliqua consequat incididunt non fugiat.",
+        "DateCreated": "2017-06-08",
+        "Ingredients": [
+          {
+            "Quantity": 3,
+            "Mesure": "spoon",
+            "Name": "tomato"
+          }
+        ],
+        "Steps": [
+          {
+            "Description": "Dolore minim anim esse quis Lorem adipisicing sunt."
+          }
+        ],
+        "Tips": "Est aute adipisicing reprehenderit proident."
+      }
+    ],
+    "FollowUsers": [
+      {
+        "Username": "Holloway",
+        "UrlPhoto": "https://randomuser.me/api/portraits/food/26.jpg",
+        "DateCreated": "2017-04-24"
+      }
+    ]
+  },
+  {
+    "Username": "Mcfarland",
+    "Password": "password",
+    "DateofBirth": "1970-02-28",
+    "DateCreated": "2017-07-14",
+    "City": "Echo",
+    "Country": "Norway",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/food/78.jpg",
+        "DateCreated": "2017-07-20",
+        "isMain": true
+      }
+    ],
+    "Recipes": [
+      {
+        "Name": "fajitas",
+        "Description": "Reprehenderit magna duis voluptate dolore consequat sunt.",
+        "DateCreated": "2017-07-25",
+        "Ingredients": [
+          {
+            "Quantity": 6,
+            "Mesure": "lb",
+            "Name": "cucumber"
+          }
+        ],
+        "Steps": [
+          {
+            "Description": "Lorem incididunt voluptate aliqua anim pariatur minim culpa nisi proident sunt esse eu non."
+          }
+        ],
+        "Tips": "Ipsum sunt sit sint aute eu sit non."
+      }
+    ],
+    "FollowUsers": [
+      {
+        "Username": "Reilly",
+        "UrlPhoto": "https://randomuser.me/api/portraits/food/97.jpg",
+        "DateCreated": "2017-03-07"
+      }
+    ]
+  },
+  {
+    "Username": "Walker",
+    "Password": "password",
+    "DateofBirth": "1978-08-29",
+    "DateCreated": "2017-01-08",
+    "City": "Kylertown",
+    "Country": "Martinique",
+    "Photos": [
+      {
+        "url": "https://randomuser.me/api/portraits/food/9.jpg",
+        "DateCreated": "2017-07-09",
+        "isMain": true
+      }
+    ],
+    "Recipes": [
+      {
+        "Name": "tacos",
+        "Description": "Sint eiusmod fugiat excepteur cillum.",
+        "DateCreated": "2017-06-21",
+        "Ingredients": [
+          {
+            "Quantity": 9,
+            "Mesure": "spoon",
+            "Name": "cucumber"
+          }
+        ],
+        "Steps": [
+          {
+            "Description": "Reprehenderit deserunt magna est exercitation aute non officia consequat exercitation enim nisi elit officia cillum."
+          }
+        ],
+        "Tips": "Cillum elit cillum ipsum voluptate proident."
+      }
+    ],
+    "FollowUsers": [
+      {
+        "Username": "Sexton",
+        "UrlPhoto": "https://randomuser.me/api/portraits/food/78.jpg",
+        "DateCreated": "2017-02-14"
+      }
+    ]
+  }
+]

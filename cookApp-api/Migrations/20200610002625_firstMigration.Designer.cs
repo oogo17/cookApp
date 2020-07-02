@@ -17,7 +17,7 @@ namespace cookApp_api.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.4");
 
-            modelBuilder.Entity("cookApp_api.Models.Users", b =>
+            modelBuilder.Entity("cookApp_api.Models.User", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -28,7 +28,7 @@ namespace cookApp_api.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 #pragma warning restore 612, 618
         }

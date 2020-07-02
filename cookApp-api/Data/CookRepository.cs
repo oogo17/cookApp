@@ -24,10 +24,10 @@ namespace cookApp_api.Data
             _context.Remove(entity);
         }
 
-        public async Task<Users> GetUser(int id)
+        public async Task<User> GetUser(int id)
         {
-            var user = await _context.Users.Include(x => x.Recipes)
-                                        .ThenInclude(x => x.Ingridients)
+            var user = await _context.User.Include(x => x.Recipes)
+                                        .ThenInclude(x => x.Ingredients)
                                      .Include(x => x.Recipes)
                                         .ThenInclude(x => x.Steps)
                                      .Include(x => x.Photos)
@@ -36,9 +36,9 @@ namespace cookApp_api.Data
             return user;
         }
 
-        public async Task<IEnumerable<Users>> GetUsers()
+        public async Task<IEnumerable<User>> GetUsers()
         {
-           var users = await _context.Users.Include(x => x.Photos)
+           var users = await _context.User.Include(x => x.Photos)
                                            .Include(x => x.Recipes)
                                            .Include(x => x.FollowUsers).ToListAsync();
 

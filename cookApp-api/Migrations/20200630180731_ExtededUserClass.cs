@@ -9,23 +9,23 @@ namespace cookApp_api.Migrations
         {
             migrationBuilder.AddColumn<string>(
                 name: "City",
-                table: "Users",
+                table: "User",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "Country",
-                table: "Users",
+                table: "User",
                 nullable: true);
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "DateCreated",
-                table: "Users",
+                table: "User",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "DateofBirth",
-                table: "Users",
+                table: "User",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
@@ -44,9 +44,9 @@ namespace cookApp_api.Migrations
                 {
                     table.PrimaryKey("PK_FollowUser", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FollowUser_Users_UserId",
+                        name: "FK_FollowUser_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -66,9 +66,9 @@ namespace cookApp_api.Migrations
                 {
                     table.PrimaryKey("PK_Photo", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Photo_Users_UserId",
+                        name: "FK_Photo_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -90,15 +90,15 @@ namespace cookApp_api.Migrations
                 {
                     table.PrimaryKey("PK_Recipe", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Recipe_Users_UserId",
+                        name: "FK_Recipe_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ingridient",
+                name: "Ingredient",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -110,9 +110,9 @@ namespace cookApp_api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ingridient", x => x.Id);
+                    table.PrimaryKey("PK_Ingredient", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ingridient_Recipe_RecipeId",
+                        name: "FK_Ingredient_Recipe_RecipeId",
                         column: x => x.RecipeId,
                         principalTable: "Recipe",
                         principalColumn: "Id",
@@ -145,8 +145,8 @@ namespace cookApp_api.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ingridient_RecipeId",
-                table: "Ingridient",
+                name: "IX_Ingredient_RecipeId",
+                table: "Ingredient",
                 column: "RecipeId");
 
             migrationBuilder.CreateIndex(
@@ -171,7 +171,7 @@ namespace cookApp_api.Migrations
                 name: "FollowUser");
 
             migrationBuilder.DropTable(
-                name: "Ingridient");
+                name: "Ingredient");
 
             migrationBuilder.DropTable(
                 name: "Photo");
@@ -184,19 +184,19 @@ namespace cookApp_api.Migrations
 
             migrationBuilder.DropColumn(
                 name: "City",
-                table: "Users");
+                table: "User");
 
             migrationBuilder.DropColumn(
                 name: "Country",
-                table: "Users");
+                table: "User");
 
             migrationBuilder.DropColumn(
                 name: "DateCreated",
-                table: "Users");
+                table: "User");
 
             migrationBuilder.DropColumn(
                 name: "DateofBirth",
-                table: "Users");
+                table: "User");
         }
     }
 }

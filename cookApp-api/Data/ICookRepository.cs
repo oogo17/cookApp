@@ -12,9 +12,9 @@ namespace cookApp_api.Data
 
         Task<bool> SaveAll();
 
-        Task<IEnumerable<Users>> GetUsers();
+        Task<IEnumerable<User>> GetUsers();
 
-        Task<Users> GetUser(int id);
+        Task<User> GetUser(int id);
          
     }
 }

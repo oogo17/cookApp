@@ -11,11 +11,11 @@ namespace cookApp_api.Data
         public static void SeedUSers(DataContext context)
         {
 
-            if (!context.Users.Any())
+            if (!context.User.Any())
             {
 
                 var userData = System.IO.File.ReadAllText("Data/UserSeedData.json");
-                var users = JsonConvert.DeserializeObject<List<Users>>(userData);
+                var users = JsonConvert.DeserializeObject<List<User>>(userData);
                 foreach (var user in users)
                 {
                     byte[] passwordHash, passwordSalt;
@@ -23,9 +23,14 @@ namespace cookApp_api.Data
                     user.PasswordHash = passwordHash;
                     user.PasswordSalt = passwordSalt;
                     user.UserName = user.UserName.ToLower();
-                    context.Users.Add(user);
+                 
+
+                    
+                    context.User.Add(user);
 
                 }
+            
+
                 context.SaveChanges();
             }
         }

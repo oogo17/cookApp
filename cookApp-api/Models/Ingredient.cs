@@ -1,7 +1,7 @@
 
 namespace cookApp_api.Models
 {
-    public class Ingridient
+    public class Ingredient
     {
         public int Id { get; set; }
         public int Quantity { get; set; }
