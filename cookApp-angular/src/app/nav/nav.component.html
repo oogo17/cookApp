@@ -13,9 +13,9 @@
         Welcome {{authService.decodedToken?.unique_name | titlecase}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *dropdownMenu>
-        <a class="dropdown-item" href="#">Edit profile</a>
+        <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Edit profile</a>
         <a class="dropdown-item" href="#"></a>
-        <a class="dropdown-item" (click)="LoggedOut()" >Logout</a>
+        <a class="dropdown-item" (click)="LoggedOut()"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
       </div>
     </div>
     <form #LoginForm="ngForm" class="form-inline my-2 my-lg-0" *ngIf="!LoggedIn()"  (ngSubmit)="Login()" >

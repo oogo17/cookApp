@@ -9,7 +9,6 @@ namespace cookApp_api.Data
         public DataContext (DbContextOptions<DataContext> options): base (options){}
 
         public DbSet<User> User {get; set;}
-
         public DbSet<Photo> Photo { get; set; }
         public DbSet<Recipe> Recipe { get; set; }
         public DbSet<Ingredient> Ingredient { get; set; }

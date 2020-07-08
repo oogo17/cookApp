@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace cookApp_api.Migrations
 {
-    public partial class ExtededUserClass : Migration
+    public partial class extendRecipeUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -81,6 +81,7 @@ namespace cookApp_api.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
+                    PhotoUrl = table.Column<string>(nullable: true),
                     DateCreated = table.Column<DateTime>(nullable: false),
                     Tips = table.Column<string>(nullable: true),
                     allowShare = table.Column<bool>(nullable: false),

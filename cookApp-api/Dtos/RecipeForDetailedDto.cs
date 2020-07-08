@@ -8,6 +8,7 @@ namespace cookApp_api.Dtos
        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string PhotoUrl { get; set; }
         public DateTime DateCreated { get; set; }
         public ICollection<IngredientForDetailedDto> Ingredients { get; set; }
         public ICollection<StepForDetailedDto> Steps { get; set; }

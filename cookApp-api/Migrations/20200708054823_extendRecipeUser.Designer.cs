@@ -9,8 +9,8 @@ using cookApp_api.Data;
 namespace cookApp_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200630180731_ExtededUserClass")]
-    partial class ExtededUserClass
+    [Migration("20200708054823_extendRecipeUser")]
+    partial class extendRecipeUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -106,6 +106,9 @@ namespace cookApp_api.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhotoUrl")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Tips")

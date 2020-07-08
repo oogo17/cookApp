@@ -1,7 +1,7 @@
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
-import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { RecipeListComponent } from './recipe/recipe-list/recipe-list.component';
 import { FallowUserListComponent } from './fallow-user-list/fallow-user-list.component';
 import { ContainerListComponent } from './container-list/container-list.component';
 import { AuthGuard } from './_guards/auth.guard';
