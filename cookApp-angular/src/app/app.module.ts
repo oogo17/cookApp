@@ -1,4 +1,3 @@
-import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -16,10 +15,13 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/errorInterceptor.service';
 import { RecipeListComponent } from './recipe/recipe-list/recipe-list.component';
-import { RecipeComponent} from './recipe/recipe/recipe.component';
+import { RecipeComponent} from './recipe/recipe-card/recipe.component';
 import { FallowUserListComponent } from './fallow-user-list/fallow-user-list.component';
 import { ContainerListComponent } from './container-list/container-list.component';
 import { FilterRecipesComponent } from './filter-recipes/filter-recipes.component';
+import { RecipeDetailComponent } from './recipe/recipe-detail/recipe-detail.component';
+import { RecipeCreateComponent } from './recipe/recipe-create/recipe-create.component';
+import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 
 
 
@@ -35,6 +37,9 @@ import { FilterRecipesComponent } from './filter-recipes/filter-recipes.componen
       RegisterComponent,
       RecipeListComponent,
       RecipeComponent,
+      RecipeDetailComponent,
+      RecipeCreateComponent,
+      RecipeEditComponent,
       FallowUserListComponent,
       ContainerListComponent,
       FilterRecipesComponent

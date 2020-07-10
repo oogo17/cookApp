@@ -3,6 +3,9 @@
   <div class="card-body">
     <h5 class="card-title">{{recipe.name}}</h5>
     <p class="card-text">{{recipe.description}}</p>
-    <a href="#" class="btn btn-primary">View</a>
+    <div class="float-right">
+      <a [routerLink]="['/recipeEdit/',recipe.id]"  class="btn btn-info">Edit</a>
+      <a [routerLink]="['/recipeDetail/',recipe.id]"  class="btn btn-primary ml-2">View</a>
+    </div>
   </div>
 </div>

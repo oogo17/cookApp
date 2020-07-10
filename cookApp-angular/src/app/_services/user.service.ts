@@ -1,3 +1,4 @@
+import { Recipe } from 'src/app/_models/Recipe';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -25,6 +26,10 @@ getUsers(): Observable<User[]> {
 
 getUser(id: number): Observable<User> {
   return this.http.get<User>(this.baseUrl + 'users/' + id, httpOption);
+}
+
+getRecipe(id: number): Observable<Recipe> {
+  return this.http.get<Recipe>(this.baseUrl + 'recipes/' + id, httpOption);
 }
 
 }

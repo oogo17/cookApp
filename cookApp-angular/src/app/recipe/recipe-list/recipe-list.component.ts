@@ -31,8 +31,8 @@ export class RecipeListComponent implements OnInit {
    this.userService.getUser(this.idUser).subscribe((user: User) => {
      this.user = user;
      this.recipes = user.recipes;
-     console.log(user);
-     console.log(this.recipes);
+    //  console.log(user);
+    //  console.log(this.recipes);
    }, error => {
      this.alertify.error(error);
    });

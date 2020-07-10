@@ -24,6 +24,15 @@ namespace cookApp_api.Data
             _context.Remove(entity);
         }
 
+        public async Task<Recipe> GetRecipe(int id)
+        {
+            var recipe = await _context.Recipe.Include(x => x.Ingredients)
+                                              .Include(x => x.Steps)
+                                              .FirstOrDefaultAsync(x => x.Id == id);
+
+            return recipe;
+        }
+
         public async Task<User> GetUser(int id)
         {
             var user = await _context.User.Include(x => x.Recipes)
