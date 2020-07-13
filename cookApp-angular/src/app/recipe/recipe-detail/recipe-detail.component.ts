@@ -16,7 +16,11 @@ export class RecipeDetailComponent implements OnInit {
   constructor(private userService: UserService, private alertify: AlertifyService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadUser();
+    // this.loadUser();
+    this.route.data.subscribe(data => {
+      // tslint:disable-next-line:no-string-literal
+      this.recipe = data['recipe'];
+    });
   }
 
   loadUser() {

@@ -1,3 +1,4 @@
+import { RecipeDetailResolver } from './_resolvers/recipe-detail.resolver';
 
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
@@ -22,7 +23,7 @@ const routes: Routes = [
     ]
   },
   // {path: 'recipes', component: RecipeListComponent, canActivate: [AuthGuard]},
-  {path: 'recipeDetail/:id', component: RecipeDetailComponent, canActivate: [AuthGuard]},
+  {path: 'recipeDetail/:id', component: RecipeDetailComponent, canActivate: [AuthGuard], resolve: {recipe: RecipeDetailResolver}},
   {path: 'recipeCreate', component: RecipeCreateComponent, canActivate: [AuthGuard]},
   {path: 'recipeEdit/:id', component: RecipeEditComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: '', pathMatch: 'full' }

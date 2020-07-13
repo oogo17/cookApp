@@ -22,6 +22,7 @@ import { FilterRecipesComponent } from './filter-recipes/filter-recipes.componen
 import { RecipeDetailComponent } from './recipe/recipe-detail/recipe-detail.component';
 import { RecipeCreateComponent } from './recipe/recipe-create/recipe-create.component';
 import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
+import { RecipeDetailResolver } from './_resolvers/recipe-detail.resolver';
 
 
 
@@ -54,7 +55,8 @@ import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component'
    ],
    providers: [
       AuthService,
-      ErrorInterceptorProvider
+      ErrorInterceptorProvider,
+      RecipeDetailResolver
    ],
    bootstrap: [
       AppComponent
