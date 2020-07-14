@@ -30,36 +30,52 @@
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Ingredients</label>
-        <div class="form-row">
-          <div class="col-2">
-            <input type="text" class="form-control" placeholder="Quantity">
+
+        <div class="form-row" *ngFor="let ingredient of recipe?.ingredients ; index as i" >
+          <div class="col-2 mt-1">
+            <input type="text" class="form-control" name="quantity_{{ingredient.id}}" placeholder="Quantity" value="{{recipe?.ingredients[i].quantity}}">
           </div>
-          <div class="col-1">
-            <input type="text" class="form-control" placeholder="Lb,pcs,lt....">
+          <div class="col-1 mt-1">
+            <input type="text" class="form-control" name="mesure_{{ingredient.id}}" placeholder="Lb,pcs,lt...." value="{{recipe?.ingredients[i].mesure}}">
           </div>
-          <div class="col-2">
-            <input type="text" class="form-control" placeholder="Name">
+          <div class="col-2 mt-1">
+            <input type="text" class="form-control" name="name_{{ingredient.id}}" placeholder="Name" value="{{recipe?.ingredients[i].name}}">
           </div>
-          <button type="button" class="btn btn-warning">Remove</button>
-          <button type="button" class="btn btn-success ml-2">Add</button>
+          <button type="button" class="btn btn-warning mt-1">Remove</button>
+          <button type="button" class="btn btn-success mt-1 ml-2">Add</button>
         </div>
+
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Steps</label>
-        <div class="form-row">
-          <div class="col-1">
-            <input type="text" class="form-control" placeholder="Number">
+
+        <div class="form-row" *ngFor="let step of recipe?.steps ; index as i">
+          <div class="col-1 mt-1">
+            <label type="text" class="" placeholder="Number" value="">{{i + 1}}</label>
           </div>
-          <div class="col-2">
-            <input type="text" class="form-control" placeholder="Description">
+          <div class="col-7 mt-1">
+            <input type="text" class="form-control" name="step_{{step.description}}" placeholder="Description" value="{{recipe?.steps[i].description}}">
           </div>
-          <button type="button" class="btn btn-warning">Remove</button>
-          <button type="button" class="btn btn-success ml-2">Add</button>
+          <button type="button" class="btn btn-warning mt-1">Remove</button>
+          <button type="button" class="btn btn-success mt-1 ml-2">Add</button>
         </div>
+
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Photo</label>
         <input type="text" class="form-control" name="photoUrl" value="{{recipe?.photoUrl}}">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Where to Buy</label>
+        <input type="text" class="form-control" name="store" value="{{recipe?.buyIngredients}}">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Type</label>
+        <input type="text" class="form-control" name="type" value="{{recipe?.type}}">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Persons</label>
+        <input type="text" class="form-control" name="persons" value="{{recipe?.persons}}">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Tips</label>

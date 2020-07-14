@@ -6,8 +6,12 @@
   </div>
 
   <div class="col-10">
-
-    <form class="mt-4 ml-4" (ngSubmit)="saveUser()" #form="ngForm">
+    <div class="col-8">
+      <div *ngIf="editform.dirty" class="alert alert-info mt-2">
+        <strong>Information:</strong> You have made changes. Any unsave changes will be lost.
+      </div>
+    </div>
+    <form class="mt-4 ml-4" (ngSubmit)="updateUser()" #editform="ngForm">
       <div class="form-group row">
         <label for="inputEmail3" class="col-sm-1 col-form-label">Name</label>
         <div class="col-sm-6">
@@ -15,29 +19,45 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="inputPassword3" class="col-sm-1 col-form-label">Password</label>
+        <label for="ema" class="col-sm-1 col-form-label">Email</label>
         <div class="col-sm-6">
-          <input type="password" class="form-control" id="inputPassword3">
+          <input type="email" name="email" class="form-control" id="ema" [(ngModel)]="user.email" >
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="pass" class="col-sm-1 col-form-label">Password</label>
+        <div class="col-sm-6">
+          <input type="password" class="form-control" id="pass">
+        </div>
+      </div>
+
+      <div class="form-group row ml-1">
+        <label for="inputPassword3" class=" col-form-label">City</label>
+        <div class="col-2">
+          <input type="text" name="city" class="form-control" placeholder="City" [(ngModel)]="user.city">
+        </div>
+        <label for="inputPassword3" class="col-form-label">State</label>
+        <div class="col-2">
+          <input type="text" name="state" class="form-control" placeholder="State" [(ngModel)]="user.state">
+        </div>
+        <label for="inputPassword3" class=" col-form-label">Country</label>
+        <div class="col-sm-2">
+          <input type="text" name="country" class="form-control" placeholder="Country" [(ngModel)]="user.country" >
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="inputPassword3" class="col-sm-1 col-form-label">Address</label>
-        <div class="col-2">
-          <input type="text" name="country" class="form-control" placeholder="Country" [(ngModel)]="user.country" >
-        </div>
-        <div class="col-2">
-          <input type="text" class="form-control" placeholder="State">
-        </div>
-        <div class="col-sm-2">
-          <input type="text" name="city" class="form-control" placeholder="City" [(ngModel)]="user.city">
+        <label for="mem" class="col-sm-2 col-form-label">Member Since</label>
+        <div class="col-sm-6">
+          <label class=" col-form-label">{{user.dateCreated}}</label>
         </div>
       </div>
+
 
       <div class="form-group row">
         <div class="col-sm-7">
           <button type="button" class="btn btn-primary" routerLink="/home">Back</button>
-          <button type="submit" class="btn btn-success ml-3">Save</button>
+          <button [disabled]="!editform.dirty" type="submit" class="btn btn-success ml-3">Save</button>
         </div>
       </div>
 

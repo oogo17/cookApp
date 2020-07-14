@@ -1,3 +1,5 @@
+import { AuthGuard } from './_guards/auth.guard';
+import { PreventUnsaveChanges } from './_guards/prevent-unsave-changes.guard';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -60,7 +62,9 @@ import { RecipeDetailResolver } from './_resolvers/recipe-detail.resolver';
       AuthService,
       ErrorInterceptorProvider,
       RecipeDetailResolver,
-      UserEditResolver
+      UserEditResolver,
+      PreventUnsaveChanges,
+      AuthGuard
    ],
    bootstrap: [
       AppComponent

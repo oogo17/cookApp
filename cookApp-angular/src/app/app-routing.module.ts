@@ -1,3 +1,4 @@
+import { PreventUnsaveChanges } from './_guards/prevent-unsave-changes.guard';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { RecipeDetailResolver } from './_resolvers/recipe-detail.resolver';
@@ -17,7 +18,7 @@ import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component'
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
-  {path: 'home', component: ContainerListComponent, canActivate: [AuthGuard],
+  {path: 'home', component: ContainerListComponent, canActivate: [AuthGuard], canDeactivate: [PreventUnsaveChanges],
     children: [
       {path: '', component: RecipeListComponent, outlet: 'recipes', canActivate: [AuthGuard]},
       {path: '', component: FilterRecipesComponent, outlet: 'filter', canActivate: [AuthGuard]},
@@ -28,7 +29,8 @@ const routes: Routes = [
   {path: 'recipeDetail/:id', component: RecipeDetailComponent, canActivate: [AuthGuard], resolve: {recipe: RecipeDetailResolver}},
   {path: 'recipeCreate', component: RecipeCreateComponent, canActivate: [AuthGuard]},
   {path: 'recipeEdit/:id', component: RecipeEditComponent, canActivate: [AuthGuard]},
-  {path: 'userEdit/:id', component: UserEditComponent, canActivate: [AuthGuard], resolve: {user: UserEditResolver}},
+  {path: 'userEdit/:id', component: UserEditComponent, canActivate: [AuthGuard],
+   resolve: {user: UserEditResolver}, canDeactivate: [PreventUnsaveChanges]},
   {path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
