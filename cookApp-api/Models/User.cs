@@ -9,6 +9,8 @@ namespace cookApp_api.Models
 
         public string UserName { get; set; }
 
+        public string Email { get; set; }
+
         public byte[] PasswordHash { get; set; }
 
         public byte[] PasswordSalt { get; set; }
@@ -17,7 +19,11 @@ namespace cookApp_api.Models
 
         public DateTime DateCreated { get; set; }
 
+        public string PhotoUrl { get; set; }
+
         public string City { get; set; }
+        
+        public string State { get; set; }
 
         public string Country { get; set; }
 
