@@ -28,6 +28,10 @@ getUser(id: number): Observable<User> {
   return this.http.get<User>(this.baseUrl + 'users/' + id, httpOption);
 }
 
+updateUser(id: number, user: User) {
+  return this.http.put(this.baseUrl + 'users/' + id , user, httpOption);
+}
+
 getRecipe(id: number): Observable<Recipe> {
   return this.http.get<Recipe>(this.baseUrl + 'recipes/' + id, httpOption);
 }

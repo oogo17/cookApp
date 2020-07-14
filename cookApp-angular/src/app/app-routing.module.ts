@@ -18,7 +18,7 @@ import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component'
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
-  {path: 'home', component: ContainerListComponent, canActivate: [AuthGuard], canDeactivate: [PreventUnsaveChanges],
+  {path: 'home', component: ContainerListComponent, canActivate: [AuthGuard],
     children: [
       {path: '', component: RecipeListComponent, outlet: 'recipes', canActivate: [AuthGuard]},
       {path: '', component: FilterRecipesComponent, outlet: 'filter', canActivate: [AuthGuard]},
