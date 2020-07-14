@@ -38,4 +38,8 @@ export class NavComponent implements OnInit {
   this.router.navigate(['/']);
   }
 
+  EditUser() {
+   console.log( this.authService.decodedToken);
+  }
+
 }

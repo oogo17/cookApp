@@ -22,11 +22,11 @@
     <form class="" (ngSubmit)="onSubmit()" >
       <div class="form-group">
         <label for="formGroupExampleInput">Name</label>
-        <input type="text" class="form-control" name="name" placeholder="" value="{{recipe.name}}">
+        <input type="text" class="form-control" name="name" placeholder="" value="{{recipe?.name}}">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Description</label>
-        <input type="text" class="form-control" name="description" value="{{recipe.description}}">
+        <input type="text" class="form-control" name="description" value="{{recipe?.description}}">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Ingredients</label>
@@ -59,15 +59,15 @@
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Photo</label>
-        <input type="text" class="form-control" name="photoUrl" value="{{recipe.photoUrl}}">
+        <input type="text" class="form-control" name="photoUrl" value="{{recipe?.photoUrl}}">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Tips</label>
-        <input type="text" class="form-control" name="tips" value="{{recipe.tips}}">
+        <input type="text" class="form-control" name="tips" value="{{recipe?.tips}}">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Share</label>
-        <input type="checkbox" class="ml-3" id="form-control" name="share" value="{{recipe.allowShare}}">
+        <input type="checkbox" class="ml-3" id="form-control" name="share" value="{{recipe?.allowShare}}">
       </div>
     </form>
 
