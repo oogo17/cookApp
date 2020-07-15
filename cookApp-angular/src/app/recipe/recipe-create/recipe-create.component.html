@@ -47,7 +47,7 @@
 
         <div class="form-row mt-3" *ngFor="let step of recipe.steps ; index as i" [attr.data-index]="i">
           <div class="col-1">
-            <label type="text" class="">{{i}}</label>
+            <label type="text" class="">{{i+1}}</label>
           </div>
           <div class="col-2">
             <input type="text" class="form-control" name="instruction_{{i}}" placeholder="Instructions" [(ngModel)]="recipe.steps[i].instruction">

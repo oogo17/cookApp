@@ -21,6 +21,8 @@ namespace cookApp_api.Models
 
         public string PhotoUrl { get; set; }
 
+        public string PublicId { get; set; }
+
         public string City { get; set; }
         
         public string State { get; set; }

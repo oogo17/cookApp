@@ -11,6 +11,7 @@ namespace cookApp_api.Models
         public string Type { get; set; }
         public int Persons { get; set; }
         public string PhotoUrl { get; set; }
+        public string PublicId { get; set; }
         public string BuyIngredients { get; set; }
         public DateTime DateCreated { get; set; }
         public ICollection<Ingredient> Ingredients { get; set; }
