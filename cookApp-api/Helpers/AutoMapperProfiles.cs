@@ -20,8 +20,9 @@ namespace cookApp_api.Helpers
             CreateMap<Ingredient, IngredientForDetailedDto>();
             CreateMap<Step, StepForDetailedDto>();
             CreateMap<FollowUser, FollowUserForDetailedDto>();
-            
+
             CreateMap<UserForUpdateDto, User>();
+            CreateMap<PhotoForCreationDto,User>();
         }
     }
 }

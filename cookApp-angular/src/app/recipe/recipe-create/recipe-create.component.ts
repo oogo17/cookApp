@@ -1,6 +1,9 @@
+import { AuthService } from 'src/app/_services/auth.service';
 
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/_models/Recipe';
+import { FileUploader } from 'ng2-file-upload';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-recipe-create',
@@ -8,6 +11,9 @@ import { Recipe } from 'src/app/_models/Recipe';
   styleUrls: ['./recipe-create.component.css']
 })
 export class RecipeCreateComponent implements OnInit {
+  uploader: FileUploader;
+  hasBaseDropZoneOver = false;
+  baseUrl = environment.apiUrl;
  // items = [0];
    recipe: any = {
      ingredients: [{id: 0}],
@@ -18,7 +24,7 @@ export class RecipeCreateComponent implements OnInit {
   ingredientsLength = this.recipe.ingredients.length;
   stepsLength = this.recipe.steps.length;
 
-  constructor() {
+  constructor(private auth: AuthService) {
 
   }
 
@@ -53,5 +59,24 @@ export class RecipeCreateComponent implements OnInit {
     this.recipe.steps.splice(index, 1);
     this.stepsLength = this.recipe.steps.length;
   }
+
+  public fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
+  }
+
+  initializeUploader() {
+    this.uploader = new FileUploader({
+      url: this.baseUrl + 'users/' + this.auth.decodedToken.nameid + '/photo',
+      authToken: 'Bearer ' + localStorage.getItem('token'),
+      isHTML5: true,
+      allowedFileType: ['image'],
+      removeAfterUpload: true,
+      autoUpload: false,
+      maxFileSize: 10 * 1024 * 1024
+    });
+
+    this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
+  }
+
 
 }

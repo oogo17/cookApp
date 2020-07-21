@@ -1,71 +1,202 @@
 <div class="row">
-  <div class=" col-2">
+  <div class="col-2">
     <div class="ml-4 mt-4">
-      <img src={{user.photoUrl}} class="img-thumbnail w-100" alt="...">
+      <img src="{{ user.photoUrl }}" class="img-thumbnail w-100" alt="..." />
     </div>
+
+      <div class="row ml-4 mt-4">
+        <div class="">
+          <button type="button" class="btn btn-primary" routerLink="/home">
+            Back
+          </button>
+          <button
+            [disabled]="!editform.dirty"
+            form="ngForm"
+            type="submit"
+            class="btn btn-success ml-3"
+          >
+            Save
+          </button>
+        </div>
+
+      </div>
+
   </div>
 
   <div class="col-10">
     <div class="col-8">
       <div *ngIf="editform.dirty" class="alert alert-info mt-2">
-        <strong>Information:</strong> You have made changes. Any unsave changes will be lost.
+        <strong>Information:</strong> You have made changes. Any unsave changes
+        will be lost.
       </div>
     </div>
-    <form class="mt-4 ml-4" (ngSubmit)="updateUser()" #editform="ngForm">
+    <form class="mt-4 ml-4" (ngSubmit)="updateUser()" #editform="ngForm" id="ngForm">
       <div class="form-group row">
         <label for="inputEmail3" class="col-sm-1 col-form-label">Name</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" name="userName" [(ngModel)]="user.userName">
+          <input
+            type="text"
+            class="form-control"
+            name="userName"
+            [(ngModel)]="user.userName"
+          />
         </div>
       </div>
       <div class="form-group row">
         <label for="ema" class="col-sm-1 col-form-label">Email</label>
         <div class="col-sm-6">
-          <input type="email" name="email" class="form-control" id="ema" [(ngModel)]="user.email" >
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            id="ema"
+            [(ngModel)]="user.email"
+          />
         </div>
       </div>
       <div class="form-group row">
         <label for="pass" class="col-sm-1 col-form-label">Password</label>
-        <div class="col-sm-6">
-          <input type="password" class="form-control" id="pass">
+        <div class="col-sm-3">
+          <input type="password" class="form-control" [disabled]="!changePassword" id="pass" value="{{passwordValue}}" />
         </div>
+        <button type="button" class="btn btn-primary" (click)="changePswrd()" >
+          change
+        </button>
+      </div>
+      <div class="form-group row" *ngIf="changePassword">
+        <label for="pass" class="col-sm-1 col-form-label">Confirm password</label>
+        <div class="col-sm-3 mt-2">
+          <input type="password" class="form-control" id="pass" />
+        </div>
+
       </div>
 
       <div class="form-group row ml-1">
-        <label for="inputPassword3" class=" col-form-label">City</label>
+        <label for="inputPassword3" class="col-form-label">City</label>
         <div class="col-2">
-          <input type="text" name="city" class="form-control" placeholder="City" [(ngModel)]="user.city">
+          <input
+            type="text"
+            name="city"
+            class="form-control"
+            placeholder="City"
+            [(ngModel)]="user.city"
+          />
         </div>
         <label for="inputPassword3" class="col-form-label">State</label>
         <div class="col-2">
-          <input type="text" name="state" class="form-control" placeholder="State" [(ngModel)]="user.state">
+          <input
+            type="text"
+            name="state"
+            class="form-control"
+            placeholder="State"
+            [(ngModel)]="user.state"
+          />
         </div>
-        <label for="inputPassword3" class=" col-form-label">Country</label>
+        <label for="inputPassword3" class="col-form-label">Country</label>
         <div class="col-sm-2">
-          <input type="text" name="country" class="form-control" placeholder="Country" [(ngModel)]="user.country" >
+          <input
+            type="text"
+            name="country"
+            class="form-control"
+            placeholder="Country"
+            [(ngModel)]="user.country"
+          />
         </div>
       </div>
 
-      <div class="form-group row">
+      <div class="row ml-3 mt-4">
+
+
+        <div
+          ng2FileDrop
+          [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
+          (fileOver)="fileOverBase($event)"
+          [uploader]="uploader"
+          class="card bg-faded p-3 text-center my-drop-zone "
+        >
+        <i class="fa fa-upload fa-3x"></i>
+          Drop photo here
+      </div>
+      <div class="m-5">
+        <label for="file-upload" class="custom-file-upload text-wrap">
+          <i class="fas fa-folder-open"></i> Choose your image
+        </label>
+         <input id="file-upload" type="file" ng2FileSelect [uploader]="uploader" />
+      </div>
+
+        </div>
+      <div class="row">
+
+      </div>
+
+      <div class="col-md-9 mt-5" style="margin-bottom: 40px;" *ngIf="uploader?.queue?.length">
+        <!-- <h3>Upload queue</h3>
+            <p>Queue length: {{ uploader?.queue?.length }}</p> -->
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th width="30%">Name</th>
+              <th>Size</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of uploader.queue">
+              <td>
+                <strong>{{ item?.file?.name }}</strong>
+              </td>
+              <td *ngIf="uploader.options.isHTML5" nowrap>
+                {{ item?.file?.size / 1024 / 1024 | number: ".2" }} MB
+              </td>
+
+              <td nowrap>
+                <button
+                  type="button"
+                  class="btn btn-success btn-xs"
+                  (click)="item.upload()"
+                  [disabled]="
+                    item.isReady || item.isUploading || item.isSuccess
+                  "
+                >
+                  <span class="glyphicon glyphicon-upload"></span> Upload
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-danger btn-xs ml-3"
+                  (click)="item.remove()"
+                >
+                  <span class="glyphicon glyphicon-trash"></span> Remove
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div>
+          <div>
+            Queue progress:
+            <div class="progress" style="">
+              <div
+                class="progress-bar"
+                role="progressbar"
+                [ngStyle]="{ width: uploader.progress + '%' }"
+              ></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="form-group row mt-4">
         <label for="mem" class="col-sm-2 col-form-label">Member Since</label>
         <div class="col-sm-6">
-          <label class=" col-form-label">{{user.dateCreated}}</label>
-        </div>
-      </div>
-
-
-      <div class="form-group row">
-        <div class="col-sm-7">
-          <button type="button" class="btn btn-primary" routerLink="/home">Back</button>
-          <button [disabled]="!editform.dirty" type="submit" class="btn btn-success ml-3">Save</button>
+          <label class="col-form-label">{{user.dateCreated | date}} </label>
         </div>
       </div>
 
 
     </form>
-
-
   </div>
-
-
 </div>

@@ -27,6 +27,7 @@ import { RecipeDetailComponent } from './recipe/recipe-detail/recipe-detail.comp
 import { RecipeCreateComponent } from './recipe/recipe-create/recipe-create.component';
 import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 import { RecipeDetailResolver } from './_resolvers/recipe-detail.resolver';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 
@@ -54,6 +55,7 @@ import { RecipeDetailResolver } from './_resolvers/recipe-detail.resolver';
       BrowserModule,
       AppRoutingModule,
       FormsModule,
+      FileUploadModule,
       HttpClientModule,
       BrowserAnimationsModule,
       BsDropdownModule.forRoot()

@@ -11,70 +11,199 @@
     <li>steps: Steps[];</li>
   </ul> -->
 <div class="container">
-  <form class="" #newRecipeForm="ngForm" (ngSubmit)="createRecipe()" >
-    <div class="form-group">
-      <label for="formGroupExampleInput">Name</label>
-      <input type="text" class="form-control" name="name" placeholder="" [(ngModel)]="recipe.name">
+  <div class="row">
+    <div class="col-2">
+      <div class="ml-4 mt-4 border border-success h-25">
+        <img src="" class="img-thumbnail w-100" alt="..." />
+      </div>
     </div>
-    <div class="form-group">
-      <label for="formGroupExampleInput2">Description</label>
-      <input type="text" class="form-control" name="description" placeholder="" [(ngModel)]="recipe.description">
-    </div>
-    <div class="form-group">
-      <label for="formGroupExampleInput2">Ingredients</label>
-      <div class="form-row">
 
-        <div class="form-row mt-2" *ngFor="let ingredient of recipe.ingredients ; index as i" [attr.data-index]="i">
-
-          <div class="col-2">
-            <input type="text" class="form-control" name="quantity_{{ingredient.id}}" placeholder="Quantity" [(ngModel)]="recipe.ingredients[i].quantity">
-          </div>
-          <div class="col-1">
-            <input type="text" class="form-control" name="measure_{{ingredient.id}}" placeholder="Lb,pcs,lt...." [(ngModel)]="recipe.ingredients[i].mesure">
-          </div>
-          <div class="col-2">
-            <input type="text" class="form-control" name="ingredient_{{ingredient.id}}" placeholder="Name" [(ngModel)]="recipe.ingredients[i].name">
-          </div>
-          <button type="button" class="btn btn-warning" (click)="removeIngredient(i)" [disabled]="ingredientsLength === 1" >Remove</button>
-        <button type="button" class="btn btn-success ml-2" (click)="addIngredient(i)" >Add</button>
+    <div class=" col-8 ml-5">
+      <form class="" #newRecipeForm="ngForm" (ngSubmit)="createRecipe()" >
+        <div class="form-group">
+          <label for="formGroupExampleInput">Name</label>
+          <input type="text" class="form-control" name="name" placeholder="" [(ngModel)]="recipe.name">
         </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Description</label>
+          <input type="text" class="form-control" name="description" placeholder="" [(ngModel)]="recipe.description">
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Ingredients</label>
+          <div class="form-row">
+
+            <div class="form-row mt-2" *ngFor="let ingredient of recipe.ingredients ; index as i" [attr.data-index]="i">
+
+              <div class="col-2">
+                <input type="text" class="form-control" name="quantity_{{ingredient.id}}" placeholder="Quantity" [(ngModel)]="recipe.ingredients[i].quantity">
+              </div>
+              <div class="col-1">
+                <input type="text" class="form-control" name="measure_{{ingredient.id}}" placeholder="Lb,pcs,lt...." [(ngModel)]="recipe.ingredients[i].mesure">
+              </div>
+              <div class="col-2">
+                <input type="text" class="form-control" name="ingredient_{{ingredient.id}}" placeholder="Name" [(ngModel)]="recipe.ingredients[i].name">
+              </div>
+              <button type="button" class="btn btn-warning" (click)="removeIngredient(i)" [disabled]="ingredientsLength === 1" >Remove</button>
+            <button type="button" class="btn btn-success ml-2" (click)="addIngredient(i)" >Add</button>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Steps</label>
+
+            <div class="form-row mt-3" *ngFor="let step of recipe.steps ; index as i" [attr.data-index]="i">
+              <div class="col-1">
+                <label type="text" class="">{{i+1}}</label>
+              </div>
+              <div class="col-2">
+                <input type="text" class="form-control" name="instruction_{{i}}" placeholder="Instructions" [(ngModel)]="recipe.steps[i].instruction">
+              </div>
+              <button type="button" class="btn btn-warning" (click)="removeStep(i)" [disabled]="stepsLength === 1">Remove</button>
+              <button type="button" class="btn btn-success ml-2" (click)="addStep(i, step)" >Add</button>
+            </div>
 
 
       </div>
-    </div>
-    <div class="form-group">
-      <label for="formGroupExampleInput2">Steps</label>
+        <div class="row ">
 
-        <div class="form-row mt-3" *ngFor="let step of recipe.steps ; index as i" [attr.data-index]="i">
-          <div class="col-1">
-            <label type="text" class="">{{i+1}}</label>
-          </div>
-          <div class="col-2">
-            <input type="text" class="form-control" name="instruction_{{i}}" placeholder="Instructions" [(ngModel)]="recipe.steps[i].instruction">
-          </div>
-          <button type="button" class="btn btn-warning" (click)="removeStep(i)" [disabled]="stepsLength === 1">Remove</button>
-          <button type="button" class="btn btn-success ml-2" (click)="addStep(i, step)" >Add</button>
+
+          <div
+            ng2FileDrop
+            [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
+            (fileOver)="fileOverBase($event)"
+            [uploader]="uploader"
+            class="card bg-faded p-3 text-center my-drop-zone "
+          >
+          <i class="fa fa-upload fa-3x"></i>
+            Drop photo here
+        </div>
+        <div class="m-5">
+          <label for="file-upload" class="custom-file-upload text-wrap">
+            <i class="fas fa-folder-open"></i> Choose your image
+          </label>
+           <input id="file-upload" type="file" ng2FileSelect [uploader]="uploader" />
         </div>
 
+        </div>
+        <div class="row">
+
+        </div>
+
+        <div class="col-md-9 mt-5" style="margin-bottom: 40px;"  *ngIf="uploader?.queue?.length">
+          <!-- <h3>Upload queue</h3>
+              <p>Queue length: {{ uploader?.queue?.length }}</p> -->
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th width="30%">Name</th>
+                <th>Size</th>
+                <th>Progress</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of uploader?.queue">
+                <td>
+                  <strong>{{ item?.file?.name }}</strong>
+                </td>
+                <td *ngIf="uploader.options.isHTML5" nowrap>
+                  {{ item?.file?.size / 1024 / 1024 | number: ".2" }} MB
+                </td>
+                <td *ngIf="uploader.options.isHTML5">
+                  <div class="progress" style="margin-bottom: 0;">
+                    <div
+                      class="progress-bar"
+                      role="progressbar"
+                      [ngStyle]="{ width: item?.progress + '%' }"
+                    ></div>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <span *ngIf="item.isSuccess"
+                    ><i class="glyphicon glyphicon-ok"></i
+                  ></span>
+                  <span *ngIf="item.isCancel"
+                    ><i class="glyphicon glyphicon-ban-circle"></i
+                  ></span>
+                  <span *ngIf="item.isError"
+                    ><i class="glyphicon glyphicon-remove"></i
+                  ></span>
+                </td>
+                <td nowrap>
+                  <button
+                    type="button"
+                    class="btn btn-success btn-xs"
+                    (click)="item.upload()"
+                    [disabled]="
+                      item.isReady || item.isUploading || item.isSuccess
+                    "
+                  >
+                    <span class="glyphicon glyphicon-upload"></span> Upload
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-warning btn-xs"
+                    (click)="item.cancel()"
+                    [disabled]="!item.isUploading"
+                  >
+                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-xs"
+                    (click)="item.remove()"
+                  >
+                    <span class="glyphicon glyphicon-trash"></span> Remove
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div>
+            <div>
+              Queue progress:
+              <div class="progress" style="">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  [ngStyle]="{ width: uploader?.progress + '%' }"
+                ></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <label for="formGroupExampleInput2">Photo</label>
+          <input type="text" class="form-control" name="photoUrl" placeholder="Another input placeholder"[(ngModel)]="recipe.photoUrl">
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Tips</label>
+          <input type="text" class="form-control" name="tips" placeholder="Another input placeholder" [(ngModel)]="recipe.tips">
+        </div>
+        <div class="form-check mb-5">
+          <input class="form-check-input" type="checkbox" value="" name="share" id="defaultCheck2" [(ngModel)]="recipe.allowShare">
+          <label class="form-check-label" for="defaultCheck2">
+            you want to share
+          </label>
+        </div>
+        <div class="row mb-4">
+          <button type="button" class="btn btn-primary" routerLink="/home">Back</button>
+          <button type="submit" class="btn btn-success ml-3">Save</button>
+        </div>
+
+      </form>
 
     </div>
-    <div class="form-group">
-      <label for="formGroupExampleInput2">Photo</label>
-      <input type="text" class="form-control" name="photoUrl" placeholder="Another input placeholder"[(ngModel)]="recipe.photoUrl">
-    </div>
-    <div class="form-group">
-      <label for="formGroupExampleInput2">Tips</label>
-      <input type="text" class="form-control" name="tips" placeholder="Another input placeholder" [(ngModel)]="recipe.tips">
-    </div>
-    <div class="form-check mb-5">
-      <input class="form-check-input" type="checkbox" value="" name="share" id="defaultCheck2" [(ngModel)]="recipe.allowShare">
-      <label class="form-check-label" for="defaultCheck2">
-        you want to share
-      </label>
-    </div>
-    <button type="button" class="btn btn-primary" routerLink="/home">Back</button>
-    <button type="submit" class="btn btn-success ml-3">Save</button>
-  </form>
+
+  </div>
+
+
 
 
 </div>
