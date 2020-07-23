@@ -31,6 +31,7 @@ export class NavComponent implements OnInit {
   }
 
   LoggedOut() {
+  console.log( this.authService.decodedToken);
   localStorage.removeItem('token');
   this.alertify.success('loggedOut');
   this.model.username = '';

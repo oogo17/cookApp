@@ -1,3 +1,4 @@
+import { RecipeEditResolver } from './_resolvers/recipe-edit.resolver';
 import { AuthGuard } from './_guards/auth.guard';
 import { PreventUnsaveChanges } from './_guards/prevent-unsave-changes.guard';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
@@ -65,6 +66,7 @@ import { FileUploadModule } from 'ng2-file-upload';
       ErrorInterceptorProvider,
       RecipeDetailResolver,
       UserEditResolver,
+      RecipeEditResolver,
       PreventUnsaveChanges,
       AuthGuard
    ],

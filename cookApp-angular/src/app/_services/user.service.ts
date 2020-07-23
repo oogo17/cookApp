@@ -1,4 +1,4 @@
-import { Recipe } from 'src/app/_models/Recipe';
+import { Recipe } from './../_models/Recipe';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -34,6 +34,14 @@ updateUser(id: number, user: User) {
 
 getRecipe(id: number): Observable<Recipe> {
   return this.http.get<Recipe>(this.baseUrl + 'recipes/' + id, httpOption);
+}
+
+updateRecipe(id: number, recipe: Recipe) {
+  return this.http.put(this.baseUrl + 'recipes/' + id, recipe, httpOption);
+}
+
+createRecipe(recipe: Recipe) {
+  return this.http.post(this.baseUrl + 'recipes', recipe, httpOption);
 }
 
 }

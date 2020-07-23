@@ -1,7 +1,7 @@
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { UserService } from 'src/app/_services/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, AfterViewInit } from '@angular/core';
 import { RouterLinkActive, ActivatedRoute } from '@angular/router';
 import { Recipe } from 'src/app/_models/Recipe';
 import { FileUploader } from 'ng2-file-upload';
@@ -25,16 +25,19 @@ export class RecipeEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadUser();
+    this.route.data.subscribe((data) => {
+      // tslint:disable-next-line:no-string-literal
+      this.recipe = data['recipe'];
+    });
     this.initializeUploader();
   }
 
-  loadUser() {
+
+  loadRecipe() {
     // tslint:disable-next-line:no-string-literal
     this.userService.getRecipe(+this.route.snapshot.params['id']).subscribe(
       (recipe: Recipe) => {
         this.recipe = recipe;
-        // console.log(recipe);
       },
       (error) => {
         this.alertify.error(error);
@@ -42,7 +45,14 @@ export class RecipeEditComponent implements OnInit {
     );
   }
 
-  onSubmit() {
+  updateRecipe() {
+    console.log(this.recipe);
+    this.userService.updateRecipe(this.recipe.id, this.recipe).subscribe(next => {
+      this.alertify.success('update succes');
+      // this.editform.reset(this.recipe);
+    }, error => {
+      this.alertify.error(error);
+    });
 
   }
 
@@ -52,7 +62,7 @@ export class RecipeEditComponent implements OnInit {
 
   initializeUploader() {
     this.uploader = new FileUploader({
-      url: this.baseUrl + 'users/' + this.auth.decodedToken.nameid + '/photo',
+      url: this.baseUrl + 'recipephoto/' + this.recipe.id + '/photo',
       authToken: 'Bearer ' + localStorage.getItem('token'),
       isHTML5: true,
       allowedFileType: ['image'],
@@ -69,6 +79,7 @@ export class RecipeEditComponent implements OnInit {
         const res = JSON.parse(response);
 
         this.recipe.photoUrl = res.photoUrl;
+        this.alertify.success('photo updated!!');
       }
 
 

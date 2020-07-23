@@ -23,6 +23,13 @@ namespace cookApp_api.Helpers
 
             CreateMap<UserForUpdateDto, User>();
             CreateMap<PhotoForCreationDto,User>();
+            CreateMap<PhotoForCreationRecipeDto,Recipe>();
+
+            CreateMap<RecipeForUpdateDto, Recipe>();
+            CreateMap<IngredientForUpdateDto, Ingredient>();
+            CreateMap<StepForUpdateDto, Step>();
+
+            CreateMap<RecipeForCreateDto, Recipe>();
         }
     }
 }

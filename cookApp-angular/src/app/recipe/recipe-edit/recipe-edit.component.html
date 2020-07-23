@@ -1,6 +1,5 @@
-
 <div class="container">
-    <!-- <ul>
+  <!-- <ul>
     <li>id: number;</li>
     <li>name: string;</li>
     <li>description: string;</li>
@@ -12,84 +11,131 @@
     <li>steps: Steps[];</li>
   </ul> -->
   <div class="row">
-    <div class=" mt-5 col-md-3 ">
-      <img src={{recipe?.photoUrl}} class="img-thumbnail w-100" alt="...">
+    <div class="mt-5 col-md-3">
+      <img src="{{ recipe?.photoUrl ||  '../../../../../assets/dish.png' }}" class="img-thumbnail w-100" alt="..." />
       <div class="row mt-5 ml-5">
-        <button type="button" class="btn btn-primary" routerLink="/home">Back</button>
-        <button type="submit" class="btn btn-success ml-2">Save</button>
+        <button type="button" class="btn btn-primary" routerLink="/home">
+          Back
+        </button>
+        <button type="submit" class="btn btn-success ml-2" form="ngForm">Save</button>
       </div>
     </div>
-    <form class="" (ngSubmit)="onSubmit()" >
+    <form class="" (ngSubmit)="updateRecipe()" #editform="ngForm" id="ngForm">
       <div class="form-group">
         <label for="formGroupExampleInput">Name</label>
-        <input type="text" class="form-control" name="name" placeholder="" value="{{recipe?.name}}">
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          placeholder=""
+          value="{{ recipe?.name }}"
+          [(ngModel)]="recipe.name"
+        />
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Description</label>
-        <input type="text" class="form-control" name="description" value="{{recipe?.description}}">
+        <input
+          type="text"
+          class="form-control"
+          name="description"
+          value="{{ recipe?.description }}"
+          [(ngModel)]="recipe.description"
+        />
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Ingredients</label>
 
-        <div class="form-row" *ngFor="let ingredient of recipe?.ingredients ; index as i" >
+        <div
+          class="form-row"
+          *ngFor="let ingredient of recipe?.ingredients; index as i"
+        >
           <div class="col-2 mt-1">
-            <input type="text" class="form-control" name="quantity_{{ingredient.id}}" placeholder="Quantity" value="{{recipe?.ingredients[i].quantity}}">
+            <input
+              type="text"
+              class="form-control"
+              name="quantity_{{ ingredient?.id }}"
+              placeholder="Quantity"
+              value="{{ (recipe?.ingredients)[i].quantity }}"
+              [(ngModel)]="recipe.ingredients[i].quantity"
+            />
           </div>
           <div class="col-1 mt-1">
-            <input type="text" class="form-control" name="mesure_{{ingredient.id}}" placeholder="Lb,pcs,lt...." value="{{recipe?.ingredients[i].mesure}}">
+            <input
+              type="text"
+              class="form-control"
+              name="mesure_{{ ingredient?.id }}"
+              placeholder="Lb,pcs,lt...."
+              value="{{ (recipe?.ingredients)[i].mesure }}"
+              [(ngModel)]="recipe.ingredients[i].mesure"
+            />
           </div>
           <div class="col-2 mt-1">
-            <input type="text" class="form-control" name="name_{{ingredient.id}}" placeholder="Name" value="{{recipe?.ingredients[i].name}}">
+            <input
+              type="text"
+              class="form-control"
+              name="name_{{ ingredient?.id }}"
+              placeholder="Name"
+              value="{{ (recipe?.ingredients)[i].name }}"
+              [(ngModel)]="recipe.ingredients[i].name"
+            />
           </div>
           <button type="button" class="btn btn-warning mt-1">Remove</button>
           <button type="button" class="btn btn-success mt-1 ml-2">Add</button>
         </div>
-
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Steps</label>
 
-        <div class="form-row" *ngFor="let step of recipe?.steps ; index as i">
+        <div class="form-row" *ngFor="let step of recipe?.steps; index as i">
           <div class="col-1 mt-1">
-            <label type="text" class="" placeholder="Number" value="">{{i + 1}}</label>
+            <label type="text" class="" placeholder="Number" value="">{{
+              i + 1
+            }}</label>
           </div>
           <div class="col-7 mt-1">
-            <input type="text" class="form-control" name="step_{{step.description}}" placeholder="Description" value="{{recipe?.steps[i].description}}">
+            <input
+              type="text"
+              class="form-control"
+              name="step_{{ step.description }}"
+              placeholder="Description"
+              value="{{ (recipe?.steps)[i].description }}"
+              [(ngModel)]="recipe.steps[i].description"
+            />
           </div>
           <button type="button" class="btn btn-warning mt-1">Remove</button>
           <button type="button" class="btn btn-success mt-1 ml-2">Add</button>
         </div>
-
       </div>
       <div class="row ml-3 mt-4">
-
-
         <div
           ng2FileDrop
           [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
           (fileOver)="fileOverBase($event)"
           [uploader]="uploader"
-          class="card bg-faded p-3 text-center my-drop-zone "
+          class="card bg-faded p-3 text-center my-drop-zone"
         >
-        <i class="fa fa-upload fa-3x"></i>
+          <i class="fa fa-upload fa-3x"></i>
           Drop photo here
+        </div>
+        <div class="m-5">
+          <label for="file-upload" class="custom-file-upload text-wrap">
+            <i class="fas fa-folder-open"></i> Choose your image
+          </label>
+          <input
+            id="file-upload"
+            type="file"
+            ng2FileSelect
+            [uploader]="uploader"
+          />
+        </div>
       </div>
-      <div class="m-5">
-        <label for="file-upload" class="custom-file-upload text-wrap">
-          <i class="fas fa-folder-open"></i> Choose your image
-        </label>
-         <input id="file-upload" type="file" ng2FileSelect [uploader]="uploader" />
-      </div>
-    </div>
-    <div class="row">
+      <div class="row"></div>
 
-    </div>
-
-
-      <div class="col-md-9 mt-5" style="margin-bottom: 40px;" *ngIf="uploader?.queue?.length">
-        <!-- <h3>Upload queue</h3>
-            <p>Queue length: {{ uploader?.queue?.length }}</p> -->
-
+      <div
+        class="col-md-9 mt-5"
+        style="margin-bottom: 40px;"
+        *ngIf="uploader?.queue?.length"
+      >
         <table class="table">
           <thead>
             <tr>
@@ -99,11 +145,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of uploader.queue">
+            <tr *ngFor="let item of uploader?.queue">
               <td>
                 <strong>{{ item?.file?.name }}</strong>
               </td>
-              <td *ngIf="uploader.options.isHTML5" nowrap>
+              <td *ngIf="uploader?.options.isHTML5" nowrap>
                 {{ item?.file?.size / 1024 / 1024 | number: ".2" }} MB
               </td>
 
@@ -142,34 +188,58 @@
               ></div>
             </div>
           </div>
-
         </div>
       </div>
       <div class="form-group mt-3">
         <label for="formGroupExampleInput2">Where to Buy</label>
-        <input type="text" class="form-control" name="store" value="{{recipe?.buyIngredients}}">
+        <input
+          type="text"
+          class="form-control"
+          name="store"
+          value="{{ recipe?.buyIngredients }}"
+        />
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Type</label>
-        <input type="text" class="form-control" name="type" value="{{recipe?.type}}">
+        <input
+          type="text"
+          class="form-control"
+          name="type"
+          value="{{ recipe?.type }}"
+          [(ngModel)]="recipe.type"
+        />
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Persons</label>
-        <input type="text" class="form-control" name="persons" value="{{recipe?.persons}}">
+        <input
+          type="text"
+          class="form-control"
+          name="persons"
+          value="{{ recipe?.persons }}"
+          [(ngModel)]="recipe.persons"
+        />
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Tips</label>
-        <input type="text" class="form-control" name="tips" value="{{recipe?.tips}}">
+        <input
+          type="text"
+          class="form-control"
+          name="tips"
+          value="{{ recipe?.tips }}"
+          [(ngModel)]="recipe.tips"
+        />
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Share</label>
-        <input type="checkbox" class="ml-3" id="form-control" name="share" value="{{recipe?.allowShare}}">
+        <input
+          type="checkbox"
+          class="ml-3"
+          id="form-control"
+          name="share"
+          value="{{ recipe?.allowShare }}"
+          [(ngModel)]="recipe.allowShare"
+        />
       </div>
     </form>
-
-
-
   </div>
-
-
 </div>

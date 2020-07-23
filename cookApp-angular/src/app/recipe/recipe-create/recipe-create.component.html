@@ -13,8 +13,8 @@
 <div class="container">
   <div class="row">
     <div class="col-2">
-      <div class="ml-4 mt-4 border border-success h-25">
-        <img src="" class="img-thumbnail w-100" alt="..." />
+      <div class="mt-5">
+        <img src=" ../../../../../assets/dish.png" class="img-thumbnail w-100" alt="..." />
       </div>
     </div>
 
@@ -32,16 +32,16 @@
           <label for="formGroupExampleInput2">Ingredients</label>
           <div class="form-row">
 
-            <div class="form-row mt-2" *ngFor="let ingredient of recipe.ingredients ; index as i" [attr.data-index]="i">
+            <div class="form-row mt-2" *ngFor="let ingredient of recipe.ingredients ; index as i ; trackBy:customTrackBy">
 
               <div class="col-2">
-                <input type="text" class="form-control" name="quantity_{{ingredient.id}}" placeholder="Quantity" [(ngModel)]="recipe.ingredients[i].quantity">
+                <input type="text" class="form-control" name="quantity_{{i}}" placeholder="Quantity" [(ngModel)]="recipe.ingredients[i].quantity">
               </div>
               <div class="col-1">
-                <input type="text" class="form-control" name="measure_{{ingredient.id}}" placeholder="Lb,pcs,lt...." [(ngModel)]="recipe.ingredients[i].mesure">
+                <input type="text" class="form-control" name="measure_{{i}}" placeholder="Lb,pcs,lt...." [(ngModel)]="recipe.ingredients[i].mesure">
               </div>
               <div class="col-2">
-                <input type="text" class="form-control" name="ingredient_{{ingredient.id}}" placeholder="Name" [(ngModel)]="recipe.ingredients[i].name">
+                <input type="text" class="form-control" name="ingredient_{{i}}" placeholder="Name" [(ngModel)]="recipe.ingredients[i].name">
               </div>
               <button type="button" class="btn btn-warning" (click)="removeIngredient(i)" [disabled]="ingredientsLength === 1" >Remove</button>
             <button type="button" class="btn btn-success ml-2" (click)="addIngredient(i)" >Add</button>
@@ -53,7 +53,7 @@
         <div class="form-group">
           <label for="formGroupExampleInput2">Steps</label>
 
-            <div class="form-row mt-3" *ngFor="let step of recipe.steps ; index as i" [attr.data-index]="i">
+            <div class="form-row mt-3" *ngFor="let step of recipe.steps ; index as i; trackBy:customTrackBy ">
               <div class="col-1">
                 <label type="text" class="">{{i+1}}</label>
               </div>
@@ -144,14 +144,7 @@
                   >
                     <span class="glyphicon glyphicon-upload"></span> Upload
                   </button>
-                  <button
-                    type="button"
-                    class="btn btn-warning btn-xs"
-                    (click)="item.cancel()"
-                    [disabled]="!item.isUploading"
-                  >
-                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                  </button>
+
                   <button
                     type="button"
                     class="btn btn-danger btn-xs"
@@ -178,11 +171,8 @@
 
           </div>
         </div>
+
         <div class="form-group mt-3">
-          <label for="formGroupExampleInput2">Photo</label>
-          <input type="text" class="form-control" name="photoUrl" placeholder="Another input placeholder"[(ngModel)]="recipe.photoUrl">
-        </div>
-        <div class="form-group">
           <label for="formGroupExampleInput2">Tips</label>
           <input type="text" class="form-control" name="tips" placeholder="Another input placeholder" [(ngModel)]="recipe.tips">
         </div>

@@ -1,3 +1,6 @@
+import { Ingredients } from './../../_models/Ingredients';
+import { AlertifyService } from './../../_services/alertify.service';
+import { UserService } from './../../_services/user.service';
 import { AuthService } from 'src/app/_services/auth.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +19,7 @@ export class RecipeCreateComponent implements OnInit {
   baseUrl = environment.apiUrl;
  // items = [0];
    recipe: any = {
-     ingredients: [{id: 0}],
+     ingredients: [{}],
      steps: [{}]
    };
 
@@ -24,34 +27,37 @@ export class RecipeCreateComponent implements OnInit {
   ingredientsLength = this.recipe.ingredients.length;
   stepsLength = this.recipe.steps.length;
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private userService: UserService, private alertify: AlertifyService) {
 
   }
 
   ngOnInit() {
     this.recipe.allowShare = true;
 
+
     console.log(this.recipe);
   }
 
   createRecipe() {
-
-
     console.log(this.recipe);
 
+    this.userService.createRecipe(this.recipe).subscribe ((next) => {
+       this.alertify.success('New recipe Added');
+     }, error => {
+      this.alertify.error(error);
+     });
   }
   addIngredient(index: number) {
-    this.recipe.ingredients.splice(index + 1, 0, {id: index + 1});
-    this.ingredientsLength = this.recipe.ingredients.length;
+
+   this.recipe.ingredients.splice(index + 1, 0, {});
+   this.ingredientsLength = this.recipe.ingredients.length;
   }
   removeIngredient(index: number) {
     this.recipe.ingredients.splice(index, 1);
     this.ingredientsLength = this.recipe.ingredients.length;
   }
 
-  addStep(index: number, step: {}) {
-    console.log(step);
-    console.log(this.recipe.steps);
+  addStep(index: number) {
     this.recipe.steps.splice(index + 1, 0, {});
     this.stepsLength = this.recipe.steps.length;
   }
@@ -63,6 +69,9 @@ export class RecipeCreateComponent implements OnInit {
   public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
   }
+  customTrackBy(index: number, obj: any): any {
+    return index;
+    }
 
   initializeUploader() {
     this.uploader = new FileUploader({

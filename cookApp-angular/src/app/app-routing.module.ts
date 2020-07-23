@@ -14,6 +14,7 @@ import { RecipeDetailComponent } from './recipe/recipe-detail/recipe-detail.comp
 import { FilterRecipesComponent } from './filter-recipes/filter-recipes.component';
 import { RecipeCreateComponent } from './recipe/recipe-create/recipe-create.component';
 import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
+import { RecipeEditResolver } from './_resolvers/recipe-edit.resolver';
 
 
 const routes: Routes = [
@@ -28,7 +29,7 @@ const routes: Routes = [
   // {path: 'recipes', component: RecipeListComponent, canActivate: [AuthGuard]},
   {path: 'recipeDetail/:id', component: RecipeDetailComponent, canActivate: [AuthGuard], resolve: {recipe: RecipeDetailResolver}},
   {path: 'recipeCreate', component: RecipeCreateComponent, canActivate: [AuthGuard]},
-  {path: 'recipeEdit/:id', component: RecipeEditComponent, canActivate: [AuthGuard]},
+  {path: 'recipeEdit/:id', component: RecipeEditComponent, canActivate: [AuthGuard], resolve: {recipe: RecipeEditResolver}},
   {path: 'userEdit/:id', component: UserEditComponent, canActivate: [AuthGuard],
    resolve: {user: UserEditResolver}, canDeactivate: [PreventUnsaveChanges]},
   {path: '**', redirectTo: '', pathMatch: 'full' }
