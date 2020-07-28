@@ -4,7 +4,23 @@
   <div class="col-md-2 ml-3 mt-3 mb-3">
     <input class="form-control" type="search" name="search" placeholder="Search....">
   </div>
-  <div class="col-md-7"><p>9md</p></div>
+  <div class="col-md-7">
+    <div class="form-group row ml-5">
+      <label class="mt-auto" for="">Type:</label>
+      <div class="dropdown mt-2" dropdown>
+        <button class="btn dropdown-toggle" dropdownToggle>
+          {{typeSlected}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *dropdownMenu>
+          <div *ngFor="let type of types" >
+            <a class="dropdown-item" (click)="typeOption(type)" >{{type}}</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
   <div class="col-md-2 m-3">
     <button type="button" [routerLink]="['/recipeCreate']"  class="btn btn-success">Add recipe</button>
   </div>

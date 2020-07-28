@@ -44,4 +44,8 @@ createRecipe(recipe: Recipe) {
   return this.http.post(this.baseUrl + 'recipes', recipe, httpOption);
 }
 
+deleteRecipe(id: number) {
+  return this.http.delete(this.baseUrl + 'recipes/' + id, httpOption);
+}
+
 }

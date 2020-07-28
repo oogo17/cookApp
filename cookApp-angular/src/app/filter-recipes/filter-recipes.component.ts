@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filter-recipes.component.css']
 })
 export class FilterRecipesComponent implements OnInit {
-
+  typeSlected: string;
+  types: any [];
   constructor() { }
 
   ngOnInit() {
+    this.types = ['American', 'Italian', 'Japanese', 'Mexican', 'All' ];
+    this.typeSlected = 'All';
   }
 
+  typeOption(type: string) {
+    console.log(type);
+    this.typeSlected = type;
+  }
 }

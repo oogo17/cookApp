@@ -17,6 +17,8 @@ namespace cookApp_api.Data
         Task<User> GetUser(int id);
 
         Task<Recipe> GetRecipe(int id);
+
+        Task<IEnumerable<FollowUser>> GetFollowUsers(int id);
          
     }
 }

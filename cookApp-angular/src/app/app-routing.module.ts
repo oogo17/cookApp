@@ -15,15 +15,17 @@ import { FilterRecipesComponent } from './filter-recipes/filter-recipes.componen
 import { RecipeCreateComponent } from './recipe/recipe-create/recipe-create.component';
 import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 import { RecipeEditResolver } from './_resolvers/recipe-edit.resolver';
+import { RecipeListResolver } from './_resolvers/recipe-list.resolver';
+import { FollowUsersResolver } from './_resolvers/follow-users.resolver';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
   {path: 'home', component: ContainerListComponent, canActivate: [AuthGuard],
     children: [
-      {path: '', component: RecipeListComponent, outlet: 'recipes', canActivate: [AuthGuard]},
+      {path: '', component: RecipeListComponent, outlet: 'recipes', canActivate: [AuthGuard], resolve: {user: RecipeListResolver}},
       {path: '', component: FilterRecipesComponent, outlet: 'filter', canActivate: [AuthGuard]},
-      {path: '', component: FallowUserListComponent, outlet: 'fallow-user', canActivate: [AuthGuard]}
+      {path: '', component: FallowUserListComponent, outlet: 'fallow-user', canActivate: [AuthGuard], resolve: {user: FollowUsersResolver}}
     ]
   },
   // {path: 'recipes', component: RecipeListComponent, canActivate: [AuthGuard]},

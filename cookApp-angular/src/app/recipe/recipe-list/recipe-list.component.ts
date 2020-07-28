@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Recipe } from './../../_models/Recipe';
 import { User } from './../../_models/User';
 import { HttpClient } from '@angular/common/http';
@@ -20,11 +21,17 @@ export class RecipeListComponent implements OnInit {
     private http: HttpClient,
     private userService: UserService,
     private auth: AuthService,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.loadRecipes();
+    this.route.data.subscribe((data) => {
+      // tslint:disable-next-line:no-string-literal
+      this.user = data['user'];
+      console.log(this.user);
+    });
+    this.recipes = this.user.recipes;
   }
 
   loadRecipes() {
@@ -36,6 +43,11 @@ export class RecipeListComponent implements OnInit {
    }, error => {
      this.alertify.error(error);
    });
+  }
+
+  deleteRecipe(id) {
+    const index = this.recipes.findIndex(x => x.id === id);
+    this.recipes.splice(index, 1);
   }
 
 }

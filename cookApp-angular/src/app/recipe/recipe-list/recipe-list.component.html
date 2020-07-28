@@ -1,7 +1,7 @@
 
 <div class="row">
   <div *ngFor="let recipe of recipes">
-    <app-recipe [recipe]="recipe"></app-recipe>
+    <app-recipe (recipeId)="deleteRecipe($event)" [recipe]="recipe"></app-recipe>
   </div>
 </div>
 

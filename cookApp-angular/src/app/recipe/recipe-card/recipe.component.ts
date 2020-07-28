@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { AlertifyService } from './../../_services/alertify.service';
+import { UserService } from 'src/app/_services/user.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Recipe } from 'src/app/_models/Recipe';
+
 
 @Component({
   selector: 'app-recipe',
@@ -9,9 +12,23 @@ import { Recipe } from 'src/app/_models/Recipe';
 export class RecipeComponent implements OnInit {
 
   @Input() recipe: Recipe;
-  constructor() { }
+  @Output() recipeId = new EventEmitter();
+  constructor(private userService: UserService, private alertify: AlertifyService) { }
 
   ngOnInit() {
+
+  }
+
+  removeRecipe(id: number) {
+    this.alertify.confirm('Are you sure you want to delete the Recipe!!', () => {
+      this.userService.deleteRecipe(id).subscribe((next) => {
+        this.recipeId.emit(id);
+        this.alertify.success('Recipe deleted!!');
+      }, error => {
+          this.alertify.error(error);
+      });
+    });
+
 
   }
 

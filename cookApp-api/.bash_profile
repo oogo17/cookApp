@@ -1,0 +1,1 @@
+sudo export ASPNETCORE_ENVIRONMENT=Production

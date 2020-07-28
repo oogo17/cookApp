@@ -1,13 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using cookApp_api.Data;
 using cookApp_api.Dtos;
+using cookApp_api.Helpers;
 using cookApp_api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace cookApp_api.Controllers
 {
@@ -18,61 +23,114 @@ namespace cookApp_api.Controllers
     {
         private readonly ICookRepository _repo;
         private readonly IMapper _mapper;
-        public RecipesController(ICookRepository repo, IMapper mapper)
+        private Cloudinary _cloudinary;
+        private readonly IOptions<CloudinarySettings> _cloudinaryConfig;
+        public RecipesController(ICookRepository repo, IMapper mapper,
+        IOptions<CloudinarySettings> cloudinaryConfig )
         {
+            _cloudinaryConfig = cloudinaryConfig;
             _mapper = mapper;
             _repo = repo;
-        }
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetRecipe(int id)
-        {
-            var recipe = await _repo.GetRecipe(id);
-            var recipeMapDto = _mapper.Map<RecipeForDetailedDto>(recipe);
 
-            return Ok(recipeMapDto);
-        }
+            Account cc = new Account(
+                _cloudinaryConfig.Value.CloudName,
+                _cloudinaryConfig.Value.ApiKey,
+                _cloudinaryConfig.Value.ApiSecret
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateRecipe(int id, RecipeForUpdateDto recipeForUpdateDto)
-        {
-            var recipe = await _repo.GetRecipe(id);
+            );
             
-            var updateRecipe = _mapper.Map(recipeForUpdateDto, recipe);
-
-            if (await _repo.SaveAll())
-                return NoContent();
-
-            throw new Exception($"the update fail for recipe {id}");
-
+            _cloudinary = new Cloudinary(cc);
         }
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetRecipe(int id)
+    {
+        var recipe = await _repo.GetRecipe(id);
+        var recipeMapDto = _mapper.Map<RecipeForDetailedDto>(recipe);
 
-        [HttpPost]
-        public async Task<IActionResult> CreateRecipe( RecipeForCreateDto recipeForCreateDto)
-        {
+        return Ok(recipeMapDto);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateRecipe(int id, RecipeForUpdateDto recipeForUpdateDto)
+    {
+        var recipe = await _repo.GetRecipe(id);
+
+        var updateRecipe = _mapper.Map(recipeForUpdateDto, recipe);
+
+        if (await _repo.SaveAll())
+            return NoContent();
+
+        throw new Exception($"the update fail for recipe {id}");
+
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateRecipe(RecipeForCreateDto recipeForCreateDto)
+    {
         //Get values from token
         //   var identity = HttpContext.User.Identity as ClaimsIdentity;
         //  if (identity != null)
         //     {    
         //          IEnumerable<Claim> claims = identity.Claims; 
         //     }
-        if(User.FindFirst(ClaimTypes.NameIdentifier) == null)
+        if (User.FindFirst(ClaimTypes.NameIdentifier) == null)
             throw new Exception("Cant find user in token");
 
 
-          recipeForCreateDto.UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        recipeForCreateDto.UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
 
-          var recipe =  _mapper.Map<Recipe>(recipeForCreateDto);
-          _repo.Add(recipe);
+        var recipe = _mapper.Map<Recipe>(recipeForCreateDto);
+        _repo.Add(recipe);
 
-          if(await _repo.SaveAll()) {
-              return StatusCode(201);
-          }
-
-           throw new Exception($"the creation for recipe fail");
-
-          
+        if (await _repo.SaveAll())
+        {
+            return StatusCode(201);
         }
 
+        throw new Exception($"the creation for recipe fail");
+
+
     }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> deleteRecipe(int id)
+    {
+
+        var user = await _repo.GetUser(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value));
+
+        if (!user.Recipes.Any(x => x.Id == id))
+            return Unauthorized();
+
+        var recipe = await _repo.GetRecipe(id);
+
+        if (recipe.PublicId != null)
+        {
+
+            var deleteParams = new DeletionParams(recipe.PublicId);
+            var result = _cloudinary.Destroy(deleteParams);
+
+            if (result.Result == "ok")
+            {
+                recipe.PublicId = null;
+                recipe.PhotoUrl = null;
+            }
+            else
+            {
+                return BadRequest("Failed to delete Photo");
+            }
+
+        }
+
+
+        _repo.Delete(recipe);
+
+        if (await _repo.SaveAll())
+            return Ok();
+
+        return BadRequest("Failed to delete Recipe");
+    }
+
+
+}
 }

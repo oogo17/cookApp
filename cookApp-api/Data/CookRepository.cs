@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using cookApp_api.Models;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,14 @@ namespace cookApp_api.Data
         public void Delete<T>(T entity) where T : class
         {
             _context.Remove(entity);
+        }
+
+        public async Task<IEnumerable<FollowUser>> GetFollowUsers(int id)
+        {
+           var followUsers = await _context.FollowUser.Where(x => x.UserId == id)
+                .ToListAsync();
+           
+           return followUsers;
         }
 
         public async Task<Recipe> GetRecipe(int id)

@@ -4,8 +4,20 @@
 </div> -->
 
 
+<div class="container">
+<div class="row ml-2">
+  <label>Currently you follow</label>
+</div>
+<div class="ml-4" *ngFor="let user of followUsers">
+  <div class="row" >
+    <img src="{{ user.urlPhoto }}" class="img-thumbnail rounded-circle" alt="..." (click)="getRecipes(user)"/>
+    <label class="ml-4">{{user.username}}</label>
+  </div>
+</div>
+<div class="row form-group ml-2">
+  <label>Add friend to follow:</label>
+  <input type="text" class="form-control" name="name" placeholder="Search....">
+</div>
 
-<div class="row ml-5" *ngFor="let user of users"> {{user.userName}} </div>
-
-
+</div>
 

@@ -1,3 +1,4 @@
+import { FollowUsersResolver } from './_resolvers/follow-users.resolver';
 import { RecipeEditResolver } from './_resolvers/recipe-edit.resolver';
 import { AuthGuard } from './_guards/auth.guard';
 import { PreventUnsaveChanges } from './_guards/prevent-unsave-changes.guard';
@@ -28,6 +29,7 @@ import { RecipeDetailComponent } from './recipe/recipe-detail/recipe-detail.comp
 import { RecipeCreateComponent } from './recipe/recipe-create/recipe-create.component';
 import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 import { RecipeDetailResolver } from './_resolvers/recipe-detail.resolver';
+import { RecipeListResolver } from './_resolvers/recipe-list.resolver';
 import { FileUploadModule } from 'ng2-file-upload';
 
 
@@ -67,6 +69,8 @@ import { FileUploadModule } from 'ng2-file-upload';
       RecipeDetailResolver,
       UserEditResolver,
       RecipeEditResolver,
+      RecipeListResolver,
+      FollowUsersResolver,
       PreventUnsaveChanges,
       AuthGuard
    ],
