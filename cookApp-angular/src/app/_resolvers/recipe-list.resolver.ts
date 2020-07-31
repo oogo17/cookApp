@@ -22,7 +22,7 @@ recipes: Recipe[];
 
   resolve(route: ActivatedRouteSnapshot): Observable<User> {
     // tslint:disable-next-line:no-string-literal
-    return this.userService.getUser(this.idUser).pipe(
+    return this.userService.getUser(route.params['id']).pipe(
       catchError(error => {
         this.alertify.error(error);
         return of(null);

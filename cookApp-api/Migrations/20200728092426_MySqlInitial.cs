@@ -1,45 +1,45 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace cookApp_api.Migrations
 {
-    public partial class extendRecipeUser : Migration
+    public partial class MySqlInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "City",
-                table: "User",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "Country",
-                table: "User",
-                nullable: true);
-
-            migrationBuilder.AddColumn<DateTime>(
-                name: "DateCreated",
-                table: "User",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
-
-            migrationBuilder.AddColumn<DateTime>(
-                name: "DateofBirth",
-                table: "User",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+            migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UserName = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    PasswordHash = table.Column<byte[]>(nullable: true),
+                    PasswordSalt = table.Column<byte[]>(nullable: true),
+                    DateofBirth = table.Column<DateTime>(nullable: false),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    PhotoUrl = table.Column<string>(nullable: true),
+                    PublicId = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "FollowUser",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                         .Annotation("MySql:ValueGenerationStrategy", 
-                        MySqlValueGenerationStrategy.IdentityColumn)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Username = table.Column<string>(nullable: true),
                     UrlPhoto = table.Column<string>(nullable: true),
+                    PublicId = table.Column<string>(nullable: true),
                     DateCreated = table.Column<DateTime>(nullable: false),
                     UserId = table.Column<int>(nullable: false)
                 },
@@ -59,9 +59,7 @@ namespace cookApp_api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                         .Annotation("MySql:ValueGenerationStrategy", 
-                        MySqlValueGenerationStrategy.IdentityColumn)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Url = table.Column<string>(nullable: true),
                     DateCreated = table.Column<DateTime>(nullable: false),
                     IsMain = table.Column<bool>(nullable: false),
@@ -83,12 +81,14 @@ namespace cookApp_api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                         .Annotation("MySql:ValueGenerationStrategy", 
-                        MySqlValueGenerationStrategy.IdentityColumn)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: true),
+                    Persons = table.Column<int>(nullable: false),
                     PhotoUrl = table.Column<string>(nullable: true),
+                    PublicId = table.Column<string>(nullable: true),
+                    BuyIngredients = table.Column<string>(nullable: true),
                     DateCreated = table.Column<DateTime>(nullable: false),
                     Tips = table.Column<string>(nullable: true),
                     allowShare = table.Column<bool>(nullable: false),
@@ -110,9 +110,7 @@ namespace cookApp_api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                         .Annotation("MySql:ValueGenerationStrategy", 
-                        MySqlValueGenerationStrategy.IdentityColumn)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Quantity = table.Column<int>(nullable: false),
                     Mesure = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
@@ -134,9 +132,7 @@ namespace cookApp_api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                         .Annotation("MySql:ValueGenerationStrategy", 
-                        MySqlValueGenerationStrategy.IdentityColumn)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Description = table.Column<string>(nullable: true),
                     RecipeId = table.Column<int>(nullable: false)
                 },
@@ -194,21 +190,8 @@ namespace cookApp_api.Migrations
             migrationBuilder.DropTable(
                 name: "Recipe");
 
-            migrationBuilder.DropColumn(
-                name: "City",
-                table: "User");
-
-            migrationBuilder.DropColumn(
-                name: "Country",
-                table: "User");
-
-            migrationBuilder.DropColumn(
-                name: "DateCreated",
-                table: "User");
-
-            migrationBuilder.DropColumn(
-                name: "DateofBirth",
-                table: "User");
+            migrationBuilder.DropTable(
+                name: "User");
         }
     }
 }

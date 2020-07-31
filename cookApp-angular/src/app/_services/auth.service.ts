@@ -1,5 +1,5 @@
 import { environment } from './../../environments/environment';
-
+import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
@@ -12,6 +12,7 @@ export class AuthService {
   baseURL = environment.apiUrl + 'auth/';
   jwtHelper = new JwtHelperService();
   decodedToken: any;
+ // username = new BehaviorSubject<string>(this.decodedToken.unique_name);
 
 constructor(private http: HttpClient) { }
 

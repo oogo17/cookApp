@@ -52,6 +52,9 @@ namespace cookApp_api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
             var user = await _repo.GetUser(id);
 
             var userMapDto = _mapper.Map<UserForDetailedDto>(user);

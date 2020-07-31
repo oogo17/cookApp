@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { JwtModule } from '@auth0/angular-jwt';
 
 
 
@@ -34,7 +35,9 @@ import { FileUploadModule } from 'ng2-file-upload';
 
 
 
-
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 
 
@@ -61,7 +64,15 @@ import { FileUploadModule } from 'ng2-file-upload';
       FileUploadModule,
       HttpClientModule,
       BrowserAnimationsModule,
-      BsDropdownModule.forRoot()
+      BsDropdownModule.forRoot(),
+      JwtModule.forRoot({
+        config: {
+          // tslint:disable-next-line:object-literal-shorthand
+          tokenGetter: tokenGetter,
+          whitelistedDomains: ['localhost:5000'],
+          blacklistedRoutes: ['localhost:5000/api/auth']
+        }
+      })
    ],
    providers: [
       AuthService,

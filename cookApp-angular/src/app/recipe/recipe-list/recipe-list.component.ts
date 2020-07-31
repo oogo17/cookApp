@@ -29,7 +29,6 @@ export class RecipeListComponent implements OnInit {
     this.route.data.subscribe((data) => {
       // tslint:disable-next-line:no-string-literal
       this.user = data['user'];
-      console.log(this.user);
     });
     this.recipes = this.user.recipes;
   }

@@ -22,6 +22,7 @@ export class RecipeCreateComponent implements OnInit {
      ingredients: [{}],
      steps: [{}]
    };
+   userId: any;
 
 
   ingredientsLength = this.recipe.ingredients.length;
@@ -33,13 +34,11 @@ export class RecipeCreateComponent implements OnInit {
 
   ngOnInit() {
     this.recipe.allowShare = true;
+    this.userId = this.auth.decodedToken.nameid;
 
-
-    console.log(this.recipe);
   }
 
   createRecipe() {
-    console.log(this.recipe);
 
     this.userService.createRecipe(this.recipe).subscribe ((next) => {
        this.alertify.success('New recipe Added');

@@ -61,7 +61,7 @@
                 <input type="text" class="form-control" name="instruction_{{i}}" placeholder="Instructions" [(ngModel)]="recipe.steps[i].instruction">
               </div>
               <button type="button" class="btn btn-warning" (click)="removeStep(i)" [disabled]="stepsLength === 1">Remove</button>
-              <button type="button" class="btn btn-success ml-2" (click)="addStep(i, step)" >Add</button>
+              <button type="button" class="btn btn-success ml-2" (click)="addStep(i)" >Add</button>
             </div>
 
 
@@ -183,7 +183,7 @@
           </label>
         </div>
         <div class="row mb-4">
-          <button type="button" class="btn btn-primary" routerLink="/home">Back</button>
+          <button type="button" class="btn btn-primary" [routerLink]="['/home/', userId]">Back</button>
           <button type="submit" class="btn btn-success ml-3">Save</button>
         </div>
 

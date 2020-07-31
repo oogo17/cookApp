@@ -21,11 +21,12 @@ import { FollowUsersResolver } from './_resolvers/follow-users.resolver';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
-  {path: 'home', component: ContainerListComponent, canActivate: [AuthGuard],
+  {path: 'home/:id', component: ContainerListComponent, canActivate: [AuthGuard],
     children: [
       {path: '', component: RecipeListComponent, outlet: 'recipes', canActivate: [AuthGuard], resolve: {user: RecipeListResolver}},
       {path: '', component: FilterRecipesComponent, outlet: 'filter', canActivate: [AuthGuard]},
-      {path: '', component: FallowUserListComponent, outlet: 'fallow-user', canActivate: [AuthGuard], resolve: {user: FollowUsersResolver}}
+      {path: '', component: FallowUserListComponent, outlet: 'fallow-user', canActivate: [AuthGuard],
+        resolve: {user: FollowUsersResolver}}
     ]
   },
   // {path: 'recipes', component: RecipeListComponent, canActivate: [AuthGuard]},

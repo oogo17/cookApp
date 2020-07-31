@@ -21,27 +21,27 @@ export class UserService {
 constructor(private http: HttpClient) { }
 
 getUsers(): Observable<User[]> {
-  return this.http.get<User[]>(this.baseUrl + 'users', httpOption);
+  return this.http.get<User[]>(this.baseUrl + 'users');
 }
 
 getUser(id: number): Observable<User> {
-  return this.http.get<User>(this.baseUrl + 'users/' + id, httpOption);
+  return this.http.get<User>(this.baseUrl + 'users/' + id);
 }
 
 updateUser(id: number, user: User) {
-  return this.http.put(this.baseUrl + 'users/' + id , user, httpOption);
+  return this.http.put(this.baseUrl + 'users/' + id , user);
 }
 
 getRecipe(id: number): Observable<Recipe> {
-  return this.http.get<Recipe>(this.baseUrl + 'recipes/' + id, httpOption);
+  return this.http.get<Recipe>(this.baseUrl + 'recipes/' + id);
 }
 
 updateRecipe(id: number, recipe: Recipe) {
-  return this.http.put(this.baseUrl + 'recipes/' + id, recipe, httpOption);
+  return this.http.put(this.baseUrl + 'recipes/' + id, recipe);
 }
 
 createRecipe(recipe: Recipe) {
-  return this.http.post(this.baseUrl + 'recipes', recipe, httpOption);
+  return this.http.post(this.baseUrl + 'recipes', recipe);
 }
 
 deleteRecipe(id: number) {

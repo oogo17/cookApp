@@ -16,7 +16,6 @@ export class FilterRecipesComponent implements OnInit {
   }
 
   typeOption(type: string) {
-    console.log(type);
     this.typeSlected = type;
   }
 }

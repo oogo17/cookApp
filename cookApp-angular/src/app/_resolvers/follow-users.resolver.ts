@@ -17,7 +17,8 @@ idUser = this.auth.decodedToken.nameid;
 constructor(private alertify: AlertifyService, private userService: UserService, private auth: AuthService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<User> {
-    return this.userService.getUser(this.idUser).pipe(
+    // tslint:disable-next-line:no-string-literal
+    return this.userService.getUser(route.params['id']).pipe(
       catchError(error => {
         this.alertify.error(error);
         return of(null);

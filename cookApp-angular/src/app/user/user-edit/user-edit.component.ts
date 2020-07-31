@@ -43,12 +43,10 @@ export class UserEditComponent implements OnInit {
       // tslint:disable-next-line:no-string-literal
       this.user = data['user'];
     });
-    console.log(this.user);
     this.initializeUploader();
   }
 
   updateUser() {
-    console.log(this.user);
     this.userService.updateUser(this.auth.decodedToken.nameid, this.user).subscribe(next => {
       this.alertify.success('update succes');
       this.editform.reset(this.user);

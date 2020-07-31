@@ -27,7 +27,6 @@ export class FallowUserListComponent implements OnInit {
     this.route.data.subscribe((data) => {
       // tslint:disable-next-line:no-string-literal
       this.user = data['user'];
-      console.log(this.user);
     });
     this.followUsers = this.user.followUsers;
   }
@@ -41,6 +40,6 @@ export class FallowUserListComponent implements OnInit {
   }
 
   getRecipes(user: User) {
-    console.log(user);
+
   }
 }

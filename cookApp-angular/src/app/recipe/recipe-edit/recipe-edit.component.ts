@@ -17,6 +17,7 @@ export class RecipeEditComponent implements OnInit {
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
   recipe: Recipe;
+  userId: any;
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
@@ -29,6 +30,7 @@ export class RecipeEditComponent implements OnInit {
       // tslint:disable-next-line:no-string-literal
       this.recipe = data['recipe'];
     });
+    this.userId = this.auth.decodedToken.nameid;
     this.initializeUploader();
   }
 
@@ -46,7 +48,6 @@ export class RecipeEditComponent implements OnInit {
   }
 
   updateRecipe() {
-    console.log(this.recipe);
     this.userService.updateRecipe(this.recipe.id, this.recipe).subscribe(next => {
       this.alertify.success('update succes');
       // this.editform.reset(this.recipe);

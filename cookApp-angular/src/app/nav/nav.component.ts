@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
   Login() {
     this.authService.login(this.model).subscribe(next => {
       this.alertify.success('login success');
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home', this.authService.decodedToken.nameid]);
     }, error => {
       this.alertify.error(error);
     });
@@ -31,8 +31,8 @@ export class NavComponent implements OnInit {
   }
 
   LoggedOut() {
-  console.log( this.authService.decodedToken);
   localStorage.removeItem('token');
+  this.authService.decodedToken = '';
   this.alertify.success('loggedOut');
   this.model.username = '';
   this.model.password = '';
@@ -40,7 +40,6 @@ export class NavComponent implements OnInit {
   }
 
   EditUser() {
-   console.log( this.authService.decodedToken);
   }
 
 }
