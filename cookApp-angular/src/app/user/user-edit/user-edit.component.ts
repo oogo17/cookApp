@@ -50,6 +50,7 @@ export class UserEditComponent implements OnInit {
     this.userService.updateUser(this.auth.decodedToken.nameid, this.user).subscribe(next => {
       this.alertify.success('update succes');
       this.editform.reset(this.user);
+      this.auth.changeUsername(this.user.userName);
     }, error => {
       this.alertify.error(error);
     });

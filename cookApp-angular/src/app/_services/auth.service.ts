@@ -12,7 +12,8 @@ export class AuthService {
   baseURL = environment.apiUrl + 'auth/';
   jwtHelper = new JwtHelperService();
   decodedToken: any;
- // username = new BehaviorSubject<string>(this.decodedToken.unique_name);
+  username = new BehaviorSubject<string>('');
+  currentUsername = this.username.asObservable();
 
 constructor(private http: HttpClient) { }
 
@@ -23,6 +24,7 @@ login(model: any) {
     if (user) {
       localStorage.setItem('token', user.token);
       this.decodedToken = this.jwtHelper.decodeToken(user.token);
+      this.changeUsername(this.decodedToken.unique_name);
     }
   })
   );
@@ -35,6 +37,10 @@ login(model: any) {
  loggedIn() {
  const token = localStorage.getItem('token');
  return !this.jwtHelper.isTokenExpired(token);
+ }
+
+ changeUsername(username: string) {
+  this.username.next(username);
  }
 
 }

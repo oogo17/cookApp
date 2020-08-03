@@ -10,15 +10,17 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
   model: any = {};
+  username: string;
   constructor(public authService: AuthService, private alertify: AlertifyService,
               private router: Router) { }
 
   ngOnInit() {
+    this.authService.currentUsername.subscribe(username => this.username = username);
   }
 
   Login() {
     this.authService.login(this.model).subscribe(next => {
-      this.alertify.success('login success');
+      this.alertify.success('Login Successful');
       this.router.navigate(['/home', this.authService.decodedToken.nameid]);
     }, error => {
       this.alertify.error(error);

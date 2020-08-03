@@ -10,7 +10,7 @@
     </ul>
     <div class="dropdown" *ngIf="LoggedIn()" dropdown>
       <button class="btn dropdown-toggle" dropdownToggle>
-        Welcome {{authService.decodedToken?.unique_name | titlecase}}
+        Welcome {{username | titlecase}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *dropdownMenu>
         <a class="dropdown-item" href="#" [routerLink]="['/userEdit/', authService.decodedToken?.nameid]"  ><i class="fas fa-user mr-2"></i>Edit profile</a>
