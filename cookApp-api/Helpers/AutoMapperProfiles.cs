@@ -30,6 +30,7 @@ namespace cookApp_api.Helpers
             CreateMap<StepForUpdateDto, Step>();
 
             CreateMap<RecipeForCreateDto, Recipe>();
+            CreateMap<Recipe, RecipeForListDto>();
         }
     }
 }

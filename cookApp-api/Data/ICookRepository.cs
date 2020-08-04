@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using cookApp_api.Helpers;
 using cookApp_api.Models;
 
 namespace cookApp_api.Data
@@ -17,6 +18,8 @@ namespace cookApp_api.Data
         Task<User> GetUser(int id);
 
         Task<Recipe> GetRecipe(int id);
+
+        Task<PagedList<Recipe>> GetRecipes(int id, RecipeParams recipeParams);
 
         Task<IEnumerable<FollowUser>> GetFollowUsers(int id);
          

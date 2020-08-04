@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using cookApp_api.Helpers;
 using cookApp_api.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,6 +41,13 @@ namespace cookApp_api.Data
                                               .FirstOrDefaultAsync(x => x.Id == id);
 
             return recipe;
+        }
+
+        public async Task<PagedList<Recipe>> GetRecipes(int id, RecipeParams recipeParams)
+        {
+            var recipes =  _context.Recipe.Where(x => x.UserId == id);
+
+            return await PagedList<Recipe>.CreateAsync(recipes, recipeParams.PageNumber, recipeParams.PageSize);   
         }
 
         public async Task<User> GetUser(int id)
