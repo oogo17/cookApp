@@ -12,7 +12,7 @@ export class AuthService {
   baseURL = environment.apiUrl + 'auth/';
   jwtHelper = new JwtHelperService();
   decodedToken: any;
-  username = new BehaviorSubject<string>('');
+  username = new BehaviorSubject<string>(undefined);
   currentUsername = this.username.asObservable();
 
 constructor(private http: HttpClient) { }

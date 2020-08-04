@@ -18,6 +18,9 @@ export class AppComponent implements OnInit {
 
     if (token) {
         this.authService.decodedToken = this.jwtHelper.decodeToken(token);
+        if (this.authService.loggedIn) {
+          this.authService.changeUsername(this.authService.decodedToken.unique_name);
+        }
     }
 
     this.router.events.subscribe((evt) => {
