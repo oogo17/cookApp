@@ -7,6 +7,7 @@ import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -61,6 +62,7 @@ export function tokenGetter() {
       BrowserModule,
       AppRoutingModule,
       FormsModule,
+      PaginationModule.forRoot(),
       FileUploadModule,
       HttpClientModule,
       BrowserAnimationsModule,

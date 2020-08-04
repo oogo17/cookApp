@@ -9,8 +9,10 @@ import { Recipe } from '../_models/Recipe';
 import { User } from '../_models/User';
 
 @Injectable()
-export class RecipeListResolver implements Resolve<User> {
+export class RecipeListResolver implements Resolve<Recipe> {
 idUser = this.auth.decodedToken.nameid;
+pageNumber = 1;
+pageSize = 6;
 user: User;
 recipes: Recipe[];
   constructor(
@@ -20,9 +22,9 @@ recipes: Recipe[];
     private auth: AuthService
   ) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<User> {
+  resolve(route: ActivatedRouteSnapshot): Observable<Recipe> {
     // tslint:disable-next-line:no-string-literal
-    return this.userService.getUser(route.params['id']).pipe(
+    return this.userService.getRecipes(route.params['id'], this.pageNumber, this.pageSize).pipe(
       catchError(error => {
         this.alertify.error(error);
         return of(null);

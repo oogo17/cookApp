@@ -1,5 +1,7 @@
+import { map } from 'rxjs/operators';
+import { PaginatedResults } from './../_models/Pagination';
 import { Recipe } from './../_models/Recipe';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -34,6 +36,26 @@ updateUser(id: number, user: User) {
 
 getRecipe(id: number): Observable<Recipe> {
   return this.http.get<Recipe>(this.baseUrl + 'recipes/' + id);
+}
+
+getRecipes(id: number, page?, itemsPerPage?): Observable <PaginatedResults<Recipe[]>> {
+  const paginatedResults: PaginatedResults<Recipe[]> = new PaginatedResults<Recipe[]>();
+  let params = new HttpParams();
+  if (page != null && itemsPerPage != null) {
+    params = params.append('pageNumber', page);
+    params = params.append('pageSize', itemsPerPage);
+
+  }
+  return this.http.get<Recipe[]>(this.baseUrl + 'recipes/' + id + '/all', { observe: 'response', params} )
+          .pipe(
+            map(response => {
+              paginatedResults.result = response.body;
+              if (response.headers.get('Pagination') != null) {
+                paginatedResults.pagination = JSON.parse(response.headers.get('Pagination'));
+              }
+              return paginatedResults;
+            })
+          );
 }
 
 updateRecipe(id: number, recipe: Recipe) {

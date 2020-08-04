@@ -1,3 +1,4 @@
+import { Pagination, PaginatedResults } from './../../_models/Pagination';
 import { ActivatedRoute } from '@angular/router';
 import { Recipe } from './../../_models/Recipe';
 import { User } from './../../_models/User';
@@ -15,6 +16,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class RecipeListComponent implements OnInit {
   idUser = this.auth.decodedToken.nameid;
   recipes: Recipe[];
+  pagination: Pagination;
   user: User;
 
   constructor(
@@ -28,15 +30,16 @@ export class RecipeListComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data) => {
       // tslint:disable-next-line:no-string-literal
-      this.user = data['user'];
+      this.recipes = data['recipe'].result;
+      this.pagination = data.recipe.pagination;
     });
-    this.recipes = this.user.recipes;
   }
 
   loadRecipes() {
-   this.userService.getUser(this.idUser).subscribe((user: User) => {
-     this.user = user;
-     this.recipes = user.recipes;
+   this.userService.getRecipes(this.idUser, this.pagination.currentPage,
+      this.pagination.itemsPerPage).subscribe((res: PaginatedResults<Recipe[]>) => {
+     this.recipes = res.result;
+     this.pagination = res.pagination;
     //  console.log(user);
     //  console.log(this.recipes);
    }, error => {
@@ -47,6 +50,13 @@ export class RecipeListComponent implements OnInit {
   deleteRecipe(id) {
     const index = this.recipes.findIndex(x => x.id === id);
     this.recipes.splice(index, 1);
+  }
+
+  pageChanged(event: any): void {
+    this.pagination.currentPage = event.page;
+    console.log(this.pagination.currentPage);
+    this.loadRecipes();
+
   }
 
 }

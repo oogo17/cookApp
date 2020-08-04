@@ -4,6 +4,16 @@
     <app-recipe (recipeId)="deleteRecipe($event)" [recipe]="recipe"></app-recipe>
   </div>
 </div>
+<div class="row d-flex justify-content-center mt-5 col-md-10">
+  <pagination [boundaryLinks]="true"
+            [totalItems]="pagination.totalItems"
+            [itemsPerPage]="pagination.itemsPerPage"
+            [(ngModel)]="pagination.currentPage"
+            (pageChanged)="pageChanged($event)"
+            previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+
+</pagination>
+</div>
 
 
 
