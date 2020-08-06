@@ -1,3 +1,4 @@
+import { CountriesAPIService } from './_services/countriesAPI.service';
 import { FollowUsersResolver } from './_resolvers/follow-users.resolver';
 import { RecipeEditResolver } from './_resolvers/recipe-edit.resolver';
 import { AuthGuard } from './_guards/auth.guard';
@@ -5,12 +6,22 @@ import { PreventUnsaveChanges } from './_guards/prevent-unsave-changes.guard';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatInputModule } from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+
 
 
 
@@ -66,6 +77,14 @@ export function tokenGetter() {
       FileUploadModule,
       HttpClientModule,
       BrowserAnimationsModule,
+      MatSelectModule,
+      MatToolbarModule,
+      MatFormFieldModule,
+      MatIconModule,
+      MatInputModule,
+      MatAutocompleteModule,
+      ReactiveFormsModule,
+      NgxMatSelectSearchModule,
       BsDropdownModule.forRoot(),
       JwtModule.forRoot({
         config: {
@@ -78,6 +97,7 @@ export function tokenGetter() {
    ],
    providers: [
       AuthService,
+      CountriesAPIService,
       ErrorInterceptorProvider,
       RecipeDetailResolver,
       UserEditResolver,
