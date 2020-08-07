@@ -7,6 +7,7 @@ import { UserService } from '../_services/user.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { Recipe } from '../_models/Recipe';
 import { User } from '../_models/User';
+import { Filters } from '../_models/filters';
 
 @Injectable()
 export class RecipeListResolver implements Resolve<Recipe> {
@@ -15,6 +16,7 @@ pageNumber = 1;
 pageSize = 6;
 user: User;
 recipes: Recipe[];
+filters: Filters[];
   constructor(
     private userService: UserService,
     private router: Router,
@@ -24,7 +26,8 @@ recipes: Recipe[];
 
   resolve(route: ActivatedRouteSnapshot): Observable<Recipe> {
     // tslint:disable-next-line:no-string-literal
-    return this.userService.getRecipes(route.params['id'], this.pageNumber, this.pageSize).pipe(
+    return this.userService.getRecipes(route.params['id'], this.pageNumber,
+                  this.pageSize).pipe(
       catchError(error => {
         this.alertify.error(error);
         return of(null);

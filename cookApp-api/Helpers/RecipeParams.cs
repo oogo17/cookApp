@@ -10,6 +10,10 @@ namespace cookApp_api.Helpers
             get { return pageSize; }
             set { pageSize = (value > MaxPageSize)? MaxPageSize : value; }
         }
+        public int MaxTime { get; set; }
+        public string Type { get; set; }
+        public string RecipeName { get; set; }
+
         
     }
 }

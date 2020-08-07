@@ -1,3 +1,4 @@
+import { Filters } from './../_models/filters';
 import { map } from 'rxjs/operators';
 import { PaginatedResults } from './../_models/Pagination';
 import { Recipe } from './../_models/Recipe';
@@ -38,12 +39,19 @@ getRecipe(id: number): Observable<Recipe> {
   return this.http.get<Recipe>(this.baseUrl + 'recipes/' + id);
 }
 
-getRecipes(id: number, page?, itemsPerPage?): Observable <PaginatedResults<Recipe[]>> {
+getRecipes(id: number, page?, itemsPerPage?, filters?: Filters[]): Observable <PaginatedResults<Recipe[]>> {
   const paginatedResults: PaginatedResults<Recipe[]> = new PaginatedResults<Recipe[]>();
   let params = new HttpParams();
   if (page != null && itemsPerPage != null) {
     params = params.append('pageNumber', page);
     params = params.append('pageSize', itemsPerPage);
+
+  }
+  if (filters != null) {
+    console.log('entra');
+    filters.forEach( item => {
+      params = params.append(item.name, item.value);
+    });
 
   }
   return this.http.get<Recipe[]>(this.baseUrl + 'recipes/' + id + '/all', { observe: 'response', params} )

@@ -1,3 +1,4 @@
+import { RecipeService } from './_services/recipe.service';
 import { CountriesAPIService } from './_services/countriesAPI.service';
 import { FollowUsersResolver } from './_resolvers/follow-users.resolver';
 import { RecipeEditResolver } from './_resolvers/recipe-edit.resolver';
@@ -98,6 +99,7 @@ export function tokenGetter() {
    providers: [
       AuthService,
       CountriesAPIService,
+      RecipeService,
       ErrorInterceptorProvider,
       RecipeDetailResolver,
       UserEditResolver,

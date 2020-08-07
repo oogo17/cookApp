@@ -54,6 +54,10 @@ namespace cookApp_api.Controllers
     public async Task<IActionResult> GetRecipes(int id, [FromQuery]RecipeParams recipeParams) 
     {
         var recipes = await _repo.GetRecipes(id, recipeParams);
+
+        
+
+
         var recipesMapDto = _mapper.Map<IEnumerable<RecipeForListDto>>(recipes);
 
         Response.AddPagination(recipes.CurrentPage,recipes.PageSize,

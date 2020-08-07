@@ -47,6 +47,12 @@ namespace cookApp_api.Data
         {
             var recipes =  _context.Recipe.Where(x => x.UserId == id);
 
+            if(!string.IsNullOrEmpty(recipeParams.Type))
+                recipes = recipes.Where(x => x.Type == recipeParams.Type);
+            
+            if(!string.IsNullOrEmpty(recipeParams.RecipeName))
+                recipes = recipes.Where(x => x.Name.Contains(recipeParams.RecipeName));
+
             return await PagedList<Recipe>.CreateAsync(recipes, recipeParams.PageNumber, recipeParams.PageSize);   
         }
 

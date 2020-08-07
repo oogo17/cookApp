@@ -1,3 +1,5 @@
+import { Filters } from './../../_models/filters';
+import { RecipeService } from './../../_services/recipe.service';
 import { Pagination, PaginatedResults } from './../../_models/Pagination';
 import { ActivatedRoute } from '@angular/router';
 import { Recipe } from './../../_models/Recipe';
@@ -17,15 +19,18 @@ export class RecipeListComponent implements OnInit {
   idUser = this.auth.decodedToken.nameid;
   recipes: Recipe[];
   pagination: Pagination;
+  filters: Filters[];
   user: User;
 
   constructor(
-    private http: HttpClient,
     private userService: UserService,
     private auth: AuthService,
     private alertify: AlertifyService,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private recipe: RecipeService
+  ) {
+
+  }
 
   ngOnInit() {
     this.route.data.subscribe((data) => {
@@ -33,11 +38,21 @@ export class RecipeListComponent implements OnInit {
       this.recipes = data['recipe'].result;
       this.pagination = data.recipe.pagination;
     });
+
+    this.recipe.currentFilters.subscribe(filter => {
+      console.log(filter);
+      this.filters = filter;
+      if (this.filters != null) {
+        this.loadRecipes();
+      }
+    });
   }
 
+
   loadRecipes() {
-   this.userService.getRecipes(this.idUser, this.pagination.currentPage,
-      this.pagination.itemsPerPage).subscribe((res: PaginatedResults<Recipe[]>) => {
+
+    this.userService.getRecipes(this.idUser, this.pagination.currentPage,
+      this.pagination.itemsPerPage, this.filters).subscribe((res: PaginatedResults<Recipe[]>) => {
      this.recipes = res.result;
      this.pagination = res.pagination;
     //  console.log(user);
