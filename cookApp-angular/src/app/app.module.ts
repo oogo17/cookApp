@@ -1,3 +1,5 @@
+import { FallowUserRecipeDetailComponent } from './fallow-user/fallow-user-recipe-detail/fallow-user-recipe-detail.component';
+
 import { RecipeService } from './_services/recipe.service';
 import { CountriesAPIService } from './_services/countriesAPI.service';
 import { FollowUsersResolver } from './_resolvers/follow-users.resolver';
@@ -36,7 +38,8 @@ import { RegisterComponent } from './user/register/register.component';
 import { ErrorInterceptorProvider } from './_services/errorInterceptor.service';
 import { RecipeListComponent } from './recipe/recipe-list/recipe-list.component';
 import { RecipeComponent} from './recipe/recipe-card/recipe.component';
-import { FallowUserListComponent } from './fallow-user-list/fallow-user-list.component';
+import { FallowUserListComponent } from './fallow-user/fallow-user-list/fallow-user-list.component';
+import { FallowUserDetailComponent } from './fallow-user/fallow-user-detail/fallow-user-detail.component';
 import { ContainerListComponent } from './container-list/container-list.component';
 import { FilterRecipesComponent } from './filter-recipes/filter-recipes.component';
 import { RecipeDetailComponent } from './recipe/recipe-detail/recipe-detail.component';
@@ -67,6 +70,8 @@ export function tokenGetter() {
       RecipeCreateComponent,
       RecipeEditComponent,
       FallowUserListComponent,
+      FallowUserDetailComponent,
+      FallowUserRecipeDetailComponent,
       ContainerListComponent,
       FilterRecipesComponent
    ],

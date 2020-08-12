@@ -10,13 +10,20 @@
 </div>
 <div class="ml-4" *ngFor="let user of followUsers">
   <div class="row" >
-    <img src="{{ user.urlPhoto }}" class="img-thumbnail rounded-circle" alt="..." (click)="getRecipes(user)"/>
+    <img src="{{ user.urlPhoto }}" class="img-thumbnail rounded-circle" alt="..." (click)="userDetail(user)"/>
     <label class="ml-4">{{user.username}}</label>
   </div>
 </div>
 <div class="row form-group ml-2">
   <label>Add friend to follow:</label>
-  <input type="text" class="form-control" name="name" placeholder="Search....">
+  <input type="text" class="form-control" name="name" placeholder="Search...."
+    [formControl]="control"
+    [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let item of filteredUsers | async" (onSelectionChange)="fallowUser(item)" [value]="item.userName">
+      {{item.userName}}
+    </mat-option>
+  </mat-autocomplete>
 </div>
 
 </div>

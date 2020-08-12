@@ -38,7 +38,6 @@ export class UserEditComponent implements OnInit {
       $event.returnValue = true;
     }
   }
-
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,

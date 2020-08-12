@@ -40,7 +40,6 @@ export class RecipeListComponent implements OnInit {
     });
 
     this.recipe.currentFilters.subscribe(filter => {
-      console.log(filter);
       this.filters = filter;
       if (this.filters != null) {
         this.loadRecipes();

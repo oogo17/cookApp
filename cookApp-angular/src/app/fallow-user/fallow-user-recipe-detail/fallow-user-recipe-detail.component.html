@@ -1,0 +1,31 @@
+
+<div class="container">
+  <div class="row">
+    <div class="ml-1 mt-5 col-md-3">
+      <img src="{{recipe?.photoUrl || '../../../../../assets/dish.png'}}" class="img-thumbnail w-100" alt="...">
+    </div>
+    <div class="ml-5 mt-5 col-md-8" >
+      <a class="font-weight-bold text-capitalize">{{recipe.name}}</a>
+      <p>{{recipe.description}}</p>
+      <div class="row">
+        <label>Ingredients:</label>
+        <div class="ml-2" *ngFor="let ingredient of recipe?.ingredients">
+          {{ingredient.quantity}}
+          {{ingredient.mesure}}
+          <label class="font-weight-bold">{{ingredient.name}}</label>
+        </div>
+      </div>
+      <div class="row">
+        <label>Preparation:</label>
+        <div class="ml-2" *ngFor="let step of recipe?.steps">
+          {{step.description}}
+        </div>
+      </div>
+      <div class="row">
+        <label>Tips:</label>
+        <p class="ml-2">{{recipe.tips}}</p>
+      </div>
+      <button type="button" class="btn btn-primary" [routerLink]="['/fallowUser/',fallowUser]">Back</button>
+
+  </div>
+</div>

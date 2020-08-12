@@ -2,7 +2,7 @@
   <img src="{{recipe.photoUrl ||  '../../../../../assets/dish.png'}}" class="card-img-top" alt="...">
   <a><i class="btn btn-default fas fa-minus-circle fa-1x float-right m-2" (click)="removeRecipe(recipe.id)" ></i></a>
   <div class="card-body pt-0">
-    <h5 class="card-title">{{recipe.name}}</h5>
+    <h5 class="card-title">{{recipe.name | titlecase}}</h5>
     <p class="card-text">{{recipe.description}}</p>
     <div class="float-right">
       <a [routerLink]="['/recipeEdit/',recipe.id]"  class="btn btn-info">Edit</a>

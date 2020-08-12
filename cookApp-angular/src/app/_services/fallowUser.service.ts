@@ -23,4 +23,9 @@ getFollowUsers(id: number): Observable<FollowUsers[]>  {
 return this.http.get<FollowUsers[]>(this.baseUrl + 'user/' + id + '/followUser', httpOption);
 }
 
+createFallowUser(id: number) {
+  return this.http.post(this.baseUrl + 'followusers/' + id, id);
+
+}
+
 }

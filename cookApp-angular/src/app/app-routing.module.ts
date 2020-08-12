@@ -1,3 +1,4 @@
+import { FallowUserRecipeDetailComponent } from './fallow-user/fallow-user-recipe-detail/fallow-user-recipe-detail.component';
 import { PreventUnsaveChanges } from './_guards/prevent-unsave-changes.guard';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
@@ -7,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { RecipeListComponent } from './recipe/recipe-list/recipe-list.component';
-import { FallowUserListComponent } from './fallow-user-list/fallow-user-list.component';
+import { FallowUserListComponent } from './fallow-user/fallow-user-list/fallow-user-list.component';
 import { ContainerListComponent } from './container-list/container-list.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { RecipeDetailComponent } from './recipe/recipe-detail/recipe-detail.component';
@@ -17,6 +18,7 @@ import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component'
 import { RecipeEditResolver } from './_resolvers/recipe-edit.resolver';
 import { RecipeListResolver } from './_resolvers/recipe-list.resolver';
 import { FollowUsersResolver } from './_resolvers/follow-users.resolver';
+import { FallowUserDetailComponent } from './fallow-user/fallow-user-detail/fallow-user-detail.component';
 
 
 const routes: Routes = [
@@ -30,6 +32,8 @@ const routes: Routes = [
     ]
   },
   // {path: 'recipes', component: RecipeListComponent, canActivate: [AuthGuard]},
+  {path: 'fallowUser/:id', component: FallowUserDetailComponent, canActivate: [AuthGuard]},
+  {path: 'fallowUser/recipe/:id2/:id', component: FallowUserRecipeDetailComponent, canActivate: [AuthGuard]},
   {path: 'recipeDetail/:id', component: RecipeDetailComponent, canActivate: [AuthGuard], resolve: {recipe: RecipeDetailResolver}},
   {path: 'recipeCreate', component: RecipeCreateComponent, canActivate: [AuthGuard]},
   {path: 'recipeEdit/:id', component: RecipeEditComponent, canActivate: [AuthGuard], resolve: {recipe: RecipeEditResolver}},

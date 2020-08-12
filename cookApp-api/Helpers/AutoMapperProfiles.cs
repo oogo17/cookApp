@@ -1,4 +1,3 @@
-using System.Linq;
 using AutoMapper;
 using cookApp_api.Dtos;
 using cookApp_api.Models;
@@ -31,6 +30,9 @@ namespace cookApp_api.Helpers
 
             CreateMap<RecipeForCreateDto, Recipe>();
             CreateMap<Recipe, RecipeForListDto>();
+            CreateMap<User, FallowUserForCreateDto>();
+            CreateMap<FallowUserForCreateDto, FollowUser>();
+
         }
     }
 }
