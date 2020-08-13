@@ -1,3 +1,4 @@
+import { FollowUsers } from './../../_models/FollowUsers';
 import { FallowUserService } from './../../_services/fallowUser.service';
 import { AuthService } from './../../_services/auth.service';
 import { AlertifyService } from './../../_services/alertify.service';
@@ -9,6 +10,7 @@ import { Filters } from 'src/app/_models/filters';
 import { Recipe } from 'src/app/_models/Recipe';
 import { User } from 'src/app/_models/User';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-fallow-user-detail',
@@ -22,13 +24,17 @@ export class FallowUserDetailComponent implements OnInit {
   pageSize = 6;
   filters: Filters[];
   recipes: Recipe[];
-  user: User[];
+  users: User[];
+  fallowUsers: FollowUsers[];
+  unFallowUserId: number;
   selectedUser: User;
   userTokenId: number;
   recipeId: number;
+  currentlyFallow = false;
 
   constructor(
     private routeAct: ActivatedRoute,
+    private route: Router,
     private userService: UserService,
     private fallowUserService: FallowUserService,
     private alertify: AlertifyService,
@@ -36,15 +42,25 @@ export class FallowUserDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
+    this.routeAct.data.subscribe((data) => {
+      this.fallowUsers = data.fallowUsers;
+      this.recipes = data.recipe.result;
+      this.pagination = data.recipe.pagination;
+      this.users = data.users;
+    });
     this.userTokenId = this.auth.decodedToken.nameid;
 
-    console.log(this.auth.decodedToken.nameid);
-
     this.routeAct.params.subscribe((params) => {
+
       this.userId = +params.id;
-      console.log(this.userId);
-      this.loadRecipes();
-      this.loadUser();
+      this.selectedUser = this.users.find(x => x.id === this.userId);
+      const fallowUser = this.fallowUsers.find(x => x.username === this.selectedUser.userName);
+
+      if (fallowUser)  {
+        this.currentlyFallow = true;
+        this.unFallowUserId = fallowUser.id;
+      }
     });
   }
 
@@ -55,42 +71,39 @@ export class FallowUserDetailComponent implements OnInit {
         (res: PaginatedResults<Recipe[]>) => {
           this.recipes = res.result;
           this.pagination = res.pagination;
-          console.log(this.pagination);
-          console.log(this.recipes);
         },
         (error) => {
           this.alertify.error(error);
         }
       );
   }
-  loadUser() {
-    this.userService.getUsers().subscribe(
-      (users) => {
-        this.user = users;
-        this.selectedUser = this.user.find((x) => x.id === this.userId);
-      },
-      (error) => {
-        this.alertify.error(error);
-      }
-    );
-  }
+
+
+
 
   fallowUser(id: number) {
     this.fallowUserService.createFallowUser(id).subscribe( res => {
-      this.alertify.success('You Fallow New User');
+      this.alertify.success(`You Fallow ${this.selectedUser.userName}`);
+      this.currentlyFallow = true;
     }, error => {
       this.alertify.error(error);
     });
   }
 
-  addRecipe(recipe: Recipe) {
+  UnFallowUser(id: number) {
+     this.fallowUserService.deleteFallowUser(id).subscribe( res => {
+        this.alertify.success(`You Stop Fallow ${this.selectedUser.userName}`);
+        this.route.navigate(['/home/', this.userTokenId]);
+     }, error => {
+        this.alertify.error(error);
+     });
 
   }
+
+  addRecipe(recipe: Recipe) {}
 
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
     this.loadRecipes();
   }
-
-
 }

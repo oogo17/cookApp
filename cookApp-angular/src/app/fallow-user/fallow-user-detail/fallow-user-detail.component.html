@@ -1,14 +1,20 @@
 
 <div class=" row col-md-10 mt-3">
   <div class="col-md-7 ml-5" >
-    <img src="{{ selectedUser?.photoUrl }}" class="img-thumbnail rounded-circle ml-3" alt="..." />
-    <label class="ml-4 mt-5 ">{{selectedUser?.userName}}</label>
+    <img src="{{ selectedUser.photoUrl }}" class="img-thumbnail rounded-circle ml-3" alt="..." />
+    <label class="ml-4 mt-5 ">{{selectedUser.userName}}</label>
   </div>
   <div class="col-md-4 mt-4 justify-content-center">
     <a [routerLink]="['/home/',userTokenId]"  class="btn btn-info">
       <i class="fas fa-angle-left mr-1"></i>Back</a>
-    <button type="button" (click)="fallowUser(userId)"  class="btn btn-success ml-3">
+
+    <button type="button" (click)="UnFallowUser(unFallowUserId)"  class="btn btn-warning ml-3" *ngIf="currentlyFallow">
+    <i class="fas fa-user-minus mr-1"></i>Stop Fallow</button>
+
+    <button type="button" (click)="fallowUser(userId)"  class="btn btn-success ml-3" *ngIf="!currentlyFallow">
       <i class="fas fa-user-plus mr-1"></i>Fallow User</button>
+
+
 
   </div>
 </div>
@@ -17,10 +23,10 @@
     <div *ngFor="let recipe of recipes" class="">
 
       <div class="card ml-3 mt-3" style="width: 14rem;">
-        <img src="{{recipe?.photoUrl ||  '../../../../../assets/dish.png'}}" class="card-img-top" alt="...">
+        <img src="{{recipe.photoUrl ||  '../../../../../assets/dish.png'}}" class="card-img-top" alt="...">
         <div class="card-body pt-0 mt-2">
-          <h5 class="card-title">{{recipe?.name | titlecase}}</h5>
-          <p class="card-text">{{recipe?.description}}</p>
+          <h5 class="card-title">{{recipe.name | titlecase}}</h5>
+          <p class="card-text">{{recipe.description}}</p>
           <div class="float-right">
             <button type="button" (click)="addRecipe(recipe)"  class="btn btn-info">
               <i class="fas fa-plus mr-1"></i>Add</button>
@@ -34,8 +40,8 @@
 
     <div class="row d-flex justify-content-center mt-5 col-md-10">
       <pagination [boundaryLinks]="true"
-              [totalItems]="pagination?.totalItems"
-              [itemsPerPage]="pagination?.itemsPerPage"
+              [totalItems]="pagination.totalItems"
+              [itemsPerPage]="pagination.itemsPerPage"
               [(ngModel)]="pagination.currentPage"
               (pageChanged)="pageChanged($event)"
               previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">

@@ -3,4 +3,5 @@ export interface FollowUsers {
   username: string;
   urlPhoto: string;
   created: Date;
+  userId: number;
 }

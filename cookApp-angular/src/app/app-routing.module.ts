@@ -1,3 +1,6 @@
+import { FallowUserDetailGetUsersResolver } from './_resolvers/fallow-user-detail-GetUsers.resolver';
+import { FallowUserRecipeListResolver } from './_resolvers/fallow-user-recipeList.resolver';
+import { FallowUserDetailResolver } from './_resolvers/fallow-user-detail.resolver';
 import { FallowUserRecipeDetailComponent } from './fallow-user/fallow-user-recipe-detail/fallow-user-recipe-detail.component';
 import { PreventUnsaveChanges } from './_guards/prevent-unsave-changes.guard';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
@@ -32,7 +35,8 @@ const routes: Routes = [
     ]
   },
   // {path: 'recipes', component: RecipeListComponent, canActivate: [AuthGuard]},
-  {path: 'fallowUser/:id', component: FallowUserDetailComponent, canActivate: [AuthGuard]},
+  {path: 'fallowUser/:id', component: FallowUserDetailComponent, canActivate: [AuthGuard],
+     resolve: {fallowUsers: FallowUserDetailResolver, recipe: FallowUserRecipeListResolver, users: FallowUserDetailGetUsersResolver}},
   {path: 'fallowUser/recipe/:id2/:id', component: FallowUserRecipeDetailComponent, canActivate: [AuthGuard]},
   {path: 'recipeDetail/:id', component: RecipeDetailComponent, canActivate: [AuthGuard], resolve: {recipe: RecipeDetailResolver}},
   {path: 'recipeCreate', component: RecipeCreateComponent, canActivate: [AuthGuard]},

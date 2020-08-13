@@ -1,3 +1,7 @@
+import { FallowUserDetailGetUsersResolver } from './_resolvers/fallow-user-detail-GetUsers.resolver';
+import { FallowUserRecipeListResolver } from './_resolvers/fallow-user-recipeList.resolver';
+import { FallowUserDetailResolver } from './_resolvers/fallow-user-detail.resolver';
+import { FallowUserService } from './_services/fallowUser.service';
 import { FallowUserRecipeDetailComponent } from './fallow-user/fallow-user-recipe-detail/fallow-user-recipe-detail.component';
 
 import { RecipeService } from './_services/recipe.service';
@@ -103,6 +107,7 @@ export function tokenGetter() {
    ],
    providers: [
       AuthService,
+      FallowUserService,
       CountriesAPIService,
       RecipeService,
       ErrorInterceptorProvider,
@@ -111,6 +116,9 @@ export function tokenGetter() {
       RecipeEditResolver,
       RecipeListResolver,
       FollowUsersResolver,
+      FallowUserDetailResolver,
+      FallowUserDetailGetUsersResolver,
+      FallowUserRecipeListResolver,
       PreventUnsaveChanges,
       AuthGuard
    ],

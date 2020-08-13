@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -36,7 +37,7 @@ namespace cookApp_api.Controllers
         public async Task<IActionResult> createFallowUser(int id) {
 
           var userId =  int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-
+            
              if ( await _repo.GetUser(userId) == null)
                 return Unauthorized();
 
@@ -58,6 +59,28 @@ namespace cookApp_api.Controllers
 
         throw new Exception($"the creation for fallowUser fail");
         
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> deleteFallowUser(int id) {
+
+             var userId =  int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+             if ( await _repo.GetUser(userId) == null)
+                return Unauthorized();
+
+
+            var currentFallow = await _repo.GetFollowUsers(userId);
+            var fallowUser = currentFallow.FirstOrDefault(x => x.Id == id);
+
+            _repo.Delete(fallowUser);
+
+            if (await _repo.SaveAll())
+            return Ok();
+
+            return BadRequest("Failed to delete FallowUser");
+
+
         }
 
 

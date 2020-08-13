@@ -19,13 +19,17 @@ export class FallowUserService {
 
 constructor(private http: HttpClient) { }
 
-getFollowUsers(id: number): Observable<FollowUsers[]>  {
-return this.http.get<FollowUsers[]>(this.baseUrl + 'user/' + id + '/followUser', httpOption);
+getFollowUsers(): Observable<FollowUsers[]>  {
+return this.http.get<FollowUsers[]>(this.baseUrl + 'followusers');
 }
 
 createFallowUser(id: number) {
   return this.http.post(this.baseUrl + 'followusers/' + id, id);
 
+}
+
+deleteFallowUser(id: number) {
+  return this.http.delete(this.baseUrl + 'followusers/' + id);
 }
 
 }
