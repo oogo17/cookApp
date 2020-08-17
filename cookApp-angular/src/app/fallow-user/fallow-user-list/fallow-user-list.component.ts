@@ -40,7 +40,10 @@ export class FallowUserListComponent implements OnInit {
 
     this.userService.getUsers().subscribe(user => {
       this.userList = user;
-      // this.selectedUser = this.userList[1].id;
+      this.userList = this.userList.filter(res => {
+       return res.id !== this.user.id;
+      });
+         // this.selectedUser = this.userList[1].id;
     });
 
     this.filteredUsers = this.control.valueChanges.pipe(
