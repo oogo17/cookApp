@@ -17,6 +17,18 @@
       <label class="ml-4">{{user.username}}</label>
   </div>
 </div>
+
+<div class="ml-4 mb-4 mt-3" *ngIf="followUsers.length === 0" style="width: 7rem;">
+
+  <div class="row" >
+    <a class="img shakeit">
+      <img src="../../../assets/userLight.png" class="img-thumbnail rounded-circle " alt="..." />
+    </a>
+      <label class="ml-4 font-weight-bold">Friend Name</label>
+  </div>
+</div>
+
+
 <div class="row form-group ml-2">
   <label>Add friend to follow:</label>
   <input type="text" class="form-control" name="name" placeholder="Search...."

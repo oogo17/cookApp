@@ -32,6 +32,13 @@ namespace cookApp_api.Helpers
             CreateMap<Recipe, RecipeForListDto>();
             CreateMap<User, FallowUserForCreateDto>();
             CreateMap<FallowUserForCreateDto, FollowUser>();
+            CreateMap<Recipe,FollowUserForCreateRecipeDto>();
+            CreateMap<Ingredient, IngredientForUpdateDto>()
+             .ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<Step, StepForUpdateDto>()
+             .ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<FollowUserForCreateRecipeDto, Recipe>();
+            
 
         }
     }

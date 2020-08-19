@@ -1,1 +1,5 @@
 .fa-minus-circle:hover  { transform: scale(1.5); }
+
+.opacity-hover :hover {
+  opacity: 0.8;
+}

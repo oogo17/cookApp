@@ -72,7 +72,12 @@ export class RecipeEditComponent implements OnInit {
       maxFileSize: 10 * 1024 * 1024
     });
 
-    this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
+    this.uploader.onAfterAddingFile = (file) => {
+      file.withCredentials = false;
+      if (this.uploader.queue.length > 1) {
+        this.uploader.removeFromQueue(this.uploader.queue[0]);
+      }
+    };
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
 

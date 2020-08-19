@@ -32,4 +32,8 @@ deleteFallowUser(id: number) {
   return this.http.delete(this.baseUrl + 'followusers/' + id);
 }
 
+createRecipeFromFallowUser(id: number) {
+  return this.http.post(this.baseUrl + 'recipes/' + id + '/fromfallowuser', id);
+}
+
 }

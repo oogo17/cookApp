@@ -100,7 +100,15 @@ export class FallowUserDetailComponent implements OnInit {
 
   }
 
-  addRecipe(recipe: Recipe) {}
+  addRecipe(recipe: Recipe) {
+    console.log(recipe.id);
+    this.fallowUserService.createRecipeFromFallowUser(recipe.id).subscribe (res => {
+      this.alertify.success(`You Add New Recipe`);
+    }, error => {
+      this.alertify.error(error);
+    });
+
+  }
 
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;

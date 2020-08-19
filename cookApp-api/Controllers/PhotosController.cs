@@ -50,26 +50,48 @@ namespace cookApp_api.Controllers
 
                var user = await _repo.GetUser(userId);
 
+               var alreadyExist =  _cloudinary.Search().Expression(string.Format("public_id = {0}",user.PublicId)).Execute();
+         
+
                var file = photoForCreationDto.File;
 
                var uploadResults = new ImageUploadResult();
              
                if (file.Length > 0) {
 
+                var uploadParams = new ImageUploadParams();
                    using (var stream = file.OpenReadStream())
                    {
-                       var uploadParams = new ImageUploadParams() {
+                        
+                        if(alreadyExist.Resources.Count > 0) {
+                            uploadParams.File = new FileDescription(file.Name, stream);
+                            uploadParams.PublicId = user.PublicId;
+                            uploadParams.Transformation = new Transformation()
+                            .Width(500)
+                            .Height(500)
+                            .Crop("fill")
+                            .Gravity("face");
 
-                           File = new FileDescription(file.Name, stream),
-                           Transformation = new Transformation()
+                                    uploadResults = _cloudinary.Upload(uploadParams);
+                            
+                        } else {
+
+
+                           uploadParams.File = new FileDescription(file.Name, stream);
+                           uploadParams.Transformation = new Transformation()
                                 .Width(500)
                                 .Height(500)
                                 .Crop("fill")
-                                .Gravity("face")
+                                .Gravity("face");
+
+                                    uploadResults = _cloudinary.Upload(uploadParams); 
+
+                        }       
+                                
                        };
-                       uploadResults = _cloudinary.Upload(uploadParams);
-                   }
-               } 
+                  
+                 }
+                
 
                photoForCreationDto.PhotoUrl = uploadResults.Uri.ToString();
                photoForCreationDto.PublicId = uploadResults.PublicId;
@@ -83,6 +105,8 @@ namespace cookApp_api.Controllers
                
 
         }
+
+
 
 
     }

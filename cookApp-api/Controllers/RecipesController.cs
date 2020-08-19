@@ -108,6 +108,47 @@ namespace cookApp_api.Controllers
 
 
     }
+    [HttpPost("{id}/fromfallowuser")]
+    public async Task<IActionResult> createRecipeFromFallowUser(int id) {
+
+           
+     var recipe = await _repo.GetRecipe(id);
+
+     var uploadResults = new ImageUploadResult();
+
+            var uploadParams = new ImageUploadParams()
+            {
+
+                File = new FileDescription(recipe.PhotoUrl),
+                Transformation = new Transformation()
+                     .Width(500)
+                     .Height(500)
+                     .Crop("fill")
+                     .Gravity("face")
+            };
+            uploadResults = _cloudinary.Upload(uploadParams);
+
+
+            FollowUserForCreateRecipeDto followUser = new FollowUserForCreateRecipeDto();
+            var mappedForCreateRecipeDto = _mapper.Map(recipe, followUser);
+           
+
+            mappedForCreateRecipeDto.UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            mappedForCreateRecipeDto.PublicId = uploadResults.PublicId;
+            mappedForCreateRecipeDto.PhotoUrl = uploadResults.Uri.ToString();
+
+             var mappedToRecipe = _mapper.Map<Recipe>(mappedForCreateRecipeDto);
+            _repo.Add(mappedToRecipe);
+
+            if (await _repo.SaveAll())
+            {
+                return StatusCode(201);
+            }
+
+            throw new Exception($"the creation for recipe fail");
+
+    }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> deleteRecipe(int id)

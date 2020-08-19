@@ -125,8 +125,12 @@ export class UserEditComponent implements OnInit {
         const res = JSON.parse(response);
 
         this.user.photoUrl = res.photoUrl;
+        this.alertify.success('Update Success');
       }
     };
+
+    const id = this.uploader.getIndexOfItem('https://res.cloudinary.com/dmbwzp8if/image/upload/v1596489656/ajbtnqxwh5igdg7hwvz6.jpg');
+    console.log(id);
   }
   changePswrd() {
     this.changePassword = !this.changePassword;

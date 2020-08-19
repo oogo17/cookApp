@@ -3,6 +3,25 @@
   <div *ngFor="let recipe of recipes">
     <app-recipe (recipeId)="deleteRecipe($event)" [recipe]="recipe"></app-recipe>
   </div>
+
+  <div class="custom-margin-left" *ngIf="recipes.length === 0">
+    <div class="card border-0 ml-5 mt-3" style="width: 16rem;">
+      <a class="shakeit">
+      <img src="../../../../../assets/dish.png" class="card-img-top custom-cursor" alt="...">
+      </a>
+      <a><i class="btn btn-default fas fa-minus-circle fa-1x float-right m-2" ></i></a>
+      <div class="card-body pt-0">
+        <h5 class="card-title">Recipe Name</h5>
+        <p class="card-text">Recipe Description</p>
+        <div class="float-right">
+          <button  class="btn btn-info">Edit</button>
+          <button class="btn btn-primary ml-2">View</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
 <div class="row d-flex justify-content-center mt-5 col-md-10">
   <pagination [boundaryLinks]="true"

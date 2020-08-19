@@ -51,6 +51,8 @@ namespace cookApp_api.Controllers
 
                var recipe = await _repo.GetRecipe(recipeId);
 
+               var alreadyExist =  _cloudinary.Search().Expression(string.Format("public_id = {0}", recipe.PublicId)).Execute();
+
                var file = photoForCreationRecipeDto.File;
 
                var uploadResults = new ImageUploadResult();
@@ -59,15 +61,19 @@ namespace cookApp_api.Controllers
 
                    using (var stream = file.OpenReadStream())
                    {
-                       var uploadParams = new ImageUploadParams() {
-
+                         var uploadParams = new ImageUploadParams() {
                            File = new FileDescription(file.Name, stream),
                            Transformation = new Transformation()
                                 .Width(500)
                                 .Height(500)
                                 .Crop("fill")
                                 .Gravity("face")
-                       };
+
+                         };
+                      
+                        if(alreadyExist.Resources.Count > 0) 
+                           uploadParams.PublicId = recipe.PublicId;
+                        
                        uploadResults = _cloudinary.Upload(uploadParams);
                    }
                } 
