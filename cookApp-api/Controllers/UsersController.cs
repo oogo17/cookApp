@@ -49,7 +49,7 @@ namespace cookApp_api.Controllers
 
             return Ok(usersMapDto);
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetUser")]
         public async Task<IActionResult> GetUser(int id)
         {
             if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))

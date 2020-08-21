@@ -109,6 +109,7 @@ namespace cookApp_api
 
             app.UseCors(x =>x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             
+            
             app.UseDefaultFiles();
             app.UseStaticFiles();
 

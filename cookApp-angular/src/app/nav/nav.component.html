@@ -8,15 +8,19 @@
     <ul class="navbar-nav mr-auto">
       <!-- Add to menu -->
     </ul>
-    <div class="dropdown" *ngIf="LoggedIn()" dropdown>
-      <button class="btn dropdown-toggle" dropdownToggle>
-        Welcome {{username | titlecase}}
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *dropdownMenu>
-        <a class="dropdown-item" href="#" [routerLink]="['/userEdit/', authService.decodedToken?.nameid]"  ><i class="fas fa-user mr-2"></i>Edit profile</a>
-        <a class="dropdown-item" href="#"></a>
-        <a class="dropdown-item" (click)="LoggedOut()"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
+    <div class="row" *ngIf="LoggedIn()" >
+      <img src="{{userPhotoUrl}}" class=" rounded-top rounded-bottom mr-2" alt="" style="width: 45px; height: 45px;" >
+      <div class="dropdown mr-4" dropdown>
+        <button class=" btn dropdown-toggle" style="height: 45px;" dropdownToggle>
+          Welcome {{username | titlecase}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *dropdownMenu>
+          <a class="dropdown-item" href="#" [routerLink]="['/userEdit/', authService.decodedToken?.nameid]"  ><i class="fas fa-user mr-2"></i>Edit profile</a>
+          <a class="dropdown-item" href="#"></a>
+          <a class="dropdown-item" (click)="LoggedOut()"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
+        </div>
       </div>
+
     </div>
     <form #LoginForm="ngForm" class="form-inline my-2 my-lg-0" *ngIf="!LoggedIn()"  (ngSubmit)="Login()" >
       <input class="form-control mr-sm-2" name="username" placeholder="Username"

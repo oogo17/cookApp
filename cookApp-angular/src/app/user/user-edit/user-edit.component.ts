@@ -1,3 +1,4 @@
+import { ZipCodeInfo } from './../../_models/ZipCodeInfo';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { Country } from './../../_models/Country';
 import { environment } from './../../../environments/environment';
@@ -61,6 +62,7 @@ export class UserEditComponent implements OnInit {
         this.alertify.error(error);
       }
     );
+
     this.control.setValue(this.user.country);
     this.filteredCountries = this.control.valueChanges.pipe(
       startWith(''),
@@ -125,17 +127,27 @@ export class UserEditComponent implements OnInit {
         const res = JSON.parse(response);
 
         this.user.photoUrl = res.photoUrl;
+        this.auth.changeUserPhotoUrl(this.user.photoUrl);
         this.alertify.success('Update Success');
       }
     };
 
-    const id = this.uploader.getIndexOfItem('https://res.cloudinary.com/dmbwzp8if/image/upload/v1596489656/ajbtnqxwh5igdg7hwvz6.jpg');
-    console.log(id);
+
   }
   changePswrd() {
     this.changePassword = !this.changePassword;
     this.changePassword
       ? (this.passwordValue = '')
       : (this.passwordValue = 'asdfghj');
+  }
+
+  getZipCodeInfo(e: any) {
+    this.countries.getInfoFromZipCode(+e.target.value).subscribe ( data => {
+        const info = data as ZipCodeInfo;
+        this.user.city = info.city;
+        this.user.state = info.state;
+    }, error => {
+      this.alertify.error(error);
+    });
   }
 }
