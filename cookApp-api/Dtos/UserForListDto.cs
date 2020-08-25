@@ -12,6 +12,8 @@ namespace cookApp_api.Dtos
 
         public DateTime DateCreated { get; set; }
 
+        public int ZipCode { get; set; }
+
         public string City { get; set; }
 
         public string Country { get; set; }

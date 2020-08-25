@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { User } from 'src/app/_models/User';
 import { UserService } from 'src/app/_services/user.service';
-import { NgForm, FormControl } from '@angular/forms';
+import { NgForm, FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
 import { CountriesAPIService } from 'src/app/_services/countriesAPI.service';
 import { ReplaySubject, Subject, Observable } from 'rxjs';
@@ -25,17 +25,18 @@ export class UserEditComponent implements OnInit {
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
   user: User;
-  changePassword = false;
+  changePassword = true;
   passwordValue = 'asdfghj';
-  control = new FormControl();
+  // control = new FormControl();
   country: Country[];
   countriesList: string[];
   filteredCountries: Observable<string[]>;
+  updateUserForm: FormGroup;
 
-  @ViewChild('editform', { static: true }) editform: NgForm;
+  // @ViewChild('editForm', { static: true }) editform: NgForm;
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
-    if (this.editform.dirty) {
+    if (this.updateUserForm.dirty) {
       $event.returnValue = true;
     }
   }
@@ -44,12 +45,16 @@ export class UserEditComponent implements OnInit {
     private userService: UserService,
     private alertify: AlertifyService,
     private auth: AuthService,
-    private countries: CountriesAPIService
+    private countries: CountriesAPIService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
     this.route.data.subscribe((data) => {
       this.user = data.user;
+      console.log(data);
+      this.createUpdateUserForm(this.user);
+      this.setCountryValues();
     });
     this.initializeUploader();
 
@@ -62,12 +67,33 @@ export class UserEditComponent implements OnInit {
         this.alertify.error(error);
       }
     );
+  }
 
-    this.control.setValue(this.user.country);
-    this.filteredCountries = this.control.valueChanges.pipe(
+  setCountryValues() {
+    this.updateUserForm.controls.country.setValue(this.user.country);
+    this.filteredCountries = this.updateUserForm.controls.country.valueChanges.pipe(
       startWith(''),
-      map((value) => this._filter(value))
-    );
+      map((value) => this._filter(value)));
+  }
+
+  createUpdateUserForm(user: User) {
+    this.updateUserForm = this.formBuilder.group({
+      username: [user.userName, Validators.required],
+      email: [user.email, [Validators.required, Validators.email]],
+      password: [{value: this.passwordValue, disabled: this.changePassword},
+         [Validators.required,  Validators.minLength(4), Validators.maxLength(8)]],
+      confirmPassword: [''],
+      zipCode: [user.zipCode],
+      city: [user.city],
+      state: [user.state],
+      country: [user.country]
+    });
+    // , {validator: this.PasswordMatchValidator}
+  }
+  PasswordMatchValidator(g: FormGroup) {
+    return g.get('password').value === g.get('confirmPassword').value
+      ? null
+      : { mismatch: true };
   }
 
   private _filter(value: string): string[] {
@@ -84,13 +110,14 @@ export class UserEditComponent implements OnInit {
   }
 
   updateUser() {
+    console.log(this.updateUserForm);
     this.userService
-      .updateUser(this.auth.decodedToken.nameid, this.user)
+      .updateUser(this.auth.decodedToken.nameid, this.updateUserForm.value)
       .subscribe(
         (next) => {
           this.alertify.success('Update Success');
-          this.editform.reset(this.user);
-          this.auth.changeUsername(this.user.userName);
+          this.updateUserForm.reset(this.updateUserForm.value);
+          this.auth.changeUsername(this.updateUserForm.controls.username.value);
         },
         (error) => {
           this.alertify.error(error);
@@ -136,16 +163,23 @@ export class UserEditComponent implements OnInit {
   }
   changePswrd() {
     this.changePassword = !this.changePassword;
-    this.changePassword
-      ? (this.passwordValue = '')
-      : (this.passwordValue = 'asdfghj');
+    if (this.changePassword) {
+      this.updateUserForm.controls.password.disable();
+      this.updateUserForm.clearValidators();
+      this.updateUserForm.updateValueAndValidity();
+      return;
+    }
+    this.updateUserForm.controls.password.setValue('');
+    this.updateUserForm.controls.password.enable();
+    this.updateUserForm.setValidators(this.PasswordMatchValidator);
   }
 
   getZipCodeInfo(e: any) {
     this.countries.getInfoFromZipCode(+e.target.value).subscribe ( data => {
         const info = data as ZipCodeInfo;
-        this.user.city = info.city;
-        this.user.state = info.state;
+        console.log(info);
+        this.updateUserForm.controls.city.setValue(info.city);
+        this.updateUserForm.controls.state.setValue(info.state);
     }, error => {
       this.alertify.error(error);
     });

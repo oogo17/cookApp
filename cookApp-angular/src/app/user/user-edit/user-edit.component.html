@@ -10,9 +10,11 @@
             Back
           </button>
           <button
-            [disabled]="!editform.dirty"
-            form="ngForm"
+            [disabled]="(!updateUserForm.valid == true
+                      || updateUserForm.dirty == false
+            )? true: false"
             type="submit"
+            form="userForm"
             class="btn btn-success ml-3"
           >
             Save
@@ -25,48 +27,96 @@
 
   <div class="col-10">
     <div class="col-8">
-      <div *ngIf="editform.dirty" class="alert alert-info mt-2">
+      <div *ngIf="updateUserForm.dirty" class="alert alert-info mt-2">
         <strong>Information:</strong> You have made changes. Any unsave changes
         will be lost.
       </div>
     </div>
-    <form class="mt-4 ml-4" (ngSubmit)="updateUser()" #editform="ngForm" id="ngForm">
+    <!-- <form class="mt-4 ml-4" (ngSubmit)="updateUser()" #editform="ngForm" id="ngForm"></form> -->
+    <form class="mt-4 ml-4" (ngSubmit)="updateUser()" [formGroup]="updateUserForm" id="userForm">
+
       <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-1 col-form-label">Name</label>
+        <label class="col-sm-1 col-form-label">Name</label>
         <div class="col-sm-6">
           <input
+            [ngClass]= "{'is-invalid': updateUserForm.get('username').errors
+                                    && updateUserForm.get('username').touched }"
             type="text"
             class="form-control"
-            name="userName"
-            [(ngModel)]="user.userName"
-          />
+            formControlName="username"
+          >
+          <div class="invalid-feedback"
+          *ngIf="updateUserForm.get('username').hasError('required') && updateUserForm.get('username').touched">
+           provide username</div>
         </div>
       </div>
       <div class="form-group row">
-        <label for="ema" class="col-sm-1 col-form-label">Email</label>
+        <label class="col-sm-1 col-form-label">Email</label>
         <div class="col-sm-6">
           <input
             type="email"
-            name="email"
+            [ngClass]= "{'is-invalid': updateUserForm.get('email').errors
+                                    && updateUserForm.get('email').touched }"
             class="form-control"
-            id="ema"
-            [(ngModel)]="user.email"
-          />
+            formControlName="email"/>
+            <div class="invalid-feedback"
+          *ngIf="updateUserForm.get('email').hasError('required') && updateUserForm.get('email').touched">
+           provide email</div>
+           <div class="invalid-feedback"
+           *ngIf="updateUserForm.get('email').hasError('email') && updateUserForm.get('email').touched">
+            invalid email</div>
         </div>
+
+
       </div>
       <div class="form-group row">
         <label for="pass" class="col-sm-1 col-form-label">Password</label>
         <div class="col-sm-3">
-          <input type="password" class="form-control" [disabled]="!changePassword" id="pass" value="{{passwordValue}}" />
+          <input
+          type="password"
+          [ngClass]= "{'is-invalid': updateUserForm.get('password').errors
+          && updateUserForm.get('password').touched }"
+          class="form-control"
+
+          id="pass"
+          formControlName="password"
+           >
+           <div class="invalid-feedback"
+           *ngIf="updateUserForm.get('password').hasError('required') && updateUserForm.get('password').touched">
+            provide password</div>
+           <div class="invalid-feedback"
+           *ngIf="updateUserForm.get('password').hasError('minlength') && updateUserForm.get('password').touched">
+           password must be at least 4 characters</div>
+           <div class="invalid-feedback"
+           *ngIf="updateUserForm.get('password').hasError('maxlength') && updateUserForm.get('password').touched">
+           password must be at max 8 characters</div>
+
         </div>
         <button type="button" class="btn btn-primary" (click)="changePswrd()" >
           Update
         </button>
       </div>
-      <div class="form-group row" *ngIf="changePassword">
+
+      <div class="form-group row" *ngIf="!changePassword">
         <label for="pass" class="col-sm-1 col-form-label">Confirm password</label>
         <div class="col-sm-3 mt-2">
-          <input type="password" class="form-control" id="pass" />
+          <input
+          [ngClass]= "{'is-invalid': updateUserForm.get('confirmPassword').errors
+             && updateUserForm.get('confirmPassword').touched
+             || updateUserForm.get('confirmPassword').touched && updateUserForm.hasError('mismatch') }"
+          type="password"
+          class="form-control"
+          id="confirm-pass"
+          formControlName="confirmPassword" />
+          <div class="invalid-feedback"
+      *ngIf="updateUserForm.get('confirmPassword').hasError('required')
+              && updateUserForm.get('confirmPassword').touched">
+      provide confirm password</div>
+      <div class="invalid-feedback"
+      *ngIf="updateUserForm.hasError('mismatch')
+              && updateUserForm.get('confirmPassword').touched
+              && !updateUserForm.get('confirmPassword').hasError('required')">
+      passwords must match</div>
         </div>
 
       </div>
@@ -77,7 +127,7 @@
         <div class="col-2">
           <input
             type="text"
-
+            formControlName="zipCode"
             class="form-control"
             placeholder="ZipCode"
             (change)="getZipCodeInfo($event)"
@@ -92,7 +142,8 @@
             name="city"
             class="form-control"
             placeholder="City"
-            [(ngModel)]="user.city"
+            formControlName="city"
+
           />
         </div>
         <label for="inputPassword3" class="col-form-label">State</label>
@@ -102,7 +153,7 @@
             name="state"
             class="form-control"
             placeholder="State"
-            [(ngModel)]="user.state"
+            formControlName="state"
           />
         </div>
 
@@ -124,10 +175,9 @@
         <div class="col-sm-2">
        <input
          type="text"
-         name="country"
          class="form-control"
          placeholder="Country"
-         [formControl]="control"
+         formControlName="country"
          [matAutocomplete]="auto"
         >
         <mat-autocomplete #auto="matAutocomplete">
@@ -233,5 +283,10 @@
 
 
     </form>
+
+    <p>{{updateUserForm.value | json}}</p>
+    <p>{{updateUserForm.status | json}}</p>
+
+
   </div>
 </div>

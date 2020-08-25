@@ -23,6 +23,8 @@ namespace cookApp_api.Models
 
         public string PublicId { get; set; }
 
+        public int ZipCode { get; set; }
+        
         public string City { get; set; }
         
         public string State { get; set; }

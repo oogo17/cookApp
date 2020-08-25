@@ -16,7 +16,7 @@ export class PreventUnsaveChanges implements CanDeactivate<UserEditComponent> {
   ) {}
 
   canDeactivate(component: UserEditComponent) {
-    if (component.editform.dirty) {
+    if (component.updateUserForm.dirty) {
       return confirm('Are you sure you want to continue? any unsave changes will be lost.');
     }
     return true;

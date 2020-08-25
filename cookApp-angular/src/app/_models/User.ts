@@ -8,6 +8,7 @@ export interface User {
   email: string;
   age: number;
   dateCreated: Date;
+  zipCode?: number;
   city?: string;
   state?: string;
   country?: string;
