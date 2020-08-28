@@ -39,6 +39,7 @@ namespace cookApp_api.Helpers
              .ForMember(dest => dest.Id, opt => opt.Ignore());
             CreateMap<FollowUserForCreateRecipeDto, Recipe>();
             CreateMap<UserForRegisterDto, User>();
+            CreateMap<UpdatePasswordHashSaltForUser, User>();
             
 
         }

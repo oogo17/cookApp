@@ -5,8 +5,8 @@
     <label class="ml-4 mt-5 ">{{selectedUser.userName}}</label>
   </div>
   <div class="col-md-4 mt-4 justify-content-center">
-    <a [routerLink]="['/home/',userTokenId]"  class="btn btn-info">
-      <i class="fas fa-angle-left mr-1"></i>Back</a>
+    <a [routerLink]="['/home/',userTokenId]"  class="btn btn-info back-awesome">
+      Back</a>
 
     <button type="button" (click)="UnFallowUser(unFallowUserId)"  class="btn btn-warning ml-3" *ngIf="currentlyFallow">
     <i class="fas fa-user-minus mr-1"></i>Stop Fallow</button>

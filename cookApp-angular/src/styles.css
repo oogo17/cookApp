@@ -6,3 +6,11 @@
 @import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
 @IMPORT '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';
 
+
+.back-awesome::before {
+  font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f104";
+}
+
+.save-awesome::before {
+  font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f22d";
+}

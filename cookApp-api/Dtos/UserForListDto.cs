@@ -10,6 +10,8 @@ namespace cookApp_api.Dtos
 
         public int Age { get; set; }
 
+        public string Email { get; set; }
+
         public DateTime DateCreated { get; set; }
 
         public int ZipCode { get; set; }

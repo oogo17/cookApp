@@ -19,22 +19,25 @@ namespace cookApp_api.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+
         private readonly ICookRepository _repo;
         private readonly IMapper _mapper;
         private Cloudinary _cloudinary;
         private readonly IOptions<CloudinarySettings> _cloudinaryConfig;
-        public UsersController(ICookRepository repo, IMapper mapper, IOptions<CloudinarySettings> cloudinaryConfig)
+        private readonly IAuthRepository _auth;
+        public UsersController(ICookRepository repo, IAuthRepository auth, IMapper mapper, IOptions<CloudinarySettings> cloudinaryConfig)
         {
+            _auth = auth;
             _cloudinaryConfig = cloudinaryConfig;
             _mapper = mapper;
             _repo = repo;
 
-             Account cc = new Account(
-                _cloudinaryConfig.Value.CloudName,
-                _cloudinaryConfig.Value.ApiKey,
-                _cloudinaryConfig.Value.ApiSecret
+            Account cc = new Account(
+               _cloudinaryConfig.Value.CloudName,
+               _cloudinaryConfig.Value.ApiKey,
+               _cloudinaryConfig.Value.ApiSecret
 
-            );
+           );
 
             _cloudinary = new Cloudinary(cc);
 
@@ -74,7 +77,7 @@ namespace cookApp_api.Controllers
 
             var user = await _repo.GetUser(id);
 
-          
+
 
             var userMapDto = _mapper.Map(userForUpdateDto, user);
 
@@ -82,6 +85,58 @@ namespace cookApp_api.Controllers
                 return NoContent();
 
             throw new Exception($"the update fail for user {id}");
+        }
+
+        [HttpPut("{id}/updatePassword")]
+        public async Task<IActionResult> UpdatePassword(int id, UpdatePasswordForUserDto updatePassword)
+        {
+            var passwordEcrypted = new UpdatePasswordHashSaltForUser(); 
+
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+             var user = await _repo.GetUser(id);
+            
+            if(!VerifyPasswordHash(updatePassword.CurrentPassword,user.PasswordHash, user.PasswordSalt))
+                throw new Exception($"invalid password");
+
+            byte[] passwordHash, passwordSalt;
+
+            HashPassword(updatePassword.NewPassword, out passwordHash, out passwordSalt);
+             passwordEcrypted.PasswordHash = passwordHash;
+             passwordEcrypted.PasswordSalt = passwordSalt;
+
+             var userMapDto = _mapper.Map(passwordEcrypted, user);
+
+               if (await _repo.SaveAll())
+                return NoContent();
+
+            throw new Exception($"the update fail for user {id}");
+
+        }
+        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+             using ( var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
+           {
+            
+            var hashComputed = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                for (int i = 0; i < hashComputed.Length; i++)
+                {
+                    if(hashComputed[i] != passwordHash[i])
+                    return false;
+                }
+
+           }
+           return true;
+        }
+
+        private void HashPassword(string password, out byte[] passwordHash, out byte[] passwordSalt) {
+              using ( var hmac = new System.Security.Cryptography.HMACSHA512())
+           {
+               passwordSalt = hmac.Key;
+               passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+
+           }
         }
 
     }

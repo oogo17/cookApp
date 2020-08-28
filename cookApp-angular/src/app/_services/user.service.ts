@@ -1,3 +1,4 @@
+import { Password } from './../_models/Password';
 import { Filters } from './../_models/filters';
 import { map } from 'rxjs/operators';
 import { PaginatedResults } from './../_models/Pagination';
@@ -33,6 +34,11 @@ getUser(id: number): Observable<User> {
 
 updateUser(id: number, user: User) {
   return this.http.put(this.baseUrl + 'users/' + id , user);
+}
+
+updatePassword(id: number, passwords: Password) {
+  console.log(passwords);
+  return this.http.put(this.baseUrl + 'users/' + id + '/updatepassword', passwords);
 }
 
 getRecipe(id: number): Observable<Recipe> {

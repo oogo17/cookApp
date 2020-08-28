@@ -19,6 +19,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { JwtModule } from '@auth0/angular-jwt';
 
@@ -88,6 +89,7 @@ export function tokenGetter() {
       FileUploadModule,
       HttpClientModule,
       BrowserAnimationsModule,
+      ModalModule.forRoot(),
       BsDatepickerModule.forRoot(),
       MatSelectModule,
       MatToolbarModule,

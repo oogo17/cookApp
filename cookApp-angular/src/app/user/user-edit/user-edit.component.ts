@@ -1,3 +1,4 @@
+import { Password } from './../../_models/Password';
 import { ZipCodeInfo } from './../../_models/ZipCodeInfo';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { Country } from './../../_models/Country';
@@ -12,8 +13,8 @@ import { NgForm, FormControl, FormBuilder, FormGroup, Validators } from '@angula
 import { FileUploader } from 'ng2-file-upload';
 import { CountriesAPIService } from 'src/app/_services/countriesAPI.service';
 import { ReplaySubject, Subject, Observable } from 'rxjs';
-import { MatSelect } from '@angular/material/select';
 import { startWith, map } from 'rxjs/operators';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-user-edit',
@@ -29,9 +30,16 @@ export class UserEditComponent implements OnInit {
   passwordValue = 'asdfghj';
   // control = new FormControl();
   country: Country[];
+  passwords: Password = {
+    currentPassword: '',
+    newPassword: ''
+  };
   countriesList: string[];
   filteredCountries: Observable<string[]>;
   updateUserForm: FormGroup;
+  updatePasswordForm: FormGroup;
+  @ViewChild('autoShownModal', { static: false }) autoShownModal: ModalDirective;
+  isModalShown = false;
 
   // @ViewChild('editForm', { static: true }) editform: NgForm;
   @HostListener('window:beforeunload', ['$event'])
@@ -77,10 +85,11 @@ export class UserEditComponent implements OnInit {
   }
 
   createUpdateUserForm(user: User) {
+   //  password: [{value: this.passwordValue, disabled: this.changePassword},
     this.updateUserForm = this.formBuilder.group({
       username: [user.userName, Validators.required],
       email: [user.email, [Validators.required, Validators.email]],
-      password: [{value: this.passwordValue, disabled: this.changePassword},
+      password: [{value: this.passwordValue, disabled: true},
          [Validators.required,  Validators.minLength(4), Validators.maxLength(8)]],
       confirmPassword: [''],
       zipCode: [user.zipCode],
@@ -89,9 +98,14 @@ export class UserEditComponent implements OnInit {
       country: [user.country]
     });
     // , {validator: this.PasswordMatchValidator}
+    this.updatePasswordForm = this.formBuilder.group({
+      currentPassword: ['', Validators.required],
+      newPassword: ['', [Validators.required,  Validators.minLength(4), Validators.maxLength(8)]],
+      confirmPassword: ['', Validators.required]
+    }, {validator: this.PasswordMatchValidator});
   }
   PasswordMatchValidator(g: FormGroup) {
-    return g.get('password').value === g.get('confirmPassword').value
+    return g.get('newPassword').value === g.get('confirmPassword').value
       ? null
       : { mismatch: true };
   }
@@ -162,16 +176,7 @@ export class UserEditComponent implements OnInit {
 
   }
   changePswrd() {
-    this.changePassword = !this.changePassword;
-    if (this.changePassword) {
-      this.updateUserForm.controls.password.disable();
-      this.updateUserForm.clearValidators();
-      this.updateUserForm.updateValueAndValidity();
-      return;
-    }
-    this.updateUserForm.controls.password.setValue('');
-    this.updateUserForm.controls.password.enable();
-    this.updateUserForm.setValidators(this.PasswordMatchValidator);
+    this.isModalShown = this.changePassword;
   }
 
   getZipCodeInfo(e: any) {
@@ -183,5 +188,41 @@ export class UserEditComponent implements OnInit {
     }, error => {
       this.alertify.error(error);
     });
+  }
+
+   showModal(): void {
+     this.isModalShown = true;
+  }
+
+  hideModal(): void {
+    this.autoShownModal.hide();
+    this.updatePasswordForm.reset();
+    this.updatePasswordForm.updateValueAndValidity();
+  }
+
+  onHidden(): void {
+    this.isModalShown = false;
+  }
+
+  updatePassword() {
+   console.log(this.updatePasswordForm.value);
+   this.passwords.currentPassword = this.updatePasswordForm.controls.currentPassword.value;
+   this.passwords.newPassword = this.updatePasswordForm.get('newPassword').value;
+   this.userService.updatePassword(this.user.id, this.passwords).subscribe(res => {
+      this.alertify.success('Password Updated');
+      this.autoShownModal.hide();
+      this.updatePasswordForm.reset();
+      this.updatePasswordForm.updateValueAndValidity();
+   }, error => {
+     console.log(error);
+     this.alertify.error(error);
+     if (error === 'invalid password') {
+      this.updatePasswordForm.controls.currentPassword.setValue('');
+     }
+   });
+
+  }
+  forgetPassword() {
+    console.log(this.auth.currentUser);
   }
 }

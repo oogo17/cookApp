@@ -14,10 +14,10 @@
     <div class="mt-5 col-md-3">
       <img src="{{ recipe?.photoUrl ||  '../../../../../assets/dish.png' }}" class="img-thumbnail w-100" alt="..." />
       <div class="row mt-5 ml-5">
-        <button type="button" class="btn btn-primary" [routerLink]="['/home/', userId]">
+        <button type="button" class="btn btn-primary back-awesome" [routerLink]="['/home/', userId]">
           Back
         </button>
-        <button type="submit" class="btn btn-success ml-2" form="ngForm">Save</button>
+        <button type="submit" class="btn btn-success ml-2 save-awesome" form="ngForm"> Save</button>
       </div>
     </div>
     <form class="" (ngSubmit)="updateRecipe()" #editform="ngForm" id="ngForm">
