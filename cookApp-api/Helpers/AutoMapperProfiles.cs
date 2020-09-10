@@ -30,6 +30,7 @@ namespace cookApp_api.Helpers
 
             CreateMap<RecipeForCreateDto, Recipe>();
             CreateMap<Recipe, RecipeForListDto>();
+            CreateMap<FollowUser, FollowUserToGetListDto>();
             CreateMap<User, FallowUserForCreateDto>();
             CreateMap<FallowUserForCreateDto, FollowUser>();
             CreateMap<Recipe,FollowUserForCreateRecipeDto>();
@@ -40,6 +41,10 @@ namespace cookApp_api.Helpers
             CreateMap<FollowUserForCreateRecipeDto, Recipe>();
             CreateMap<UserForRegisterDto, User>();
             CreateMap<UpdatePasswordHashSaltForUser, User>();
+            CreateMap<UpdateRecipeCreateNotificationDto, Notification>();
+            CreateMap<Notification, NotificationForDetailedDto>()
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.NotificationType.Description))
+                .ForMember(dest => dest.Entity, opt => opt.MapFrom(src => src.NotificationType.Entity));
             
 
         }

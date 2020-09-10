@@ -346,7 +346,8 @@
       {
         "Username": "Mooney",
         "UrlPhoto": "https://randomuser.me/api/portraits/men/86.jpg",
-        "DateCreated": "2017-07-23"
+        "DateCreated": "2017-07-23",
+        "FollowerId":1
       }
     ]
   },
@@ -697,7 +698,8 @@
       {
         "Username": "Mckinney",
         "UrlPhoto": "https://randomuser.me/api/portraits/men/28.jpg",
-        "DateCreated": "2017-05-29"
+        "DateCreated": "2017-05-29",
+        "FollowerId": 1
       }
     ]
   },
@@ -1048,7 +1050,8 @@
       {
         "Username": "Shannon",
         "UrlPhoto": "https://randomuser.me/api/portraits/men/3.jpg",
-        "DateCreated": "2017-08-03"
+        "DateCreated": "2017-08-03",
+        "FollowerId": 1
       }
     ]
   },
@@ -1399,7 +1402,8 @@
       {
         "Username": "Bush",
         "UrlPhoto": "https://randomuser.me/api/portraits/men/51.jpg",
-        "DateCreated": "2017-08-07"
+        "DateCreated": "2017-08-07",
+        "FollowerId": 1
       }
     ]
   },
@@ -1750,7 +1754,8 @@
       {
         "Username": "Perez",
         "UrlPhoto": "https://randomuser.me/api/portraits/men/94.jpg",
-        "DateCreated": "2017-07-19"
+        "DateCreated": "2017-07-19",
+        "FollowerId": 1 
       }
     ]
   }

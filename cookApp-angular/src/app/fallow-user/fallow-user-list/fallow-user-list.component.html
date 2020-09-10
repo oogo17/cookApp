@@ -12,13 +12,17 @@
 
   <div class="row" >
     <a (click)="userDetail(user)" class="img">
-      <img src="{{ user.urlPhoto }}" class="img-thumbnail rounded-circle" alt="..." />
+
+      <img src="{{ user?.urlPhoto }}" class="img-thumbnail rounded-circle" alt="..." />
+
+        <span *ngIf="(notificationCount > 0 && user.followerId === 1)" matBadge="{{notificationCount}}" matBadgeOverlap="true" matBadgeColor="warn"></span>
+
     </a>
       <label class="ml-4">{{user.username}}</label>
   </div>
 </div>
 
-<div class="ml-4 mb-4 mt-3" *ngIf="followUsers.length === 0" style="width: 7rem;">
+<div class="ml-4 mb-4 mt-3" *ngIf="followUsers?.length === 0" style="width: 7rem;">
 
   <div class="row" >
     <a class="img shakeit">

@@ -65,8 +65,9 @@ namespace cookApp_api.Controllers
 
         return Ok(recipesMapDto);
     }
-
+    
     [HttpPut("{id}")]
+    [ServiceFilter(typeof(UpdateRecipeNotification))]
     public async Task<IActionResult> UpdateRecipe(int id, RecipeForUpdateDto recipeForUpdateDto)
     {
         var recipe = await _repo.GetRecipe(id);

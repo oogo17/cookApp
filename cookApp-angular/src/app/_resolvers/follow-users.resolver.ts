@@ -1,24 +1,25 @@
+import { FallowUserService } from './../_services/fallowUser.service';
 import { AuthService } from './../_services/auth.service';
-import { UserService } from 'src/app/_services/user.service';
 import { AlertifyService } from './../_services/alertify.service';
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { User } from '../_models/User';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { FollowUsers } from '../_models/FollowUsers';
 
 @Injectable()
-export class FollowUsersResolver implements Resolve<User> {
+export class FollowUsersResolver implements Resolve<FollowUsers[]> {
 idUser = this.auth.decodedToken.nameid;
 
 /**
  *
  */
-constructor(private alertify: AlertifyService, private userService: UserService, private auth: AuthService) {}
+constructor(private alertify: AlertifyService, private FollowUserService: FallowUserService, private auth: AuthService) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<User> {
+  resolve(route: ActivatedRouteSnapshot): Observable<FollowUsers[]> {
     // tslint:disable-next-line:no-string-literal
-    return this.userService.getUser(route.params['id']).pipe(
+    return this.FollowUserService.getFollowUsers().pipe(
       catchError(error => {
         this.alertify.error(error);
         return of(null);

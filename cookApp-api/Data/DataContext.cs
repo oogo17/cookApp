@@ -14,6 +14,8 @@ namespace cookApp_api.Data
         public DbSet<Ingredient> Ingredient { get; set; }
         public DbSet<Step> Step { get; set; }
         public DbSet<FollowUser> FollowUser { get; set; }
+        public DbSet<Notification> Notification { get; set; }
+        public DbSet<NotificationType> NotificationType { get; set; }
         
     }
 }

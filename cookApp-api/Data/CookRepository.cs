@@ -34,6 +34,14 @@ namespace cookApp_api.Data
            return followUsers;
         }
 
+        public async Task<IEnumerable<FollowUser>> GetFollowedUsers(int id)
+        {
+           var followedUsers = await _context.FollowUser.Where(x => x.FollowerId == id)
+                .ToListAsync();
+           
+           return followedUsers;
+        }
+
         public async Task<Recipe> GetRecipe(int id)
         {
             var recipe = await _context.Recipe.Include(x => x.Ingredients)
@@ -80,6 +88,22 @@ namespace cookApp_api.Data
         public async Task<bool> SaveAll()
         {
            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<IEnumerable<Notification>> GetNotifications(int id)
+        {
+            var notifications = await _context.Notification.Include(x => x.NotificationType)
+                            .Where(x => x.NotifyUserId == id).ToListAsync();
+
+            return notifications;
+        }
+
+        public async Task<User> GetFollowUsersDetails(int id)
+        {
+            var userDetails = await _context.User.FirstOrDefaultAsync(x => x.Id == id);
+
+
+            return userDetails;
         }
     }
 }

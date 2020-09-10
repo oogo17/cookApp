@@ -37,5 +37,7 @@ namespace cookApp_api.Models
 
         public ICollection<FollowUser> FollowUsers { get; set; }
 
+        public ICollection<Notification> Notification { get; set; }
+
     }
 }

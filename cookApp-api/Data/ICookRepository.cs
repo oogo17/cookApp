@@ -22,6 +22,12 @@ namespace cookApp_api.Data
         Task<PagedList<Recipe>> GetRecipes(int id, RecipeParams recipeParams);
 
         Task<IEnumerable<FollowUser>> GetFollowUsers(int id);
+        
+        Task<User> GetFollowUsersDetails(int id);
+
+        Task<IEnumerable<FollowUser>> GetFollowedUsers(int id);
+        
+        Task<IEnumerable<Notification>> GetNotifications(int id);
          
     }
 }

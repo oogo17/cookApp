@@ -4,3 +4,10 @@ input[type="file"] {
 .custom-file-upload {
   cursor: pointer;
 }
+.radio-group-share {
+  margin-top: 5%;
+}
+
+.radio-margin {
+  margin: 0 40px;
+}

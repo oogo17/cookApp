@@ -54,12 +54,13 @@ export class FallowUserDetailComponent implements OnInit {
     this.routeAct.params.subscribe((params) => {
 
       this.userId = +params.id;
-      this.selectedUser = this.users.find(x => x.id === this.userId);
-      const fallowUser = this.fallowUsers.find(x => x.username === this.selectedUser.userName);
 
-      if (fallowUser)  {
+      this.selectedUser = this.users.find(x => x.id === this.userId);
+      const fallowUser = this.fallowUsers.find(x => x.followerId === this.selectedUser.id);
+
+      if (fallowUser) {
         this.currentlyFallow = true;
-        this.unFallowUserId = fallowUser.id;
+        this.unFallowUserId = this.userId;
       }
     });
   }
@@ -91,6 +92,7 @@ export class FallowUserDetailComponent implements OnInit {
   }
 
   UnFallowUser(id: number) {
+     console.log(id);
      this.fallowUserService.deleteFallowUser(id).subscribe( res => {
         this.alertify.success(`You Stop Fallow ${this.selectedUser.userName}`);
         this.route.navigate(['/home/', this.userTokenId]);

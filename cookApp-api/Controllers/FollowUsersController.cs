@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -29,8 +30,22 @@ namespace cookApp_api.Controllers
         public async Task<IActionResult> getFollowUsers() {
             
           var followUsers = await  _repo.GetFollowUsers(int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value));
+          var follow = new List<FollowUserToGetListDto>();
+
+          var mappedFollowUser = _mapper.Map(followUsers, follow);
+          foreach (var user in mappedFollowUser )
+          {
+              var getUserDetails = await _repo.GetFollowUsersDetails(user.FollowerId);
+            user.Username = getUserDetails.UserName;
+            user.UrlPhoto = getUserDetails.PhotoUrl;
+            user.PublicId = getUserDetails.PublicId;
+              
+              
+          }
+          
+
         
-            return Ok(followUsers);
+            return Ok(mappedFollowUser);
         }
 
         [HttpPost("{id}")]
@@ -41,14 +56,13 @@ namespace cookApp_api.Controllers
              if ( await _repo.GetUser(userId) == null)
                 return Unauthorized();
 
-            User user = await _repo.GetUser(id);
             var fallowUser = new FallowUserForCreateDto();
-            FallowUserForCreateDto mapFallowUser = _mapper.Map(user,fallowUser);
-            mapFallowUser.UrlPhoto = user.PhotoUrl;
-            mapFallowUser.DateCreated = DateTime.Now;
-            mapFallowUser.UserId = userId;
+         
+            fallowUser.DateCreated = DateTime.Now;
+            fallowUser.UserId = userId;
+            fallowUser.FollowerId = id;
 
-            FollowUser newFallowUser = _mapper.Map<FollowUser>(mapFallowUser);
+            FollowUser newFallowUser = _mapper.Map<FollowUser>(fallowUser);
             _repo.Add(newFallowUser);
 
 
@@ -71,7 +85,7 @@ namespace cookApp_api.Controllers
 
 
             var currentFallow = await _repo.GetFollowUsers(userId);
-            var fallowUser = currentFallow.FirstOrDefault(x => x.Id == id);
+            var fallowUser = currentFallow.FirstOrDefault(x => x.FollowerId == id);
 
             _repo.Delete(fallowUser);
 

@@ -1,3 +1,6 @@
+import { FallowUserService } from './../../_services/fallowUser.service';
+import { Notification } from './../../_models/Notification';
+import { NotificationService } from './../../_services/notification.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertifyService } from '../../_services/alertify.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,25 +26,29 @@ export class FallowUserListComponent implements OnInit {
   userList: User[];
   filteredUsers: Observable<User[]>;
   selectedUser: number;
+  notification: Notification[];
+  notificationCount: number;
 
   constructor(
     private userService: UserService,
+    private followService: FallowUserService,
     private auth: AuthService,
     private alertify: AlertifyService,
     private activatedRoute: ActivatedRoute,
-    private route: Router
+    private route: Router,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit() {
     this.activatedRoute.data.subscribe((data) => {
-      this.user = data.user;
+      this.followUsers  = data.user;
+      this.getNotifications(this.auth.decodedToken.nameid);
     });
-    this.followUsers = this.user.followUsers;
 
     this.userService.getUsers().subscribe(user => {
       this.userList = user;
       this.userList = this.userList.filter(res => {
-       return res.id !== this.user.id;
+       return res.id !== this.auth.decodedToken.nameid;
       });
          // this.selectedUser = this.userList[1].id;
     });
@@ -50,15 +57,9 @@ export class FallowUserListComponent implements OnInit {
       startWith(''),
       map((value) => this._filter(value))
     );
+
   }
 
-  loadUsers() {
-    this.userService.getUser(this.userId).subscribe( (user: User) => {
-      this.followUsers = user.followUsers;
-    }, error => {
-      this.alertify.error(error);
-    });
-  }
 
   private _filter(value: string): User[] {
     const filterValue = this._normalizeValue(value);
@@ -79,7 +80,21 @@ export class FallowUserListComponent implements OnInit {
   }
 
   userDetail(fallowUser: FollowUsers) {
+  console.log(fallowUser);
   const user = this.userList.find(x => x.userName === fallowUser.username);
+  console.log(user);
   this.route.navigate(['/fallowUser/', user.id]);
+  }
+
+  getNotifications(id: number) {
+    this.notificationService.getNotifications(id).subscribe( data => {
+      this.notification = data;
+      this.notification = this.notification.filter(next => {
+        return this.followUsers.find(x => x.followerId === next.userId);
+      });
+      this.notificationCount = this.notification.length;
+    }, error => {
+      this.alertify.error(error);
+    });
   }
 }

@@ -12,10 +12,120 @@
   </ul> -->
 <div class="container">
   <div class="row">
-    <div class="col-2">
+    <div class="col-3">
       <div class="mt-5">
-        <img src=" ../../../../../assets/dish.png" class="img-thumbnail w-100" alt="..." />
+        <img src=" ../../../../../assets/dish.png" class="img" alt="..." style="height: 200px; width: 200px;" />
       </div>
+      <div class="mt-4">
+        <div
+        ng2FileDrop
+        [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
+        (fileOver)="fileOverBase($event)"
+        [uploader]="uploader"
+        class="card bg-faded p-3 text-center my-drop-zone"
+        style="width: 80%; height: 150px;"
+      >
+      <i class="fa fa-upload fa-3x" style="padding-top: 10%;"></i>
+        Drop photo here
+    </div>
+
+      </div>
+      <div class="mt-2">
+        <label for="file-upload" class="custom-file-upload text-wrap">
+          <i class="fas fa-folder-open"></i> Choose your image
+        </label>
+         <input id="file-upload" type="file" ng2FileSelect [uploader]="uploader" />
+      </div>
+
+      <div class="col-md-9 mt-5" style="margin-bottom: 40px;"  *ngIf="uploader?.queue?.length">
+        <!-- <h3>Upload queue</h3>
+            <p>Queue length: {{ uploader?.queue?.length }}</p> -->
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th width="30%">Name</th>
+              <th>Size</th>
+              <th>Progress</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of uploader?.queue">
+              <td>
+                <strong>{{ item?.file?.name }}</strong>
+              </td>
+              <td *ngIf="uploader.options.isHTML5" nowrap>
+                {{ item?.file?.size / 1024 / 1024 | number: ".2" }} MB
+              </td>
+              <td *ngIf="uploader.options.isHTML5">
+                <div class="progress" style="margin-bottom: 0;">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    [ngStyle]="{ width: item?.progress + '%' }"
+                  ></div>
+                </div>
+              </td>
+              <td class="text-center">
+                <span *ngIf="item.isSuccess"
+                  ><i class="glyphicon glyphicon-ok"></i
+                ></span>
+                <span *ngIf="item.isCancel"
+                  ><i class="glyphicon glyphicon-ban-circle"></i
+                ></span>
+                <span *ngIf="item.isError"
+                  ><i class="glyphicon glyphicon-remove"></i
+                ></span>
+              </td>
+              <td nowrap>
+                <button
+                  type="button"
+                  class="btn btn-success btn-xs"
+                  (click)="item.upload()"
+                  [disabled]="
+                    item.isReady || item.isUploading || item.isSuccess
+                  "
+                >
+                  <span class="glyphicon glyphicon-upload"></span> Upload
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-danger btn-xs"
+                  (click)="item.remove()"
+                >
+                  <span class="glyphicon glyphicon-trash"></span> Remove
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div>
+          <div>
+            Queue progress:
+            <div class="progress" style="">
+              <div
+                class="progress-bar"
+                role="progressbar"
+                [ngStyle]="{ width: uploader?.progress + '%' }"
+              ></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <label class="radio-group-share">Share:</label>
+      <div>
+        <mat-radio-group [(ngModel)]="recipe.allowShare">
+          <mat-radio-button class="radio-margin" value="everyone"[value]="true" [color]="'primary'">Everyone</mat-radio-button>
+          <mat-radio-button class="radio-margin" value="friends" [color]="'primary'">Friends</mat-radio-button>
+          <mat-radio-button class="radio-margin" value="me" [color]="'primary'">Me</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
     </div>
 
     <div class=" col-8 ml-5">
@@ -43,8 +153,8 @@
               <div class="col-2">
                 <input type="text" class="form-control" name="ingredient_{{i}}" placeholder="Name" [(ngModel)]="recipe.ingredients[i].name">
               </div>
-              <button type="button" class="btn btn-warning" (click)="removeIngredient(i)" [disabled]="ingredientsLength === 1" >Remove</button>
-            <button type="button" class="btn btn-success ml-2" (click)="addIngredient(i)" >Add</button>
+              <button type="button" class="btn btn-light" (click)="removeIngredient(i)" [disabled]="ingredientsLength === 1" ><i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-info ml-2" (click)="addIngredient(i)" ><i class="fas fa-plus"></i></button>
             </div>
 
 
@@ -60,8 +170,8 @@
               <div class="col-2">
                 <input type="text" class="form-control" name="instruction_{{i}}" placeholder="Instructions" [(ngModel)]="recipe.steps[i].instruction">
               </div>
-              <button type="button" class="btn btn-warning" (click)="removeStep(i)" [disabled]="stepsLength === 1">Remove</button>
-              <button type="button" class="btn btn-success ml-2" (click)="addStep(i)" >Add</button>
+              <button type="button" class="btn btn-light" (click)="removeStep(i)" [disabled]="stepsLength === 1"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-info ml-2" (click)="addStep(i)" ><i class="fas fa-plus"></i></button>
             </div>
 
 
@@ -69,122 +179,26 @@
         <div class="row ">
 
 
-          <div
-            ng2FileDrop
-            [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
-            (fileOver)="fileOverBase($event)"
-            [uploader]="uploader"
-            class="card bg-faded p-3 text-center my-drop-zone "
-          >
-          <i class="fa fa-upload fa-3x"></i>
-            Drop photo here
-        </div>
-        <div class="m-5">
-          <label for="file-upload" class="custom-file-upload text-wrap">
-            <i class="fas fa-folder-open"></i> Choose your image
-          </label>
-           <input id="file-upload" type="file" ng2FileSelect [uploader]="uploader" />
-        </div>
 
-        </div>
-        <div class="row">
+
 
         </div>
 
-        <div class="col-md-9 mt-5" style="margin-bottom: 40px;"  *ngIf="uploader?.queue?.length">
-          <!-- <h3>Upload queue</h3>
-              <p>Queue length: {{ uploader?.queue?.length }}</p> -->
 
-          <table class="table">
-            <thead>
-              <tr>
-                <th width="30%">Name</th>
-                <th>Size</th>
-                <th>Progress</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of uploader?.queue">
-                <td>
-                  <strong>{{ item?.file?.name }}</strong>
-                </td>
-                <td *ngIf="uploader.options.isHTML5" nowrap>
-                  {{ item?.file?.size / 1024 / 1024 | number: ".2" }} MB
-                </td>
-                <td *ngIf="uploader.options.isHTML5">
-                  <div class="progress" style="margin-bottom: 0;">
-                    <div
-                      class="progress-bar"
-                      role="progressbar"
-                      [ngStyle]="{ width: item?.progress + '%' }"
-                    ></div>
-                  </div>
-                </td>
-                <td class="text-center">
-                  <span *ngIf="item.isSuccess"
-                    ><i class="glyphicon glyphicon-ok"></i
-                  ></span>
-                  <span *ngIf="item.isCancel"
-                    ><i class="glyphicon glyphicon-ban-circle"></i
-                  ></span>
-                  <span *ngIf="item.isError"
-                    ><i class="glyphicon glyphicon-remove"></i
-                  ></span>
-                </td>
-                <td nowrap>
-                  <button
-                    type="button"
-                    class="btn btn-success btn-xs"
-                    (click)="item.upload()"
-                    [disabled]="
-                      item.isReady || item.isUploading || item.isSuccess
-                    "
-                  >
-                    <span class="glyphicon glyphicon-upload"></span> Upload
-                  </button>
-
-                  <button
-                    type="button"
-                    class="btn btn-danger btn-xs"
-                    (click)="item.remove()"
-                  >
-                    <span class="glyphicon glyphicon-trash"></span> Remove
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div>
-            <div>
-              Queue progress:
-              <div class="progress" style="">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  [ngStyle]="{ width: uploader?.progress + '%' }"
-                ></div>
-              </div>
-            </div>
-
-          </div>
-        </div>
 
         <div class="form-group mt-3">
           <label for="formGroupExampleInput2">Tips</label>
           <input type="text" class="form-control" name="tips" placeholder="Another input placeholder" [(ngModel)]="recipe.tips">
         </div>
-        <div class="form-check mb-5">
+        <!-- <div class="form-check mb-5">
           <input class="form-check-input" type="checkbox" value="" name="share" id="defaultCheck2" [(ngModel)]="recipe.allowShare">
           <label class="form-check-label" for="defaultCheck2">
             you want to share
           </label>
-        </div>
+        </div> -->
         <div class="row mb-4">
-          <button type="button" class="btn btn-primary back-awesome" [routerLink]="['/home/', userId]"> Back</button>
-          <button type="submit" class="btn btn-success ml-3 save-awesome "> Save</button>
+          <button type="button" class="btn btn-outline-primary back-awesome" [routerLink]="['/home/', userId]"> Back</button>
+          <button type="submit" class="btn btn-outline-success ml-3 save-awesome "> Save</button>
         </div>
 
       </form>

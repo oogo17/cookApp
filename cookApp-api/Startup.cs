@@ -72,6 +72,7 @@ namespace cookApp_api
                         ValidateAudience = false
                     };
                 });
+            services.AddScoped<UpdateRecipeNotification>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -84,6 +85,7 @@ namespace cookApp_api
               
             }
             else {
+                // comment custom exception handler to get more details on errors in prod
                 app.UseExceptionHandler(builder => {
                     builder.Run(async context => {
                         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -99,7 +101,7 @@ namespace cookApp_api
 
                 app.UseHsts();
             }
-
+            // undo this comment to get more details on errors in prod
             //app.UseDeveloperExceptionPage();
             app.UseHttpsRedirection();
 

@@ -1,3 +1,4 @@
+import { NotificationService } from './_services/notification.service';
 import { FallowUserDetailGetUsersResolver } from './_resolvers/fallow-user-detail-GetUsers.resolver';
 import { FallowUserRecipeListResolver } from './_resolvers/fallow-user-recipeList.resolver';
 import { FallowUserDetailResolver } from './_resolvers/fallow-user-detail.resolver';
@@ -23,6 +24,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { JwtModule } from '@auth0/angular-jwt';
 
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
@@ -30,6 +32,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatBadgeModule} from '@angular/material/badge';
+
 
 
 
@@ -99,6 +105,9 @@ export function tokenGetter() {
       MatAutocompleteModule,
       ReactiveFormsModule,
       NgxMatSelectSearchModule,
+      MatCheckboxModule,
+      MatRadioModule,
+      MatBadgeModule,
       BsDropdownModule.forRoot(),
       JwtModule.forRoot({
         config: {
@@ -114,6 +123,7 @@ export function tokenGetter() {
       FallowUserService,
       CountriesAPIService,
       RecipeService,
+      NotificationService,
       ErrorInterceptorProvider,
       RecipeDetailResolver,
       UserEditResolver,
