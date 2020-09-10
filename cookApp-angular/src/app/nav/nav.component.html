@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" [routerLink]="">AppName</a>
+  <a class="navbar-brand" [routerLink]="['/home/', currentUserId]">AppName</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -16,7 +16,7 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *dropdownMenu>
           <a class="dropdown-item" href="#" [routerLink]="['/userEdit/', authService.decodedToken?.nameid]"  ><i class="fas fa-user mr-2"></i>Edit profile</a>
-          <a class="dropdown-item" href="#"></a>
+          <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Account</a>
           <a class="dropdown-item" (click)="LoggedOut()"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
         </div>
       </div>

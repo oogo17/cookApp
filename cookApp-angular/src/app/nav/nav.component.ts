@@ -14,12 +14,13 @@ export class NavComponent implements OnInit {
   model: any = {};
   username: string;
   userPhotoUrl: string;
+  currentUserId: number;
   constructor(public authService: AuthService, private alertify: AlertifyService,
               private router: Router, private userService: UserService) { }
 
   ngOnInit() {
 
-
+    this.currentUserId = this.authService.currentUser.id;
     this.authService.currentUsername.subscribe(username => this.username = username);
     this.authService.currentPhotoUrl.subscribe(photoUrl => this.userPhotoUrl = photoUrl);
   }
@@ -27,7 +28,7 @@ export class NavComponent implements OnInit {
   Login() {
     this.authService.login(this.model).subscribe(next => {
       this.alertify.success('Login Successful');
-      this.router.navigate(['/home', this.authService.decodedToken.nameid]);
+      this.router.navigate(['/home', this.currentUserId]);
     }, error => {
       this.alertify.error(error);
     });

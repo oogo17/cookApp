@@ -6,3 +6,10 @@
   left: 22px;
   font-size: 15px;
 }
+
+.advancedSearch-icon :hover {
+  cursor: pointer;
+  opacity: .6;
+  transform: scale(1.07);
+
+}

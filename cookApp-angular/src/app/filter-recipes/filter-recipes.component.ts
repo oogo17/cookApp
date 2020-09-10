@@ -11,6 +11,7 @@ export class FilterRecipesComponent implements OnInit {
   typeSlected: string;
   types: any [];
   filter: Filters[];
+  advancedSearch = false;
   constructor(private recipe: RecipeService) { }
 
   ngOnInit() {
@@ -48,5 +49,8 @@ export class FilterRecipesComponent implements OnInit {
     this.filter.push({name: 'recipename', value: event.target.value});
 
     this.recipe.updateFilters(this.filter);
+  }
+  advancedSearchToggle() {
+    this.advancedSearch = !this.advancedSearch;
   }
 }

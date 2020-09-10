@@ -12,12 +12,24 @@
   </div>
   <div class="form-group">
     <input type="text"
+    [ngClass]="{'is-invalid': registerForm.get('email').errors && registerForm.get('email').touched }"
+    class="form-control"
+    placeholder="Email"
+    formControlName="email" >
+    <div class="invalid-feedback" *ngIf="registerForm.get('email').hasError('required') && registerForm.get('email').touched">
+      provide email</div>
+    <div class="invalid-feedback"
+      *ngIf="registerForm.get('email').hasError('email') && registerForm.get('email').touched">
+      invalid email</div>
+  </div>
+  <!-- <div class="form-group">
+    <input type="text"
     [ngClass]="{'is-invalid': registerForm.get('dateOfBirth').errors && registerForm.get('dateOfBirth').touched }"
     class="form-control"
     placeholder="Date of birth"
     formControlName="dateOfBirth" bsDatepicker [bsConfig]='bsConfig'>
     <div class="invalid-feedback">provide date</div>
-  </div>
+  </div> -->
 
 
   <div class="form-group">
@@ -35,7 +47,7 @@
       <div class="invalid-feedback"
       *ngIf="registerForm.get('password').hasError('maxlength') && registerForm.get('password').touched">
       password must be at max 8 characters</div>
-  </div>
+    </div>
 
   <div class="form-group">
     <input type="password"
