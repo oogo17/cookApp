@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using cookApp_api.Dtos;
 using cookApp_api.Helpers;
 using cookApp_api.Models;
 using Microsoft.EntityFrameworkCore;
@@ -104,6 +105,36 @@ namespace cookApp_api.Data
 
 
             return userDetails;
+        }
+
+        public async Task<IEnumerable<Review>> GetReviews(int id)
+        {
+            var reviews = await _context.Review.Where(x => x.RecipeId == id).ToListAsync();
+            
+            return reviews;
+        }
+
+        public async Task<bool> AlreadyUserReview(int userId, int recipeId)
+        {
+           var res = await _context.Review.FirstOrDefaultAsync(x => x.RecipeId == recipeId && x.UserId == userId);
+       
+            return res != null ? true : false;
+        }
+
+        public async Task<IEnumerable<ReviewForDetailGetUserDetailDto>> GetUserDetailForReviews(int[] userIds)
+        {
+            var reviewDetailDto = new List<ReviewForDetailGetUserDetailDto>();
+            foreach (var userId in userIds)
+            {
+                var reviewDetail = new ReviewForDetailGetUserDetailDto();
+                var user = await _context.User.FirstOrDefaultAsync(x => x.Id == userId);
+                reviewDetail.Username = user.UserName;
+                reviewDetail.PhotoUrl = user.PhotoUrl;
+                reviewDetail.Email = user.Email;
+                reviewDetailDto.Add(reviewDetail);
+                
+            }
+            return reviewDetailDto;
         }
     }
 }

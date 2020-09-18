@@ -46,6 +46,15 @@ namespace cookApp_api.Helpers
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.NotificationType.Description))
                 .ForMember(dest => dest.Entity, opt => opt.MapFrom(src => src.NotificationType.Entity));
             
+            // Reviews
+
+            CreateMap<ReviewForCreateDto, Review>();
+            CreateMap<Review, ReviewForDetailDto>();
+            CreateMap<ReviewForDetailGetUserDetailDto, ReviewForDetailDto>()
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username))
+                .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src => src.PhotoUrl));
+
 
         }
     }

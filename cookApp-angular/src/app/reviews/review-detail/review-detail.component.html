@@ -1,0 +1,36 @@
+<div class="container">
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar><img src="{{reviewDetail.photoUrl}}" class=" rounded-circle " alt="" style="width: 45px; height: 45px;" ></div>
+      <mat-card-title style="width: 390px;">
+
+
+
+        <div class="row ml-2">
+          {{reviewDetail.username}}
+          <rating [max]="5" [(ngModel)]="reviewDetail.rate" [readonly]="true" [customTemplate]="tt" class="small ml-auto"></rating>
+          <ng-template #tt let-i="index" let-v="value">
+            <button class="btn btn-{{ i < v ? 'warning' : 'default' }}">
+              {{ i < v ? "&#9733;" : "&#9734;" }}
+            </button>
+          </ng-template>
+        </div>
+
+      </mat-card-title>
+      <mat-card-subtitle>{{reviewDetail.email}}</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img mat-card-image src="reviewDetail.photoUrl" alt="Photo of a Shiba Inu"> -->
+    <mat-card-content>
+      <p>
+        {{reviewDetail.description}}
+       <!-- <img src="{{reviewDetail.photoUrl}}" alt=""> -->
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+    </mat-card-actions>
+  </mat-card>
+
+
+</div>
+

@@ -3,6 +3,10 @@ input[type="file"] {
 }
 .custom-file-upload {
   cursor: pointer;
+  border: dashed;
+  border-color: dimgrey;
+  border-width: 2px;
+
 }
 .radio-group-share {
   margin-top: 5%;

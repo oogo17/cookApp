@@ -20,7 +20,7 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
 
-    this.currentUserId = this.authService.currentUser.id;
+    this.currentUserId = this.authService.decodedToken.nameid;
     this.authService.currentUsername.subscribe(username => this.username = username);
     this.authService.currentPhotoUrl.subscribe(photoUrl => this.userPhotoUrl = photoUrl);
   }
@@ -28,7 +28,7 @@ export class NavComponent implements OnInit {
   Login() {
     this.authService.login(this.model).subscribe(next => {
       this.alertify.success('Login Successful');
-      this.router.navigate(['/home', this.currentUserId]);
+      this.router.navigate(['/home', this.authService.decodedToken.nameid]);
     }, error => {
       this.alertify.error(error);
     });

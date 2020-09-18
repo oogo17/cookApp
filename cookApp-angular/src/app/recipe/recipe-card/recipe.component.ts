@@ -13,6 +13,7 @@ export class RecipeComponent implements OnInit {
 
   @Input() recipe: Recipe;
   @Output() recipeId = new EventEmitter();
+  rate = 2;
   constructor(private userService: UserService, private alertify: AlertifyService) { }
 
   ngOnInit() {

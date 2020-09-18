@@ -1,0 +1,52 @@
+<h1 mat-dialog-title>Adnvance Search</h1>
+<div>
+  <mat-dialog-content>
+<div class="col-8">
+  <div class="small row col-1">
+  <mat-form-field appearance="fill" class="">
+    <mat-label>Food type</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let food of foodTypes" [value]="food.value">
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Proteins</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let food of foodProtein" [value]="food.value">
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Price</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let food of foodPrice" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Diets</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let food of foodDiet" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+  </mat-dialog-content>
+</div>
+<div>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="ml-2">Apply</button>
+  </mat-dialog-actions>
+</div>

@@ -1,6 +1,8 @@
+import { FilterAdvancedSearchModalComponent } from './filter-advancedSearch-modal/filter-advancedSearch-modal.component';
 import { Filters } from './../_models/filters';
 import { RecipeService } from './../_services/recipe.service';
 import { Component, OnInit } from '@angular/core';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-filter-recipes',
@@ -12,7 +14,7 @@ export class FilterRecipesComponent implements OnInit {
   types: any [];
   filter: Filters[];
   advancedSearch = false;
-  constructor(private recipe: RecipeService) { }
+  constructor(private recipe: RecipeService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.types = ['American', 'Italian', 'Japanese', 'Mexican', 'German', 'French', 'All' ];
@@ -52,5 +54,7 @@ export class FilterRecipesComponent implements OnInit {
   }
   advancedSearchToggle() {
     this.advancedSearch = !this.advancedSearch;
+    this.dialog.open(FilterAdvancedSearchModalComponent);
+
   }
 }

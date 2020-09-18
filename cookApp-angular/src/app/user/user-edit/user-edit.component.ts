@@ -166,7 +166,7 @@ export class UserEditComponent implements OnInit {
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
         const res = JSON.parse(response);
-
+        console.log(res);
         this.user.photoUrl = res.photoUrl;
         this.auth.changeUserPhotoUrl(this.user.photoUrl);
         this.alertify.success('Update Success');

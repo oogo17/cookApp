@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using cookApp_api.Dtos;
 using cookApp_api.Helpers;
 using cookApp_api.Models;
 
@@ -28,6 +29,12 @@ namespace cookApp_api.Data
         Task<IEnumerable<FollowUser>> GetFollowedUsers(int id);
         
         Task<IEnumerable<Notification>> GetNotifications(int id);
+
+        Task<IEnumerable<Review>> GetReviews(int id);
+
+        Task<IEnumerable<ReviewForDetailGetUserDetailDto>> GetUserDetailForReviews (int[] userIds);
+        
+        Task<bool> AlreadyUserReview (int userId, int recipeId);
          
     }
 }

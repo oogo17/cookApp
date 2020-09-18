@@ -1,3 +1,6 @@
+import { ReviewsService } from './_services/reviews.service';
+import { ReviewDetailComponent } from './reviews/review-detail/review-detail.component';
+import { ReviewListComponent } from './reviews/review-list/review-list.component';
 import { NotificationService } from './_services/notification.service';
 import { FallowUserDetailGetUsersResolver } from './_resolvers/fallow-user-detail-GetUsers.resolver';
 import { FallowUserRecipeListResolver } from './_resolvers/fallow-user-recipeList.resolver';
@@ -22,6 +25,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { RatingModule } from 'ngx-bootstrap/rating';
 import { JwtModule } from '@auth0/angular-jwt';
 
 
@@ -35,6 +39,8 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -54,6 +60,7 @@ import { FallowUserListComponent } from './fallow-user/fallow-user-list/fallow-u
 import { FallowUserDetailComponent } from './fallow-user/fallow-user-detail/fallow-user-detail.component';
 import { ContainerListComponent } from './container-list/container-list.component';
 import { FilterRecipesComponent } from './filter-recipes/filter-recipes.component';
+import { FilterAdvancedSearchModalComponent } from './filter-recipes/filter-advancedSearch-modal/filter-advancedSearch-modal.component';
 import { RecipeDetailComponent } from './recipe/recipe-detail/recipe-detail.component';
 import { RecipeCreateComponent } from './recipe/recipe-create/recipe-create.component';
 import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
@@ -85,7 +92,10 @@ export function tokenGetter() {
       FallowUserDetailComponent,
       FallowUserRecipeDetailComponent,
       ContainerListComponent,
-      FilterRecipesComponent
+      FilterRecipesComponent,
+      ReviewListComponent,
+      ReviewDetailComponent,
+      FilterAdvancedSearchModalComponent
    ],
    imports: [
       BrowserModule,
@@ -97,17 +107,20 @@ export function tokenGetter() {
       BrowserAnimationsModule,
       ModalModule.forRoot(),
       BsDatepickerModule.forRoot(),
+      RatingModule.forRoot(),
       MatSelectModule,
       MatToolbarModule,
       MatFormFieldModule,
       MatIconModule,
       MatInputModule,
       MatAutocompleteModule,
+      MatDialogModule,
       ReactiveFormsModule,
       NgxMatSelectSearchModule,
       MatCheckboxModule,
       MatRadioModule,
       MatBadgeModule,
+      MatCardModule,
       BsDropdownModule.forRoot(),
       JwtModule.forRoot({
         config: {
@@ -124,6 +137,7 @@ export function tokenGetter() {
       CountriesAPIService,
       RecipeService,
       NotificationService,
+      ReviewsService,
       ErrorInterceptorProvider,
       RecipeDetailResolver,
       UserEditResolver,
@@ -136,6 +150,9 @@ export function tokenGetter() {
       PreventUnsaveChanges,
       AuthGuard
    ],
+   entryComponents: [
+    FilterAdvancedSearchModalComponent
+  ],
    bootstrap: [
       AppComponent
    ]

@@ -23,6 +23,8 @@
 
       </div>
 
+
+
   </div>
 
   <div class="col-10">
@@ -281,28 +283,19 @@
       </div>
 
       <div class="row ml-3 mt-4">
+          <div
+            ng2FileDrop
+            [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
+            (fileOver)="fileOverBase($event)"
+            [uploader]="uploader"
+            class="card bg-faded p-3 text-center my-drop-zone  custom-file-upload"
+            (click)="inputFile.click()"
+          >
+          <i class="fa fa-upload fa-3x"></i>
+            Drop photo here
 
-
-        <div
-          ng2FileDrop
-          [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
-          (fileOver)="fileOverBase($event)"
-          [uploader]="uploader"
-          class="card bg-faded p-3 text-center my-drop-zone "
-        >
-        <i class="fa fa-upload fa-3x"></i>
-          Drop photo here
-      </div>
-      <div class="m-5">
-        <label for="file-upload" class="custom-file-upload text-wrap">
-          <i class="fas fa-folder-open"></i> Choose your image
-        </label>
-         <input id="file-upload" type="file" ng2FileSelect [uploader]="uploader" />
-      </div>
-
+          <input #inputFile type="file" ng2FileSelect [uploader]="uploader" />
         </div>
-      <div class="row">
-
       </div>
 
       <div class="col-md-9 mt-5" style="margin-bottom: 40px;" *ngIf="uploader?.queue?.length">

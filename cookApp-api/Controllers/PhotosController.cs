@@ -49,8 +49,10 @@ namespace cookApp_api.Controllers
                 return Unauthorized();
 
                var user = await _repo.GetUser(userId);
+               var alreadyExist = 0;
 
-               var alreadyExist =  _cloudinary.Search().Expression(string.Format("public_id = {0}",user.PublicId)).Execute();
+               if(user.PublicId != null) 
+                alreadyExist =  _cloudinary.Search().Expression(string.Format("public_id = {0}",user.PublicId)).Execute().Resources.Count;
          
 
                var file = photoForCreationDto.File;
@@ -63,7 +65,7 @@ namespace cookApp_api.Controllers
                    using (var stream = file.OpenReadStream())
                    {
                         
-                        if(alreadyExist.Resources.Count > 0) {
+                        if(alreadyExist > 0) {
                             uploadParams.File = new FileDescription(file.Name, stream);
                             uploadParams.PublicId = user.PublicId;
                             uploadParams.Transformation = new Transformation()
