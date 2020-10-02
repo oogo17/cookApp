@@ -3,38 +3,17 @@
   <div class="row">
     <div class="ml-1 mt-5 col-md-3">
       <img src="{{recipe?.photoUrl || '../../../../../assets/dish.png'}}" class="img-thumbnail w-100" alt="...">
-
-      <form [formGroup]="reviewForm" (ngSubmit)="createReview()" >
-      <div class="mt-5">
-        <rating [max]="5" formControlName="rate" [customTemplate]="tt"></rating>
-
-          <!-- <pre
-            class="card-block card-header"
-            style="margin: 15px 0"
-          > <b>(<i>Rate:</i> {{rate}})</b> </pre> -->
-
-        <ng-template #tt let-i="index" let-v="value">
-          <button class="btn btn-{{ i < v ? 'warning' : 'default' }}">
-            {{ i < v ? "&#9733;" : "&#9734;" }}
-          </button>
-        </ng-template>
-      </div>
-      <div class="mt-3 form-group">
-        <textarea class="form-control"
-        formControlName="description"
-        placeholder="Add review" rows="2"></textarea>
-      </div>
-      <button type="submit" [disabled]="!reviewForm.valid" class="btn btn-outline-success m-3 align-content-end">Save</button>
-      </form>
-      <!-- <p>{{reviewForm.value | json}}</p>
-      <p>{{reviewForm.valid | json}}</p> -->
-
+      <app-review-add [recipeId]="recipeId"></app-review-add>
     </div>
 
 
     <div class="ml-5 mt-5 col-md-8" >
       <a class="font-weight-bold text-capitalize">{{recipe.name}}</a>
       <p>{{recipe.description}}</p>
+      <div>
+        <label>Time:</label>
+        {{recipe.time}} minutes
+      </div>
       <div class="row">
         <label>Ingredients:</label>
         <div class="ml-2" *ngFor="let ingredient of recipe?.ingredients">

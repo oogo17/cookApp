@@ -30,6 +30,10 @@ namespace cookApp_api.Models
         public string State { get; set; }
 
         public string Country { get; set; }
+        
+        public ShoppingMarket ShoppingMarket { get; set; }
+
+        public ICollection<Allergy> Allergy { get; set; }
 
         public ICollection<Photo> Photos { get; set; }
 

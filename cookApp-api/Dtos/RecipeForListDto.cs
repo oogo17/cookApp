@@ -12,6 +12,7 @@ namespace cookApp_api.Dtos
         public string PhotoUrl { get; set; }
         public string BuyIngredients { get; set; }
         public DateTime DateCreated { get; set; }
+        public int Time { get; set; }
         public string Tips { get; set; }
         public Boolean allowShare { get; set; }
         

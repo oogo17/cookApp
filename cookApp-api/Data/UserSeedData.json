@@ -1,6 +1,6 @@
 [
   {
-    "Username": "Witt",
+    "Username": "omar",
     "Password": "password",
     "Email": "wittmacdonald@optique.com",
     "DateofBirth": "1958-02-12",
@@ -18,8 +18,8 @@
     ],
     "Recipes": [
       {
-        "Name": "flautas",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/8.jpg",
+        "Name": "tacos",
+        "PhotoUrl": "https://res.cloudinary.com/dmbwzp8if/image/upload/v1600756846/tacos_ijiuja.jpg",
         "Persons": 3,
         "Description": "Commodo pariatur sunt ullamco amet.",
         "Type": "mexican",
@@ -72,8 +72,8 @@
         "Tips": "Eiusmod ullamco dolor nostrud cillum consequat irure magna consequat dolore consequat ea nostrud."
       },
       {
-        "Name": "pozole",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/63.jpg",
+        "Name": "pizza",
+        "PhotoUrl": "https://res.cloudinary.com/dmbwzp8if/image/upload/v1595317219/bdsw9znlusxhimvho6js.jpg",
         "Persons": 2,
         "Description": "Eu labore sunt cillum eu veniam.",
         "Type": "argentinian",
@@ -126,8 +126,8 @@
         "Tips": "Laborum officia tempor deserunt ex reprehenderit sit culpa velit proident commodo aute dolor Lorem."
       },
       {
-        "Name": "pollito Chicken",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/36.jpg",
+        "Name": "sushi",
+        "PhotoUrl": "https://res.cloudinary.com/dmbwzp8if/image/upload/v1600756846/sushi_x0sxf7.png",
         "Persons": 1,
         "Description": "Excepteur fugiat irure nulla eiusmod ullamco ea adipisicing ea laborum est esse ut.",
         "Type": "german",
@@ -180,8 +180,8 @@
         "Tips": "Eiusmod nisi occaecat occaecat enim mollit pariatur aliquip."
       },
       {
-        "Name": "Quekas",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/96.jpg",
+        "Name": "burrito",
+        "PhotoUrl": "https://res.cloudinary.com/dmbwzp8if/image/upload/v1595310139/ve3t45y101bjubmqgrsd.jpg",
         "Persons": 4,
         "Description": "Eu culpa reprehenderit excepteur cupidatat Lorem.",
         "Type": "brazil",
@@ -232,127 +232,18 @@
           }
         ],
         "Tips": "Elit ex adipisicing irure eiusmod consectetur esse ad."
-      },
-      {
-        "Name": "chilaquiles",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/66.jpg",
-        "Persons": 7,
-        "Description": "Incididunt labore do mollit duis aliqua ut est deserunt irure laboris aute veniam veniam.",
-        "Type": "italian",
-        "BuyIngredients": "walmart",
-        "DateCreated": "2017-07-24",
-        "Ingredients": [
-          {
-            "Quantity": 10,
-            "Mesure": "spoon",
-            "Name": "brocoli"
-          },
-          {
-            "Quantity": 2,
-            "Mesure": "cups",
-            "Name": "tomato"
-          },
-          {
-            "Quantity": 8,
-            "Mesure": "lt",
-            "Name": "brocoli"
-          },
-          {
-            "Quantity": 7,
-            "Mesure": "lt",
-            "Name": "lamb"
-          },
-          {
-            "Quantity": 3,
-            "Mesure": "cups",
-            "Name": "onion"
-          }
-        ],
-        "Steps": [
-          {
-            "Description": "Dolor consectetur quis duis aliquip fugiat amet commodo esse sunt consequat dolor."
-          },
-          {
-            "Description": "Elit ex mollit mollit esse nostrud irure consequat laboris incididunt nulla elit tempor."
-          },
-          {
-            "Description": "Aute aute veniam cupidatat non deserunt."
-          },
-          {
-            "Description": "Ex veniam ut occaecat sit aliqua irure voluptate laboris labore."
-          },
-          {
-            "Description": "Eiusmod non nostrud tempor excepteur dolore fugiat labore veniam nulla cillum occaecat tempor voluptate consequat."
-          }
-        ],
-        "Tips": "Lorem esse non aliqua eiusmod laboris esse duis irure."
-      },
-      {
-        "Name": "pollito Chicken",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/84.jpg",
-        "Persons": 3,
-        "Description": "Minim ea id consectetur officia aliquip.",
-        "Type": "italian",
-        "BuyIngredients": "wholefoods",
-        "DateCreated": "2017-06-18",
-        "Ingredients": [
-          {
-            "Quantity": 10,
-            "Mesure": "lt",
-            "Name": "ribs"
-          },
-          {
-            "Quantity": 4,
-            "Mesure": "cups",
-            "Name": "brocoli"
-          },
-          {
-            "Quantity": 10,
-            "Mesure": "lb",
-            "Name": "thyme"
-          },
-          {
-            "Quantity": 9,
-            "Mesure": "lt",
-            "Name": "sparragus"
-          },
-          {
-            "Quantity": 8,
-            "Mesure": "cups",
-            "Name": "sparragus"
-          }
-        ],
-        "Steps": [
-          {
-            "Description": "Id dolor qui reprehenderit deserunt non minim ea."
-          },
-          {
-            "Description": "Aute Lorem sunt sunt qui voluptate eiusmod do tempor do consectetur."
-          },
-          {
-            "Description": "Cupidatat proident sint qui eiusmod non nostrud non velit reprehenderit laborum qui."
-          },
-          {
-            "Description": "Tempor veniam quis eiusmod deserunt irure veniam commodo nostrud."
-          },
-          {
-            "Description": "Cillum pariatur ea consectetur aliqua."
-          }
-        ],
-        "Tips": "Cupidatat laboris fugiat dolor cillum."
       }
     ],
     "FollowUsers": [
       {
-        "Username": "Mooney",
-        "UrlPhoto": "https://randomuser.me/api/portraits/men/86.jpg",
-        "DateCreated": "2017-07-23",
-        "FollowerId":1
+        "FollowerId": 2,
+        "Userid":1,
+        "DateCreated": "2017-07-23"
       }
     ]
   },
   {
-    "Username": "Love",
+    "Username": "tere",
     "Password": "password",
     "Email": "lovemacdonald@optique.com",
     "DateofBirth": "1993-06-28",
@@ -370,8 +261,8 @@
     ],
     "Recipes": [
       {
-        "Name": "huevitoo",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/61.jpg",
+        "Name": "huevito",
+        "PhotoUrl": "https://res.cloudinary.com/dmbwzp8if/image/upload/v1600756816/huevoMex_ac9dsn.jpg",
         "Persons": 2,
         "Description": "Esse voluptate non enim quis ad sunt laborum magna labore sunt incididunt tempor occaecat.",
         "Type": "italian",
@@ -424,8 +315,8 @@
         "Tips": "Consequat commodo qui velit aliquip minim nisi ipsum occaecat."
       },
       {
-        "Name": "pozole",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/66.jpg",
+        "Name": "ensalada",
+        "PhotoUrl": "https://res.cloudinary.com/dmbwzp8if/image/upload/v1600756788/ensalada_elp5jv.jpg",
         "Persons": 4,
         "Description": "Ex ut laborum cupidatat quis velit duis amet.",
         "Type": "italian",
@@ -478,8 +369,8 @@
         "Tips": "Minim ipsum minim exercitation fugiat deserunt eu aliquip consectetur eu exercitation do."
       },
       {
-        "Name": "fajitas",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/20.jpg",
+        "Name": "waffles",
+        "PhotoUrl": "https://res.cloudinary.com/dmbwzp8if/image/upload/v1600756846/waffles_q6p6ai.jpg",
         "Persons": 10,
         "Description": "Et et proident do adipisicing duis dolore sunt cupidatat.",
         "Type": "italian",
@@ -532,8 +423,8 @@
         "Tips": "Ut labore velit nulla id nostrud laboris id."
       },
       {
-        "Name": "chilaquiles",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/51.jpg",
+        "Name": "pad thai",
+        "PhotoUrl": "https://res.cloudinary.com/dmbwzp8if/image/upload/v1600756816/padThai_qnh6cl.jpg",
         "Persons": 8,
         "Description": "Id in voluptate culpa esse sint duis fugiat excepteur.",
         "Type": "french",
@@ -584,127 +475,18 @@
           }
         ],
         "Tips": "Nostrud cupidatat mollit minim quis magna exercitation commodo reprehenderit eu."
-      },
-      {
-        "Name": "pollito Chicken",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/4.jpg",
-        "Persons": 4,
-        "Description": "Quis esse Lorem nisi magna.",
-        "Type": "german",
-        "BuyIngredients": "wholefoods",
-        "DateCreated": "2017-02-11",
-        "Ingredients": [
-          {
-            "Quantity": 7,
-            "Mesure": "lt",
-            "Name": "ribs"
-          },
-          {
-            "Quantity": 1,
-            "Mesure": "lb",
-            "Name": "ribs"
-          },
-          {
-            "Quantity": 6,
-            "Mesure": "lt",
-            "Name": "shrimp"
-          },
-          {
-            "Quantity": 8,
-            "Mesure": "spoon",
-            "Name": "thyme"
-          },
-          {
-            "Quantity": 10,
-            "Mesure": "cups",
-            "Name": "beef"
-          }
-        ],
-        "Steps": [
-          {
-            "Description": "Magna laboris enim magna consequat eu dolore qui dolore ut consectetur."
-          },
-          {
-            "Description": "Duis commodo pariatur commodo tempor Lorem aliquip pariatur excepteur culpa pariatur proident sit est."
-          },
-          {
-            "Description": "Occaecat magna officia id veniam occaecat."
-          },
-          {
-            "Description": "Officia reprehenderit laborum nulla laboris nulla do commodo dolor do sint veniam."
-          },
-          {
-            "Description": "Sit irure sit veniam sit labore nostrud amet id."
-          }
-        ],
-        "Tips": "Commodo eiusmod voluptate tempor Lorem fugiat."
-      },
-      {
-        "Name": "pozole",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/98.jpg",
-        "Persons": 10,
-        "Description": "Consectetur ut proident consectetur in aute aliqua ipsum labore aute dolor.",
-        "Type": "german",
-        "BuyIngredients": "heb",
-        "DateCreated": "2017-04-05",
-        "Ingredients": [
-          {
-            "Quantity": 4,
-            "Mesure": "lt",
-            "Name": "lamb"
-          },
-          {
-            "Quantity": 5,
-            "Mesure": "cups",
-            "Name": "potatos"
-          },
-          {
-            "Quantity": 2,
-            "Mesure": "spoon",
-            "Name": "chicken"
-          },
-          {
-            "Quantity": 7,
-            "Mesure": "lb",
-            "Name": "cucumber"
-          },
-          {
-            "Quantity": 2,
-            "Mesure": "cups",
-            "Name": "thyme"
-          }
-        ],
-        "Steps": [
-          {
-            "Description": "Ullamco ea elit nisi dolore consectetur mollit."
-          },
-          {
-            "Description": "Irure ut culpa ut irure reprehenderit consectetur irure laborum cupidatat."
-          },
-          {
-            "Description": "Aliqua pariatur fugiat nostrud incididunt sunt exercitation reprehenderit nulla."
-          },
-          {
-            "Description": "Duis minim officia do cillum cupidatat."
-          },
-          {
-            "Description": "Amet officia eu consequat sunt amet aliqua quis sunt elit velit voluptate labore."
-          }
-        ],
-        "Tips": "Est eu laborum pariatur esse laborum est labore nostrud in dolor ex voluptate velit."
       }
     ],
     "FollowUsers": [
       {
-        "Username": "Mckinney",
-        "UrlPhoto": "https://randomuser.me/api/portraits/men/28.jpg",
-        "DateCreated": "2017-05-29",
-        "FollowerId": 1
+        "FollowerId": 1,
+        "Userid":2,
+        "DateCreated": "2017-05-29"
       }
     ]
   },
   {
-    "Username": "Lott",
+    "Username": "lott",
     "Password": "password",
     "Email": "lottmacdonald@optique.com",
     "DateofBirth": "1951-06-22",
@@ -936,129 +718,20 @@
           }
         ],
         "Tips": "Aliqua fugiat duis culpa incididunt aliqua voluptate in tempor est ipsum ea enim sunt ea."
-      },
-      {
-        "Name": "Quekas",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/30.jpg",
-        "Persons": 8,
-        "Description": "Veniam laboris aute cillum fugiat aliquip amet pariatur veniam consectetur non.",
-        "Type": "german",
-        "BuyIngredients": "wholefoods",
-        "DateCreated": "2017-04-14",
-        "Ingredients": [
-          {
-            "Quantity": 9,
-            "Mesure": "cups",
-            "Name": "ribs"
-          },
-          {
-            "Quantity": 9,
-            "Mesure": "cups",
-            "Name": "brocoli"
-          },
-          {
-            "Quantity": 7,
-            "Mesure": "cups",
-            "Name": "cucumber"
-          },
-          {
-            "Quantity": 4,
-            "Mesure": "lb",
-            "Name": "cucumber"
-          },
-          {
-            "Quantity": 9,
-            "Mesure": "lb",
-            "Name": "chicken"
-          }
-        ],
-        "Steps": [
-          {
-            "Description": "Commodo ut mollit irure veniam mollit duis excepteur pariatur nostrud Lorem culpa ut ea esse."
-          },
-          {
-            "Description": "Ex consequat esse ipsum ad excepteur commodo pariatur excepteur sint nisi culpa eu deserunt."
-          },
-          {
-            "Description": "Et qui adipisicing ad irure."
-          },
-          {
-            "Description": "Fugiat amet Lorem tempor id consectetur magna veniam consequat."
-          },
-          {
-            "Description": "Mollit esse officia labore occaecat ea tempor amet in nulla voluptate ipsum."
-          }
-        ],
-        "Tips": "Ex et ipsum elit minim aliquip incididunt fugiat dolor id ut aliquip ullamco occaecat irure."
-      },
-      {
-        "Name": "flautas",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/86.jpg",
-        "Persons": 4,
-        "Description": "Exercitation mollit elit elit voluptate qui dolore ut cupidatat non irure.",
-        "Type": "german",
-        "BuyIngredients": "walmart",
-        "DateCreated": "2017-07-20",
-        "Ingredients": [
-          {
-            "Quantity": 5,
-            "Mesure": "spoon",
-            "Name": "onion"
-          },
-          {
-            "Quantity": 10,
-            "Mesure": "cups",
-            "Name": "lamb"
-          },
-          {
-            "Quantity": 1,
-            "Mesure": "cups",
-            "Name": "avocado"
-          },
-          {
-            "Quantity": 8,
-            "Mesure": "spoon",
-            "Name": "brocoli"
-          },
-          {
-            "Quantity": 8,
-            "Mesure": "cups",
-            "Name": "lamb"
-          }
-        ],
-        "Steps": [
-          {
-            "Description": "Aute occaecat magna enim cupidatat."
-          },
-          {
-            "Description": "Lorem nulla quis consequat non."
-          },
-          {
-            "Description": "Et magna est deserunt ut do ut laborum do culpa sint."
-          },
-          {
-            "Description": "Deserunt commodo eiusmod laborum sit duis."
-          },
-          {
-            "Description": "Id do ex occaecat voluptate eu eiusmod deserunt mollit eiusmod ipsum."
-          }
-        ],
-        "Tips": "Quis officia et duis fugiat incididunt tempor nostrud cillum."
       }
     ],
     "FollowUsers": [
       {
-        "Username": "Shannon",
-        "UrlPhoto": "https://randomuser.me/api/portraits/men/3.jpg",
-        "DateCreated": "2017-08-03",
-        "FollowerId": 1
+        "FollowerId": 1,
+        "Userid":3,
+        "DateCreated": "2017-08-03"
       }
     ]
   },
   {
-    "Username": "Johnson",
+    "Username": "alan",
     "Password": "password",
-    "Email": "johnsonmacdonald@optique.com",
+    "Email": "alandonald@optique.com",
     "DateofBirth": "1997-04-24",
     "DateCreated": "2017-06-26",
     "City": "Broadlands",
@@ -1288,122 +961,13 @@
           }
         ],
         "Tips": "Aute proident Lorem sint qui culpa magna consequat esse nulla consectetur magna cupidatat eiusmod amet."
-      },
-      {
-        "Name": "flautas",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/52.jpg",
-        "Persons": 9,
-        "Description": "Consequat deserunt culpa esse ut et ipsum eu excepteur.",
-        "Type": "french",
-        "BuyIngredients": "wholefoods",
-        "DateCreated": "2017-02-03",
-        "Ingredients": [
-          {
-            "Quantity": 2,
-            "Mesure": "spoon",
-            "Name": "shrimp"
-          },
-          {
-            "Quantity": 9,
-            "Mesure": "lt",
-            "Name": "lamb"
-          },
-          {
-            "Quantity": 6,
-            "Mesure": "cups",
-            "Name": "onion"
-          },
-          {
-            "Quantity": 6,
-            "Mesure": "lb",
-            "Name": "ribs"
-          },
-          {
-            "Quantity": 9,
-            "Mesure": "spoon",
-            "Name": "sparragus"
-          }
-        ],
-        "Steps": [
-          {
-            "Description": "Elit dolore fugiat adipisicing dolor sunt consectetur minim esse anim."
-          },
-          {
-            "Description": "Tempor duis adipisicing do dolor dolore laboris."
-          },
-          {
-            "Description": "Id consequat cupidatat ullamco eiusmod laborum officia tempor aute."
-          },
-          {
-            "Description": "Dolor eiusmod cupidatat minim consequat laborum in ad est."
-          },
-          {
-            "Description": "Sit commodo voluptate id velit do."
-          }
-        ],
-        "Tips": "Sint exercitation nulla laborum nostrud nulla."
-      },
-      {
-        "Name": "fajitas",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/55.jpg",
-        "Persons": 7,
-        "Description": "Ut proident fugiat duis ad velit nostrud incididunt id voluptate amet elit consequat veniam ex.",
-        "Type": "argentinian",
-        "BuyIngredients": "wholefoods",
-        "DateCreated": "2017-06-27",
-        "Ingredients": [
-          {
-            "Quantity": 3,
-            "Mesure": "spoon",
-            "Name": "onion"
-          },
-          {
-            "Quantity": 4,
-            "Mesure": "cups",
-            "Name": "potatos"
-          },
-          {
-            "Quantity": 6,
-            "Mesure": "cups",
-            "Name": "chicken"
-          },
-          {
-            "Quantity": 6,
-            "Mesure": "cups",
-            "Name": "beef"
-          },
-          {
-            "Quantity": 4,
-            "Mesure": "lt",
-            "Name": "thyme"
-          }
-        ],
-        "Steps": [
-          {
-            "Description": "Consequat ad amet aliquip voluptate ullamco non anim esse minim labore."
-          },
-          {
-            "Description": "Veniam excepteur deserunt do qui et deserunt eu labore excepteur nisi aute veniam adipisicing veniam."
-          },
-          {
-            "Description": "Ullamco ex amet nostrud do velit proident sunt ipsum nulla."
-          },
-          {
-            "Description": "Nisi amet dolore Lorem Lorem nulla fugiat tempor ad sunt non commodo."
-          },
-          {
-            "Description": "Dolore minim aliquip pariatur ad Lorem est pariatur commodo non dolore."
-          }
-        ],
-        "Tips": "Eu duis cupidatat aliquip labore elit est enim ut culpa."
       }
     ],
     "FollowUsers": [
       {
-        "Username": "Bush",
-        "UrlPhoto": "https://randomuser.me/api/portraits/men/51.jpg",
-        "DateCreated": "2017-08-07",
-        "FollowerId": 1
+        "FollowerId": 1,
+        "Userid":4,
+        "DateCreated": "2017-08-07"
       }
     ]
   },
@@ -1426,8 +990,8 @@
     ],
     "Recipes": [
       {
-        "Name": "tacos",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/99.jpg",
+        "Name": "carbonara pasta",
+        "PhotoUrl": "https://res.cloudinary.com/dmbwzp8if/image/upload/v1600756831/pastaCarbonara_kcwgcd.jpg",
         "Persons": 7,
         "Description": "Esse ad Lorem ut id.",
         "Type": "french",
@@ -1480,8 +1044,8 @@
         "Tips": "Nostrud non Lorem ipsum occaecat ut pariatur eiusmod."
       },
       {
-        "Name": "fajitas",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/62.jpg",
+        "Name": "brisket",
+        "PhotoUrl": "https://res.cloudinary.com/dmbwzp8if/image/upload/v1600756764/brisket_rkhy0d.jpg",
         "Persons": 6,
         "Description": "Minim anim ex aute minim est pariatur dolor enim ea commodo ullamco duis.",
         "Type": "german",
@@ -1534,8 +1098,8 @@
         "Tips": "Dolor ut ullamco consectetur laboris qui labore eiusmod ut dolore."
       },
       {
-        "Name": "flautas",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/62.jpg",
+        "Name": "chilaquiles",
+        "PhotoUrl": "https://res.cloudinary.com/dmbwzp8if/image/upload/v1600756793/chilaquiles_sbwsfg.jpg",
         "Persons": 7,
         "Description": "Occaecat quis esse consectetur reprehenderit et nulla eiusmod minim consectetur.",
         "Type": "argentinian",
@@ -1588,8 +1152,8 @@
         "Tips": "Ullamco id tempor dolor laborum mollit aute."
       },
       {
-        "Name": "fajitas",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/78.jpg",
+        "Name": "chicharron",
+        "PhotoUrl": "https://res.cloudinary.com/dmbwzp8if/image/upload/v1600756788/chicharron_mtbhfg.jpg",
         "Persons": 6,
         "Description": "Consectetur id pariatur enim ipsum amet reprehenderit.",
         "Type": "french",
@@ -1640,122 +1204,13 @@
           }
         ],
         "Tips": "Ullamco exercitation cupidatat do veniam consectetur consequat fugiat amet exercitation nostrud exercitation cillum elit."
-      },
-      {
-        "Name": "huevitoo",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/16.jpg",
-        "Persons": 3,
-        "Description": "Et consectetur consectetur sunt fugiat esse est reprehenderit nostrud.",
-        "Type": "brazil",
-        "BuyIngredients": "heb",
-        "DateCreated": "2017-08-28",
-        "Ingredients": [
-          {
-            "Quantity": 4,
-            "Mesure": "lt",
-            "Name": "avocado"
-          },
-          {
-            "Quantity": 6,
-            "Mesure": "lb",
-            "Name": "chicken"
-          },
-          {
-            "Quantity": 9,
-            "Mesure": "cups",
-            "Name": "lamb"
-          },
-          {
-            "Quantity": 4,
-            "Mesure": "lt",
-            "Name": "brocoli"
-          },
-          {
-            "Quantity": 1,
-            "Mesure": "lt",
-            "Name": "brocoli"
-          }
-        ],
-        "Steps": [
-          {
-            "Description": "Nisi nisi enim velit aute consectetur excepteur tempor nulla consequat dolore magna eiusmod dolore."
-          },
-          {
-            "Description": "Commodo ut ullamco nostrud eiusmod."
-          },
-          {
-            "Description": "Ut aliqua ea et sunt magna veniam anim tempor ullamco."
-          },
-          {
-            "Description": "Veniam consequat aliquip adipisicing nostrud do voluptate fugiat excepteur veniam."
-          },
-          {
-            "Description": "Ipsum esse laboris excepteur cupidatat culpa laboris do amet irure esse dolore id eiusmod."
-          }
-        ],
-        "Tips": "Officia magna do proident mollit Lorem cillum proident exercitation elit id anim."
-      },
-      {
-        "Name": "pozole",
-        "PhotoUrl": "https://randomuser.me/api/portraits/men/60.jpg",
-        "Persons": 9,
-        "Description": "Velit nulla nostrud dolore in ex veniam aliqua reprehenderit mollit amet in est exercitation labore.",
-        "Type": "italian",
-        "BuyIngredients": "cosco",
-        "DateCreated": "2017-03-21",
-        "Ingredients": [
-          {
-            "Quantity": 1,
-            "Mesure": "lb",
-            "Name": "avocado"
-          },
-          {
-            "Quantity": 6,
-            "Mesure": "lt",
-            "Name": "avocado"
-          },
-          {
-            "Quantity": 3,
-            "Mesure": "cups",
-            "Name": "potatos"
-          },
-          {
-            "Quantity": 3,
-            "Mesure": "cups",
-            "Name": "onion"
-          },
-          {
-            "Quantity": 2,
-            "Mesure": "lb",
-            "Name": "chicken"
-          }
-        ],
-        "Steps": [
-          {
-            "Description": "Reprehenderit ut duis qui officia."
-          },
-          {
-            "Description": "Anim nostrud do eu sit eu sint irure."
-          },
-          {
-            "Description": "Aute dolore amet exercitation nulla esse consequat elit."
-          },
-          {
-            "Description": "Nulla ex amet non consectetur reprehenderit quis reprehenderit sunt labore consectetur culpa."
-          },
-          {
-            "Description": "Veniam veniam reprehenderit irure cillum enim."
-          }
-        ],
-        "Tips": "Ea laborum irure nisi labore cillum elit aliqua incididunt consectetur pariatur aliqua deserunt amet."
       }
     ],
     "FollowUsers": [
       {
-        "Username": "Perez",
-        "UrlPhoto": "https://randomuser.me/api/portraits/men/94.jpg",
-        "DateCreated": "2017-07-19",
-        "FollowerId": 1 
+        "FollowerId": 1,
+        "Userid":5,
+        "DateCreated": "2017-07-19"
       }
     ]
   }

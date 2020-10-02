@@ -39,11 +39,14 @@ namespace cookApp_api
         }
 
         public void ConfigureDevelopmentServices(IServiceCollection services) {
+            //---localhost
+                // "Server=localhost; Database=cookapp; Uid=appuser; Pwd=password"
             //---prod
-            //"DefaultConnection": "Server=31.170.166.124;Database=u122807215_cookapp;Uid=u122807215_userapp;Pwd=Pa$$word17;"
+                //"DefaultConnection": "Server=31.170.166.124;Database=u122807215_cookapp;Uid=u122807215_userapp;Pwd=Pa$$word17;"
             //--sqllite
             //  "DefaultConnection": "Data Source=userapp.db"
             //services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddDbContext<DataContext>(x => x.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             ConfigureServices(services);
         }

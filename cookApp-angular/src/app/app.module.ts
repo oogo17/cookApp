@@ -1,3 +1,4 @@
+import { ReviewAddComponent } from './reviews/review-add/review-add.component';
 import { ReviewsService } from './_services/reviews.service';
 import { ReviewDetailComponent } from './reviews/review-detail/review-detail.component';
 import { ReviewListComponent } from './reviews/review-list/review-list.component';
@@ -26,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { RatingModule } from 'ngx-bootstrap/rating';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { JwtModule } from '@auth0/angular-jwt';
 
 
@@ -95,6 +97,7 @@ export function tokenGetter() {
       FilterRecipesComponent,
       ReviewListComponent,
       ReviewDetailComponent,
+      ReviewAddComponent,
       FilterAdvancedSearchModalComponent
    ],
    imports: [
@@ -108,6 +111,7 @@ export function tokenGetter() {
       ModalModule.forRoot(),
       BsDatepickerModule.forRoot(),
       RatingModule.forRoot(),
+      TimepickerModule.forRoot(),
       MatSelectModule,
       MatToolbarModule,
       MatFormFieldModule,

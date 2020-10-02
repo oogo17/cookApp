@@ -15,6 +15,7 @@ namespace cookApp_api.Dtos
         public DateTime DateCreated { get; set; }
         public ICollection<IngredientForUpdateDto> Ingredients { get; set; }
         public ICollection<StepForUpdateDto> Steps { get; set; }
+        public int Time { get; set; }
         public string Tips { get; set; }
         public Boolean allowShare { get; set; }
         public int UserId { get; set; }

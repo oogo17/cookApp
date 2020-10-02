@@ -9,6 +9,7 @@ namespace cookApp_api.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Type { get; set; }
+        public int Time { get; set; }
         public int Persons { get; set; }
         public string PhotoUrl { get; set; }
         public string PublicId { get; set; }

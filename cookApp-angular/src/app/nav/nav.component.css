@@ -1,0 +1,13 @@
+.notificationBell-icon :hover {
+  cursor: pointer;
+  opacity: .6;
+  transform: scale(1.2);
+
+}
+.notificationBell-icon {
+  transform: scale(1.4);
+}
+
+.transform-dropdown {
+ transform: translateX(-250px);
+}

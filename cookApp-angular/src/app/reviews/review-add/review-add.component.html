@@ -1,0 +1,24 @@
+<form [formGroup]="reviewForm" (ngSubmit)="createReview()" >
+  <div class="mt-5">
+    <rating [max]="5" formControlName="rate" [customTemplate]="tt"></rating>
+
+      <!-- <pre
+        class="card-block card-header"
+        style="margin: 15px 0"
+      > <b>(<i>Rate:</i> {{rate}})</b> </pre> -->
+
+    <ng-template #tt let-i="index" let-v="value">
+      <button class="btn btn-{{ i < v ? 'warning' : 'default' }}">
+        {{ i < v ? "&#9733;" : "&#9734;" }}
+      </button>
+    </ng-template>
+  </div>
+  <div class="mt-3 form-group">
+    <textarea class="form-control"
+    formControlName="description"
+    placeholder="Add review" rows="2"></textarea>
+  </div>
+  <button type="submit" [disabled]="!reviewForm.valid" class="btn btn-outline-success m-3 align-content-end">Save</button>
+  </form>
+ <!-- <p>{{reviewForm.value | json}}</p>
+      <p>{{reviewForm.valid | json}}</p> -->

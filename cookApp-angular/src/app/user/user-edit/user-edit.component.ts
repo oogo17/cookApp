@@ -1,3 +1,4 @@
+import { Allergy } from './../../_models/Allergy';
 import { Password } from './../../_models/Password';
 import { ZipCodeInfo } from './../../_models/ZipCodeInfo';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { User } from 'src/app/_models/User';
 import { UserService } from 'src/app/_services/user.service';
-import { NgForm, FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgForm, FormControl, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
 import { CountriesAPIService } from 'src/app/_services/countriesAPI.service';
 import { ReplaySubject, Subject, Observable } from 'rxjs';
@@ -29,6 +30,7 @@ export class UserEditComponent implements OnInit {
   changePassword = true;
   passwordValue = 'asdfghj';
   // control = new FormControl();
+  allergy: FormArray;
   country: Country[];
   passwords: Password = {
     currentPassword: '',
@@ -62,6 +64,8 @@ export class UserEditComponent implements OnInit {
       this.user = data.user;
       console.log(data);
       this.createUpdateUserForm(this.user);
+      this.setinitial();
+
       this.setCountryValues();
     });
     this.initializeUploader();
@@ -95,7 +99,9 @@ export class UserEditComponent implements OnInit {
       zipCode: [user.zipCode],
       city: [user.city],
       state: [user.state],
-      country: [user.country]
+      country: [user.country],
+      allergy: this.formBuilder.array([])
+
     });
     // , {validator: this.PasswordMatchValidator}
     this.updatePasswordForm = this.formBuilder.group({
@@ -108,6 +114,42 @@ export class UserEditComponent implements OnInit {
     return g.get('newPassword').value === g.get('confirmPassword').value
       ? null
       : { mismatch: true };
+  }
+  setinitial() {
+    const allergyArray = this.updateUserForm.controls.allergy as FormArray;
+    console.log(allergyArray);
+
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.user.allergy.length; i++) {
+
+      const newAllergyGroup: FormGroup = this.formBuilder.group({
+        // id: [this.user.allergy[i].id],
+        description: [this.user.allergy[i].description, Validators.required]
+      });
+      allergyArray.insert(allergyArray.length, newAllergyGroup);
+    }
+  }
+  // createAllergy(): FormGroup {
+  //   return  this.formBuilder.group({
+  //     id: 0,
+  //     description: ''
+  //   });
+  // }
+
+  addAllergy(index: number) {
+    const allergyArray = this.updateUserForm.controls.allergy as FormArray;
+
+    const newAllergyGroup: FormGroup = this.formBuilder.group({
+      // id: index + 1,
+      description: ''
+    });
+
+    allergyArray.insert(allergyArray.length, newAllergyGroup);
+  }
+  removeAllergy(index: number) {
+
+    const allergyArray = this.updateUserForm.controls.allergy as FormArray;
+    allergyArray.removeAt(index);
   }
 
   private _filter(value: string): string[] {

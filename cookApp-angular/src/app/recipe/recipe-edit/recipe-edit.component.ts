@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 })
 export class RecipeEditComponent implements OnInit {
   uploader: FileUploader;
+  allowedMimeType: any;
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
   recipe: Recipe;
@@ -62,9 +63,12 @@ export class RecipeEditComponent implements OnInit {
   }
 
   initializeUploader() {
+    this.allowedMimeType = ['image/png', 'image/jpeg'];
+
     this.uploader = new FileUploader({
       url: this.baseUrl + 'recipephoto/' + this.recipe.id + '/photo',
       authToken: 'Bearer ' + localStorage.getItem('token'),
+      allowedMimeType: this.allowedMimeType,
       isHTML5: true,
       allowedFileType: ['image'],
       removeAfterUpload: true,

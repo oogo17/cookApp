@@ -8,14 +8,14 @@
 <div class="row ml-2">
   <label>Currently you follow</label>
 </div>
-<div class="ml-4" *ngFor="let user of followUsers">
+<div class="ml-4" *ngFor="let user of followUsersDetail">
 
   <div class="row" >
     <a (click)="userDetail(user)" class="img">
 
       <img src="{{ user?.urlPhoto }}" class="img-thumbnail rounded-circle" alt="..." />
 
-        <span *ngIf="(notificationCount > 0 && user.followerId === 1)" matBadge="{{notificationCount}}" matBadgeOverlap="true" matBadgeColor="warn"></span>
+        <span *ngIf="user.notifications.length > 0" matBadge="{{user.notifications.length}}" matBadgeOverlap="true" matBadgeColor="warn"></span>
 
     </a>
       <label class="ml-4">{{user.username}}</label>

@@ -1,3 +1,4 @@
+import { FollowUsersDetails } from './../../_models/FollowUsersDetails';
 import { FallowUserService } from './../../_services/fallowUser.service';
 import { Notification } from './../../_models/Notification';
 import { NotificationService } from './../../_services/notification.service';
@@ -28,6 +29,7 @@ export class FallowUserListComponent implements OnInit {
   selectedUser: number;
   notification: Notification[];
   notificationCount: number;
+  followUsersDetail: FollowUsersDetails[];
 
   constructor(
     private userService: UserService,
@@ -42,7 +44,9 @@ export class FallowUserListComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.data.subscribe((data) => {
       this.followUsers  = data.user;
+      console.log(this.followUsers);
       this.getNotifications(this.auth.decodedToken.nameid);
+
     });
 
     this.userService.getUsers().subscribe(user => {
@@ -89,12 +93,61 @@ export class FallowUserListComponent implements OnInit {
   getNotifications(id: number) {
     this.notificationService.getNotifications(id).subscribe( data => {
       this.notification = data;
-      this.notification = this.notification.filter(next => {
-        return this.followUsers.find(x => x.followerId === next.userId);
-      });
+      // this.notification = this.notification.filter(next => {
+      //   return this.followUsers.find(x => x.followerId === next.userId);
+      // });
+      console.log(this.notification);
       this.notificationCount = this.notification.length;
+
+      this.getFollowUsersDetails();
     }, error => {
       this.alertify.error(error);
     });
   }
+
+  notificationDe(c) {
+    console.log(c);
+  }
+
+  getFollowUsersDetails() {
+
+    const createFollowUserWithNotification = [];
+    // const t = this.followUsersDetail.concat(this.followUsers, this.notification);
+    this.followUsers.forEach(x => {
+
+     const item = {
+        urlPhoto: x.urlPhoto,
+        followerId: x.followerId,
+        username: x.username,
+        notifications: []
+      };
+
+     this.notification.forEach( y => {
+        if (x.followerId === y.userId) {
+          const not: Notification = {
+            notificationTypeId: y.notificationTypeId,
+            description: y.description,
+            entity: y.entity,
+            userId: y.userId,
+            notifyUserId: y.notifyUserId,
+            created: y.created,
+            recipeId: y.recipeId,
+            seen: y.seen
+          };
+          item.notifications.push(not);
+        }
+      });
+     createFollowUserWithNotification.push(item);
+       // console.log(item);
+    });
+    this.followUsersDetail = createFollowUserWithNotification;
+    console.log(this.followUsersDetail);
+    // this.followUsers;
+
+
+  }
+
+
+
+
 }

@@ -3,6 +3,7 @@
   <div class="row">
     <div class="ml-1 mt-5 col-md-3">
       <img src="{{recipe?.photoUrl || '../../../../../assets/dish.png'}}" class="img-thumbnail w-100" alt="...">
+      <app-review-add [recipeId]="recipeId"></app-review-add>
     </div>
     <div class="ml-5 mt-5 col-md-8" >
       <a class="font-weight-bold text-capitalize">{{recipe.name}}</a>
@@ -25,7 +26,11 @@
         <label>Tips:</label>
         <p class="ml-2">{{recipe.tips}}</p>
       </div>
-      <button type="button" class="btn btn-primary back-awesome" [routerLink]="['/fallowUser/',fallowUser]">Back</button>
+      <button type="button" class="btn btn-outline-primary back-awesome" [routerLink]="['/fallowUser/',fallowUser]">Back</button>
+
 
   </div>
+
 </div>
+
+<app-review-list [recipeId]="recipeId"></app-review-list>

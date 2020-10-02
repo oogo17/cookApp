@@ -39,7 +39,6 @@ export class RecipeCreateComponent implements OnInit {
   }
 
   createRecipe() {
-
     this.userService.createRecipe(this.recipe).subscribe ((next) => {
        this.alertify.success('New recipe Added');
      }, error => {

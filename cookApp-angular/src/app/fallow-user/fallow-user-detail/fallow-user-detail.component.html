@@ -5,13 +5,12 @@
     <label class="ml-4 mt-5 ">{{selectedUser.userName}}</label>
   </div>
   <div class="col-md-4 mt-4 justify-content-center">
-    <a [routerLink]="['/home/',userTokenId]"  class="btn btn-info back-awesome">
-      Back</a>
+    <a [routerLink]="['/home/',userTokenId]"  class="btn btn-outline-info back-awesome"> Back</a>
 
-    <button type="button" (click)="UnFallowUser(unFallowUserId)"  class="btn btn-warning ml-3" *ngIf="currentlyFallow">
+    <button type="button" (click)="UnFallowUser(unFallowUserId)"  class="btn btn-outline-warning ml-3" *ngIf="currentlyFallow">
     <i class="fas fa-user-minus mr-1"></i>Stop Fallow</button>
 
-    <button type="button" (click)="fallowUser(userId)"  class="btn btn-success ml-3" *ngIf="!currentlyFallow">
+    <button type="button" (click)="fallowUser(userId)"  class="btn btn-outline-success ml-3" *ngIf="!currentlyFallow">
       <i class="fas fa-user-plus mr-1"></i>Fallow User</button>
 
 
@@ -28,9 +27,9 @@
           <h5 class="card-title">{{recipe.name | titlecase}}</h5>
           <p class="card-text">{{recipe.description}}</p>
           <div class="float-right">
-            <button type="button" (click)="addRecipe(recipe)"  class="btn btn-info">
+            <button type="button" (click)="addRecipe(recipe)"  class="btn btn-outline-info">
               <i class="fas fa-plus mr-1"></i>Add</button>
-            <a [routerLink]="['/fallowUser/recipe/',userId, recipe.id]"  class="btn btn-primary ml-2">
+            <a [routerLink]="['/fallowUser/recipe/',userId, recipe.id]"  class="btn btn-outline-primary ml-2">
               <i class="fas fa-utensils mr-1"></i>View</a>
           </div>
         </div>

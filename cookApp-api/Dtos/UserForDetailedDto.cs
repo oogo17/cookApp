@@ -25,6 +25,11 @@ namespace cookApp_api.Dtos
         public string Country { get; set; }
 
         public string PhotoUrl { get; set; }
+
+        public ShoppingMarkertForDetailedDto ShoppingMarket { get; set; }
+
+        public ICollection<AllergyForDetailedDto> Allergy { get; set; }
+        
         public ICollection<PhotoForDetailedDto> Photos { get; set; }
 
         public ICollection<RecipeForDetailedDto> Recipes { get; set; }

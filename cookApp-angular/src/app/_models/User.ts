@@ -1,3 +1,4 @@
+import { Allergy } from './Allergy';
 import { Photo } from './Photo';
 import { Recipe } from './Recipe';
 import { FollowUsers } from './FollowUsers';
@@ -13,6 +14,7 @@ export interface User {
   state?: string;
   country?: string;
   photoUrl?: string;
+  allergy?: Allergy[];
   photos?: Photo[];
   recipes?: Recipe[];
   followUsers?: FollowUsers[];

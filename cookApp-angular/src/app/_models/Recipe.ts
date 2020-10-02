@@ -11,6 +11,7 @@ export interface Recipe {
   photoUrl: string;
   created: Date;
   tips: string;
+  time: number;
   allowShare: boolean;
   ingredients: Ingredients[];
   steps: Steps[];

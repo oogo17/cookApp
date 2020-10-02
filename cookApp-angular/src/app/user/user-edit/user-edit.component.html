@@ -294,7 +294,7 @@
           <i class="fa fa-upload fa-3x"></i>
             Drop photo here
 
-          <input #inputFile type="file" ng2FileSelect [uploader]="uploader" />
+          <input #inputFile type="file" ng2FileSelect [uploader]="uploader" accept="image/png,image/jpeg"/>
         </div>
       </div>
 
@@ -364,6 +364,34 @@
           <label class="col-form-label">{{user.dateCreated | date}} </label>
         </div>
       </div>
+
+      <div class="m-5">
+        <label for="mem" class="col-sm-2 col-form-label">Allergies</label>
+        <div class="row" *ngFor="let allergyForm of updateUserForm.controls.allergy['controls'] ; index as i ">
+          <div class="col-1 mt-1">
+            <label type="text" class="" placeholder="Number" value="">{{
+              i + 1
+            }}</label>
+          </div>
+          <div class="col-2 mt-1" [formGroup]="allergyForm">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Description"
+              value="{{ allergyForm.value.description }}"
+              formControlName="description"
+            />
+          </div>
+
+          <button type="button" class="btn btn-light mt-1" (click)="removeAllergy(i)" ><i class="fas fa-minus"></i></button>
+          <button type="button" class="btn btn-info mt-1 ml-2" (click)="addAllergy(i)" *ngIf="updateUserForm.controls.allergy['controls'].length === i+1" ><i class="fas fa-plus"></i></button>
+
+
+        </div>
+
+
+      </div>
+
 
 
     </form>

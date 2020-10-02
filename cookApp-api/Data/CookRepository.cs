@@ -73,6 +73,7 @@ namespace cookApp_api.Data
                                         .ThenInclude(x => x.Steps)
                                      .Include(x => x.Photos)
                                      .Include(x => x.FollowUsers)
+                                     .Include(x => x.Allergy)
                                      .FirstOrDefaultAsync(x => x.Id == id);
             return user;
         }
