@@ -17,7 +17,8 @@ namespace cookApp_api.Data
         Task<IEnumerable<User>> GetUsers();
 
         Task<User> GetUser(int id);
-
+        
+        Task<string> GetUsername(int id);
         Task<Recipe> GetRecipe(int id);
 
         Task<PagedList<Recipe>> GetRecipes(int id, RecipeParams recipeParams);

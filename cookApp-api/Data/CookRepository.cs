@@ -137,5 +137,12 @@ namespace cookApp_api.Data
             }
             return reviewDetailDto;
         }
+
+        public async Task<string> GetUsername(int id)
+        {
+            var user = await _context.User.FirstOrDefaultAsync(x => x.Id == id);
+
+            return user.UserName;
+        }
     }
 }

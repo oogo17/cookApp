@@ -9,6 +9,7 @@ namespace cookApp_api.Dtos
         public string Description { get; set; }
         public string Entity { get; set; }
         public int UserId { get; set; }
+        public string Username { get; set; }
         public int NotifyUserId { get; set; }
         public DateTime Created { get; set; }
         public int RecipeId { get; set; }

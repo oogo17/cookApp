@@ -18,14 +18,15 @@
 
           <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton" *dropdownMenu >
             <div *ngFor="let notification of notifications">
-              <a class="dropdown-item" href="#">
-                {{notification.userId}}
+              <a class="dropdown-item" (click)="NotificationDetail(notification)">
+                {{notification.username | titlecase}}
                 {{notification.description}}
                 {{notification.created | date}}
 
               </a>
 
             </div>
+            <button class="dropdown-item btn btn-outline-info">View All</button>
             <!-- <a class="dropdown-item" href="#" [routerLink]="['/userEdit/', authService.decodedToken?.nameid]"  >
               coco Add new recipe 09/24/2020
             </a>

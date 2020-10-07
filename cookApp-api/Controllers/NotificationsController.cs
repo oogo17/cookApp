@@ -28,6 +28,11 @@ namespace cookApp_api.Controllers
 
           var notificationsMapped = _mapper.Map<IEnumerable<NotificationForDetailedDto>>(notifications);
 
+          foreach (var notification in notificationsMapped)
+          {
+              notification.Username = await _repo.GetUsername(notification.UserId);
+          }
+
           return Ok(notificationsMapped);
         }
 

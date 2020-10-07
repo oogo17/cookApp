@@ -129,6 +129,7 @@ export class FallowUserListComponent implements OnInit {
             description: y.description,
             entity: y.entity,
             userId: y.userId,
+            username: null,
             notifyUserId: y.notifyUserId,
             created: y.created,
             recipeId: y.recipeId,

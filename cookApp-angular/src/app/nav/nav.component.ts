@@ -70,4 +70,9 @@ export class NavComponent implements OnInit {
   }
 
   EditUser() {}
+
+  NotificationDetail(notification: Notification) {
+
+    this.router.navigate(['/fallowUser/recipe/', notification.userId, notification.recipeId]);
+  }
 }
