@@ -1,3 +1,4 @@
+import { AccountSettingsComponent } from './account/account-settings/account-settings.component';
 import { FallowUserDetailGetUsersResolver } from './_resolvers/fallow-user-detail-GetUsers.resolver';
 import { FallowUserRecipeListResolver } from './_resolvers/fallow-user-recipeList.resolver';
 import { FallowUserDetailResolver } from './_resolvers/fallow-user-detail.resolver';
@@ -43,6 +44,7 @@ const routes: Routes = [
   {path: 'recipeEdit/:id', component: RecipeEditComponent, canActivate: [AuthGuard], resolve: {recipe: RecipeEditResolver}},
   {path: 'userEdit/:id', component: UserEditComponent, canActivate: [AuthGuard],
    resolve: {user: UserEditResolver}, canDeactivate: [PreventUnsaveChanges]},
+   {path: 'account', component: AccountSettingsComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

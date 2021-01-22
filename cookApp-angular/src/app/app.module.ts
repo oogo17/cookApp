@@ -1,3 +1,4 @@
+import { AccountSettingsComponent } from './account/account-settings/account-settings.component';
 import { ReviewAddComponent } from './reviews/review-add/review-add.component';
 import { ReviewsService } from './_services/reviews.service';
 import { ReviewDetailComponent } from './reviews/review-detail/review-detail.component';
@@ -98,7 +99,8 @@ export function tokenGetter() {
       ReviewListComponent,
       ReviewDetailComponent,
       ReviewAddComponent,
-      FilterAdvancedSearchModalComponent
+      FilterAdvancedSearchModalComponent,
+      AccountSettingsComponent
    ],
    imports: [
       BrowserModule,

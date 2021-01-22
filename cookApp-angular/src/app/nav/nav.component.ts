@@ -4,8 +4,9 @@ import { Photo } from './../_models/Photo';
 import { UserService } from './../_services/user.service';
 import { AlertifyService } from './../_services/alertify.service';
 import { AuthService } from './../_services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-nav',
@@ -14,16 +15,20 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
   model: any = {};
+  modelRecover: any = {};
   username: string;
   userPhotoUrl: string;
   currentUserId: number;
   notifications: Notification[];
+  modalRef: BsModalRef;
+  couldNotLoggedIn = false;
   constructor(
     public authService: AuthService,
     private alertify: AlertifyService,
     private router: Router,
     private userService: UserService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private modalService: BsModalService
   ) {}
 
   ngOnInit() {
@@ -50,6 +55,7 @@ export class NavComponent implements OnInit {
       },
       (error) => {
         this.alertify.error(error);
+        this.couldNotLoggedIn = true;
       }
     );
   }
@@ -74,5 +80,21 @@ export class NavComponent implements OnInit {
   NotificationDetail(notification: Notification) {
 
     this.router.navigate(['/fallowUser/recipe/', notification.userId, notification.recipeId]);
+  }
+
+  forgetPasswordModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+  acceptedForgetPasswordModal() {
+    console.log(this.modelRecover);
+    this.authService.ResetPassword(this.modelRecover).subscribe( res => {
+      this.alertify.message('Check your email');
+      this.modelRecover.email = '';
+    }, error => {
+      this.alertify.error(error);
+      this.modelRecover.email = '';
+    });
+    this.modalRef.hide();
+
   }
 }

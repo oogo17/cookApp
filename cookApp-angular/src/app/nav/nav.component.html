@@ -7,6 +7,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <!-- Add to menu -->
+
+      <!-- <li>Shopping</li> -->
     </ul>
     <div class="row" *ngIf="LoggedIn()" >
       <div class="dropdown " dropdown>
@@ -46,12 +48,40 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *dropdownMenu>
           <a class="dropdown-item" href="#" [routerLink]="['/userEdit/', authService.decodedToken?.nameid]"  ><i class="fas fa-user mr-2"></i>Edit profile</a>
-          <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Account</a>
+          <a class="dropdown-item" href="#" [routerLink]="['/account/']"><i class="fas fa-cog"></i> Account</a>
           <a class="dropdown-item" (click)="LoggedOut()"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
         </div>
       </div>
 
     </div>
+    <!-- couldNotLoggedIn -->
+    <div *ngIf="couldNotLoggedIn" class="mr-5">
+      <a (click)="forgetPasswordModal(template)" class="small" href="javascript:void(0);" >forgot password?</a>
+    </div>
+    <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Recover</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        We will send you a link to reset your password.
+        <form #RecoverForm="ngForm" class="form-inline my-2 my-lg-0"  (ngSubmit)="acceptedForgetPasswordModal(modelRecover.email)">
+          <input class="form-control mr-sm-2" name="email" placeholder="Email"
+          aria-label="Email" required [(ngModel)]="modelRecover.email">
+
+            <button type="submit" class="btn btn-info">Send</button>
+
+        </form>
+
+      </div>
+
+
+
+    </ng-template>
+
+
     <form #LoginForm="ngForm" class="form-inline my-2 my-lg-0" *ngIf="!LoggedIn()"  (ngSubmit)="Login()" >
       <input class="form-control mr-sm-2" name="username" placeholder="Username"
         aria-label="Username" required [(ngModel)]="model.username">
@@ -61,5 +91,7 @@
 
       <button class="btn btn-success my-2 my-sm-0" [disabled]="LoginForm.invalid" type="submit">Login</button>
     </form>
+
   </div>
+
 </nav>

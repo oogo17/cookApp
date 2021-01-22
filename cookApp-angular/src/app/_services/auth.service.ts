@@ -40,6 +40,10 @@ login(model: any) {
   );
   }
 
+  ResetPassword(model: any) {
+    return this.http.post(this.baseURL + 'resetPassword', model);
+  }
+
  register(user: User) {
   return this.http.post(this.baseURL + 'register', user);
  }

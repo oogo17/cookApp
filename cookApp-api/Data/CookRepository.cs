@@ -144,5 +144,12 @@ namespace cookApp_api.Data
 
             return user.UserName;
         }
+
+        public async Task<User> GetUserByEmail(string email)
+        {
+            var user = await _context.User.FirstOrDefaultAsync(x => x.Email == email);
+            
+            return user;
+        }
     }
 }

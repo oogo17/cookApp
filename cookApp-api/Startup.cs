@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using cookApp_api.Data;
 using cookApp_api.Helpers;
+using cookApp_api.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -20,6 +21,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 
 namespace cookApp_api
 {
@@ -64,6 +67,7 @@ namespace cookApp_api
             services.AddAutoMapper(typeof(CookRepository).Assembly);
             services.AddScoped<IAuthRepository,AuthRepository>();
             services.AddScoped<ICookRepository, CookRepository>();
+            services.AddScoped<IEmailSender, EmailSender>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters
@@ -76,6 +80,25 @@ namespace cookApp_api
                     };
                 });
             services.AddScoped<UpdateRecipeNotification>();
+             var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+             services.AddSingleton(emailConfig);
+             services.AddSwaggerGen(c => {  
+                c.SwaggerDoc("v1", new OpenApiInfo {  
+                Version = "v1",  
+                Title = "CookApp API",  
+            Description = "A simple example for swagger api information",  
+            TermsOfService = new Uri("https://example.com/terms"),  
+            Contact = new OpenApiContact {  
+                Name = "Omar",  
+                    Email = "oogomx@gmail.com",  
+                    Url = new Uri("https://example.com"),  
+            },  
+            License = new OpenApiLicense {  
+                Name = "Use under OpenApiLicense",  
+                    Url = new Uri("https://example.com/license"),  
+            }  
+            });  
+});   
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -119,11 +142,18 @@ namespace cookApp_api
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapFallbackToController("index", "Fallback");
             });
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>  
+            {  
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CookApp v1");  
+            });
+     
         }
     }
 }
